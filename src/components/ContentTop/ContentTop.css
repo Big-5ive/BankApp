@@ -3,7 +3,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 32px;
+  /* margin-bottom: 32px; */
 }
 .sidebar-toggler {
   display: flex;
@@ -30,4 +30,12 @@
 .content-top-left {
   display: flex;
   align-items: center;
+}
+
+.tradingview-widget-copyright {
+  display: none !important;
+}
+
+.trade__widget {
+  margin-bottom: 32px;
 }
