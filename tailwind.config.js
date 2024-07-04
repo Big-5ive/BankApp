@@ -6,12 +6,12 @@ export default {
   ],
   theme: {
     extend: {
-      boxShadow: {
-        'custom': 'rgba(255, 255, 255, 0.25) 0px 14px 28px, rgba(255, 255, 255, 0.22) 0px 10px 10px',
-      },
-      backgroundImage: {
-        'bg1': "url('/images/bgImage.jpg')",
-      }
+      // boxShadow: {
+      //   'custom': 'rgba(255, 255, 255, 0.25) 0px 14px 28px, rgba(255, 255, 255, 0.22) 0px 10px 10px',
+      // },
+      // backgroundImage: {
+      //   'bg1': "url('/images/bgImage.jpg')",
+      // }
 
     },
   },
