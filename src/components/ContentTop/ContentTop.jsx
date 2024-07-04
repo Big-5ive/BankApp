@@ -29,7 +29,7 @@ const ContentTop = () => {
           </button>
         </div>
       </div>
-      <div className="trade__widget">
+      <div className="trade__widget" >
       <TickerTape colorTheme="dark" displayMode="adaptive" showSymbolLogo={false}></TickerTape>
       </div>
     </>
