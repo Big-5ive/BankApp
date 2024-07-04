@@ -69,27 +69,27 @@ const Loan = () => {
           <div className="-bg--clr-primary p-4 rounded shadow-md">
             <div className="-text--clr-silver-v1">ATM Card Details</div>
             <div className="mt-4 space-y-2">
-              <div className="p-2 border rounded">
+              <div className="p-2 border rounded -text--clr-silver-v1">
                 Card Number: 4257 9801 21190 XXXX
               </div>
               <div className="flex space-x-2">
                 <div className="flex-1">
                   <div className="-text--clr-silver-v1">Ex.Date</div>
-                  <div className="p-2 border rounded">06/2</div>
+                  <div className="p-2 border rounded -text--clr-silver-v1">06/2</div>
                 </div>
                 <div className="flex-1">
                   <div className="-text--clr-silver-v1">Csv</div>
-                  <div className="p-2 border rounded">268</div>
+                  <div className="p-2 border rounded -text--clr-silver-v1">268</div>
                 </div>
                 <div className="flex-1">
                   <div className="-text--clr-silver-v1">Pin</div>
-                  <div className="p-2 border rounded">5460</div>
+                  <div className="p-2 border rounded -text--clr-silver-v1">5460</div>
                 </div>
               </div>
             </div>
           </div>
           <div className="-bg--clr-primary p-4 rounded shadow-md">
-            <div className="text-gray-800 font-bold">TIPS</div>
+            <div className="text-blue-800 font-bold">TIPS</div>
             <div className="mt-4 -text--clr-silver-v1">
               YOUR TRANSFER IS PROCESSING!
               <br />
