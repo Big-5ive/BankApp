@@ -119,135 +119,137 @@ const Profile = () => {
           </div>
 
           {/* Financial Statement Review */}
-          <div className="bg-white p-6 rounded shadow-md">
-            <div className="text-gray-800 font-bold">
+          <div className="-bg--clr-primary p-6 rounded shadow-md">
+            <div className="text-blue-800 font-bold mb-3">
               YOUR FINANCIAL STATEMENT REVIEW
             </div>
-            <div className="mt-4 text-gray-600">
+            {/* <div className="mt-4 text-gray-600">
               (WIRE AND DOMESTIC TRANSFERS)
-            </div>
+            </div> */}
 
-            <div class="p-5 h-max bg-gray-100">
-              <h1 class="text-xl mb-2">Your orders</h1>
+            <div className="p-5 h-max">
+              <h1 className="text-lg mb-2 -text--clr-silver-v1">
+                (WIRE AND DOMESTIC TRANSFERS)
+              </h1>
 
-              <div class="overflow-auto rounded-lg shadow hidden md:block">
-                <table class="w-full">
-                  <thead class="bg-gray-50 border-b-2 border-gray-200">
-                    <tr>
-                      <th class="w-20 p-3 text-sm font-semibold tracking-wide text-left">
+              <div className="overflow-auto rounded-lg shadow-custom hidden md:block">
+                <table className="w-full">
+                  <thead className="border-b-2 -border--clr-silver-v1 ">
+                    <tr className="-text--clr-silver-v1">
+                      <th className="w-20 p-3 text-sm font-semibold tracking-wide text-left">
                         No.
                       </th>
-                      <th class="p-3 text-sm font-semibold tracking-wide text-left">
+                      <th className="p-3 text-sm font-semibold tracking-wide text-left ">
                         BENEFICIARY BANK
                       </th>
-                      <th class="w-32 p-3 text-sm font-semibold tracking-wide text-left">
+                      <th className="w-32 p-3 text-sm font-semibold tracking-wide text-left">
                         BENEFICIARY ACCOUNT
                       </th>
-                      <th class="w-32 p-3 text-sm font-semibold tracking-wide text-left">
+                      <th className="w-32 p-3 text-sm font-semibold tracking-wide text-left">
                         AMOUNT
                       </th>
-                      <th class="w-24 p-3 text-sm font-semibold tracking-wide text-left uppercase">
+                      <th className="w-24 p-3 text-sm font-semibold tracking-wide text-left uppercase">
                         Status
                       </th>
-                      <th class="w-32 p-3 text-sm font-semibold tracking-wide text-left">
+                      <th className="w-32 p-3 text-sm font-semibold tracking-wide text-left">
                         DESCRIPTION
                       </th>
-                      <th class="w-24 p-3 text-sm font-semibold tracking-wide text-left uppercase">
+                      <th className="w-24 p-3 text-sm font-semibold tracking-wide text-left uppercase">
                         Date/time
                       </th>
                     </tr>
                   </thead>
-                  <tbody class="divide-y divide-gray-100">
-                    <tr class="bg-white">
-                      <td class="p-3 text-sm text-gray-700 whitespace-nowrap">
+                  <tbody className="divide-y -divide--clr-silver-v1">
+                    <tr className="-text--clr-silver-v1">
+                      <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">
                         <a
                           href="#"
-                          class="font-bold text-blue-500 hover:underline"
+                          className="font-bold text-blue-500 hover:underline"
                         >
                           10001
                         </a>
                       </td>
-                      <td class="p-3 text-sm text-gray-700 whitespace-nowrap">
+                      <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">
                         Marvins Bank
                       </td>
-                      <td className="p-3 text-sm text-gray-700 whitespace-nowrap">
+                      <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">
                         31122334
                       </td>
-                      <td class="p-3 text-sm text-gray-700 whitespace-nowrap">
-                        $200.00
+                      <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">
+                        $300.00
                       </td>
 
-                      <td class="p-3 text-sm text-gray-700 whitespace-nowrap">
-                        <span class="p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 rounded-lg bg-opacity-50">
+                      <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">
+                        <span className="p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 rounded-lg bg-opacity-50">
                           Delivered
                         </span>
                       </td>
-                      <td class="p-3 text-sm text-gray-700 whitespace-nowrap">
+                      <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">
                         This is for School Fees
                       </td>
-                      <td class="p-3 text-sm text-gray-700 whitespace-nowrap">
+                      <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">
                         16/10/2021 05:22
                       </td>
                     </tr>
-                    <tr class="bg-gray-50">
-                      <td class="p-3 text-sm text-gray-700 whitespace-nowrap">
+                    <tr className="">
+                      <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">
                         <a
                           href="#"
-                          class="font-bold text-blue-500 hover:underline"
+                          className="font-bold text-blue-500 hover:underline"
                         >
                           10002
                         </a>
                       </td>
-                      <td class="p-3 text-sm text-gray-700 whitespace-nowrap">
+                      <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">
                         Marvins Bank
                       </td>
-                      <td class="p-3 text-sm text-gray-700 whitespace-nowrap">
+                      <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">
                         31122343
                       </td>
 
-                      <td class="p-3 text-sm text-gray-700 whitespace-nowrap">
+                      <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">
                         $200.001
                       </td>
-                      <td class="p-3 text-sm text-gray-700 whitespace-nowrap">
-                        <span class="p-1.5 text-xs font-medium uppercase tracking-wider text-yellow-800 bg-yellow-200 rounded-lg bg-opacity-50">
+                      <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">
+                        <span className="p-1.5 text-xs font-medium uppercase tracking-wider text-yellow-800 bg-yellow-200 rounded-lg bg-opacity-50">
                           PENDING
                         </span>
                       </td>
-                      <td class="p-3 text-sm text-gray-700 whitespace-nowrap">
+                      <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">
                         This is for School Fees
                       </td>
-                      <td class="p-3 text-sm text-gray-700 whitespace-nowrap">
+                      <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">
                         16/10/2021 05:22
                       </td>
                     </tr>
-                    <tr class="bg-white">
-                      <td class="p-3 text-sm text-gray-700 whitespace-nowrap">
+                    <tr className="">
+                      <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">
                         <a
                           href="#"
-                          class="font-bold text-blue-500 hover:underline"
+                          className="font-bold text-blue-500 hover:underline"
                         >
                           10002
                         </a>
                       </td>
-                      <td class="p-3 text-sm text-gray-700 whitespace-nowrap">
+                      <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">
                         Marvins Bank
                       </td>
-                      <td class="p-3 text-sm text-gray-700 whitespace-nowrap">
+                      <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">
                         311433356
                       </td>
 
-                      <td class="p-3 text-sm text-gray-700 whitespace-nowrap">
+                      <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">
                         $200.00
                       </td>
-                      <td class="p-3 text-sm text-gray-700 whitespace-nowrap">
-                        <span class="p-1.5 text-xs font-medium uppercase tracking-wider text-gray-800 bg-gray-200 rounded-lg bg-opacity-50">
+                      <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">
+                        <span className="p-1.5 text-xs font-medium uppercase tracking-wider text-gray-800 bg-gray-200 rounded-lg bg-opacity-50">
                           Cancelled
                         </span>
                       </td>
-                      <td class="p-3 text-sm text-gray-700 whitespace-nowrap">
+                      <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">
                         This is for School Fees
                       </td>
-                      <td class="p-3 text-sm text-gray-700 whitespace-nowrap">
+                      <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">
                         16/10/2021 05:22
                       </td>
                     </tr>
@@ -255,67 +257,82 @@ const Profile = () => {
                 </table>
               </div>
 
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden">
-                <div class="bg-white space-y-3 p-4 rounded-lg shadow">
-                  <div class="flex items-center space-x-2 text-sm">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden">
+                <div className="-bg--clr-secondary space-y-3 p-4 rounded-lg shadow">
+                  <div className="flex items-center space-x-2 text-sm">
                     <div>
                       <a
                         href="#"
-                        class="text-blue-500 font-bold hover:underline"
+                        className="text-blue-500 font-bold hover:underline"
                       >
                         #1000
                       </a>
                     </div>
-                    <div class="text-gray-500">10/10/2021</div>
+                    <div className="text-gray-500">10/10/2021</div>
                     <div>
-                      <span class="p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 rounded-lg bg-opacity-50">
+                      <span className="p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 rounded-lg bg-opacity-50">
                         Delivered
                       </span>
                     </div>
                   </div>
-                  <div class="text-sm text-gray-700">Marvins Bank</div>
-                  <div class="text-sm font-medium text-black">$200.00</div>
+                  <div className="text-sm -text--clr-silver-v1">
+                    Marvins Bank <br /> 31122334
+                  </div>
+                  <div className="text-sm font-medium -text--clr-silver-v1">
+                    $300.00
+                  </div>
                 </div>
-                <div class="bg-white space-y-3 p-4 rounded-lg shadow">
-                  <div class="flex items-center space-x-2 text-sm">
+                <div className="-bg--clr-secondary space-y-3 p-4 rounded-lg shadow">
+                  <div className="flex items-center space-x-2 text-sm">
                     <div>
                       <a
                         href="#"
-                        class="text-blue-500 font-bold hover:underline"
+                        className="text-blue-500 font-bold hover:underline"
                       >
                         #1001
                       </a>
                     </div>
-                    <div class="text-gray-500">10/10/2021</div>
+                    <div className="text-gray-500">10/10/2021</div>
                     <div>
-                      <span class="p-1.5 text-xs font-medium uppercase tracking-wider text-yellow-800 bg-yellow-200 rounded-lg bg-opacity-50">
-                        Shipped
+                      <span className="p-1.5 text-xs font-medium uppercase tracking-wider text-yellow-800 bg-yellow-200 rounded-lg bg-opacity-50">
+                        Pending
                       </span>
                     </div>
                   </div>
-                  <div class="text-sm text-gray-700">Marvins Bank</div>
-                  <div class="text-sm font-medium text-black">$200.00</div>
+                  <div className="text-sm -text--clr-silver-v1">
+                    Marvins Bank <br /> 31122343
+                  </div>
+                  <div className="text-sm font-medium -text--clr-silver-v1">
+                    $200.001
+                  </div>
+                  <div className="text-sm font-medium -text--clr-silver-v1">
+                    This is for School Fees
+                  </div>
                 </div>
-                <div class="bg-white space-y-3 p-4 rounded-lg shadow">
-                  <div class="flex items-center space-x-2 text-sm">
+                <div className="-bg--clr-secondary space-y-3 p-4 rounded-lg shadow">
+                  <div className="flex items-center space-x-2 text-sm">
                     <div>
                       <a
                         href="#"
-                        class="text-blue-500 font-bold hover:underline"
+                        className="text-blue-500 font-bold hover:underline"
                       >
                         #1002
                       </a>
                     </div>
-                    <div class="text-gray-500">10/10/2021</div>
+                    <div className="text-gray-500">10/10/2021</div>
                     <div>
-                      <span class="p-1.5 text-xs font-medium uppercase tracking-wider text-gray-800 bg-gray-200 rounded-lg bg-opacity-50">
+                      <span className="p-1.5 text-xs font-medium uppercase tracking-wider text-gray-800 bg-gray-200 rounded-lg bg-opacity-50">
                         Canceled
                       </span>
                     </div>
                   </div>
-                  <div class="text-sm text-gray-700">Marvins Bank</div>
-                  <div class="text-sm font-medium text-black">$200.00</div>
-                  <div class="text-sm font-medium text-black max-w-[50px]">
+                  <div className="text-sm -text--clr-silver-v1">
+                    Marvins Bank <br /> 311433356
+                  </div>
+                  <div className="text-sm font-medium -text--clr-silver-v1">
+                    $200.001
+                  </div>
+                  <div className="text-sm font-medium -text--clr-silver-v1">
                     This is for School Fees
                   </div>
                 </div>
@@ -323,24 +340,205 @@ const Profile = () => {
             </div>
           </div>
 
-          {/* Financial Statement */}
-          <div className="-bg--clr-primary p-6 rounded shadow-md">
-            <div className="text-blue-800 font-bold">
-              YOUR FINANCIAL STATEMENT
-            </div>
-            <div className="mt-4 -text--clr-silver-v1">
-              (CREDIT AND DEBIT STATEMENTS)
-            </div>
-            <div className="mt-2 grid grid-cols-7 gap-2 -text--clr-silver-v1">
-              <div>REF.NO</div>
-              <div>TYPE</div>
-              <div>AMOUNT</div>
-              <div>TO/FROM</div>
-              <div>DESCRIPTION</div>
-              <div>DATE/TIME</div>
-              <div>STATUS</div>
-            </div>
+       {/* Financial Statement */}
+<div className="-bg--clr-primary p-6 rounded shadow-md">
+  <div className="text-blue-800 font-bold mb-3">
+    YOUR FINANCIAL STATEMENT
+  </div>
+  <div className="p-5 h-max">
+    <h1 className="text-lg mb-2 -text--clr-silver-v1">
+      (CREDIT AND DEBIT STATEMENTS)
+    </h1>
+    <div className="overflow-auto rounded-lg shadow-custom hidden md:block">
+      <table className="w-full">
+        <thead className="border-b-2 -border--clr-silver-v1">
+          <tr className="-text--clr-silver-v1">
+            <th className="w-20 p-3 text-sm font-semibold tracking-wide text-left">
+              REF.NO
+            </th>
+            <th className="p-3 text-sm font-semibold tracking-wide text-left">
+              TYPE
+            </th>
+            <th className="w-32 p-3 text-sm font-semibold tracking-wide text-left">
+              AMOUNT
+            </th>
+            <th className="w-32 p-3 text-sm font-semibold tracking-wide text-left">
+              TO/FROM
+            </th>
+            <th className="w-24 p-3 text-sm font-semibold tracking-wide text-left">
+              DESCRIPTION
+            </th>
+            <th className="w-24 p-3 text-sm font-semibold tracking-wide text-left">
+              DATE/TIME
+            </th>
+            <th className="w-24 p-3 text-sm font-semibold tracking-wide text-left">
+              STATUS
+            </th>
+          </tr>
+        </thead>
+        <tbody className="divide-y -divide--clr-silver-v1">
+          <tr className="-text--clr-silver-v1">
+            <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">
+              <a href="#" className="font-bold text-blue-500 hover:underline">
+                20001
+              </a>
+            </td>
+            <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">
+              Credit
+            </td>
+            <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">
+              $500.00
+            </td>
+            <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">
+              ABC Corp
+            </td>
+            <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">
+              Payment for Services
+            </td>
+            <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">
+              20/11/2021 14:30
+            </td>
+            <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">
+              <span className="p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 rounded-lg bg-opacity-50">
+                Completed
+              </span>
+            </td>
+          </tr>
+          <tr className="">
+            <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">
+              <a href="#" className="font-bold text-blue-500 hover:underline">
+                20002
+              </a>
+            </td>
+            <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">
+              Debit
+            </td>
+            <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">
+              $250.00
+            </td>
+            <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">
+              XYZ Inc
+            </td>
+            <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">
+              Office Supplies
+            </td>
+            <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">
+              21/11/2021 09:15
+            </td>
+            <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">
+              <span className="p-1.5 text-xs font-medium uppercase tracking-wider text-yellow-800 bg-yellow-200 rounded-lg bg-opacity-50">
+                Pending
+              </span>
+            </td>
+          </tr>
+          <tr className="">
+            <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">
+              <a href="#" className="font-bold text-blue-500 hover:underline">
+                20003
+              </a>
+            </td>
+            <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">
+              Credit
+            </td>
+            <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">
+              $150.00
+            </td>
+            <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">
+              John Doe
+            </td>
+            <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">
+              Freelance Work
+            </td>
+            <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">
+              22/11/2021 16:45
+            </td>
+            <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">
+              <span className="p-1.5 text-xs font-medium uppercase tracking-wider text-gray-800 bg-gray-200 rounded-lg bg-opacity-50">
+                Cancelled
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden">
+      <div className="-bg--clr-secondary space-y-3 p-4 rounded-lg shadow">
+        <div className="flex items-center space-x-2 text-sm">
+          <div>
+            <a href="#" className="text-blue-500 font-bold hover:underline">
+              #20001
+            </a>
           </div>
+          <div className="text-gray-500">20/11/2021</div>
+          <div className="z-10">
+            <span className="p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 rounded-lg bg-opacity-50">
+              Completed
+            </span>
+          </div>
+        </div>
+        <div className="text-sm -text--clr-silver-v1">
+          ABC Corp <br /> Credit
+        </div>
+        <div className="text-sm font-medium -text--clr-silver-v1">
+          $500.00
+        </div>
+        <div className="text-sm font-medium -text--clr-silver-v1">
+          Payment for Services
+        </div>
+      </div>
+      <div className="-bg--clr-secondary space-y-3 p-4 rounded-lg shadow">
+        <div className="flex items-center space-x-2 text-sm">
+          <div>
+            <a href="#" className="text-blue-500 font-bold hover:underline">
+              #20002
+            </a>
+          </div>
+          <div className="text-gray-500">21/11/2021</div>
+          <div className="z-10">
+            <span className="p-1.5 text-xs font-medium uppercase tracking-wider text-yellow-800 bg-yellow-200 rounded-lg bg-opacity-50 z-10">
+              Pending
+            </span>
+          </div>
+        </div>
+        <div className="text-sm -text--clr-silver-v1">
+          XYZ Inc <br /> Debit
+        </div>
+        <div className="text-sm font-medium -text--clr-silver-v1">
+          $250.00
+        </div>
+        <div className="text-sm font-medium -text--clr-silver-v1">
+          Office Supplies
+        </div>
+      </div>
+      <div className="-bg--clr-secondary space-y-3 p-4 rounded-lg shadow">
+        <div className="flex items-center space-x-2 text-sm">
+          <div>
+            <a href="#" className="text-blue-500 font-bold hover:underline">
+              #20003
+            </a>
+          </div>
+          <div className="text-gray-500">22/11/2021</div>
+          <div className="z-10">
+            <span className="p-1.5 text-xs font-medium uppercase tracking-wider text-gray-800 bg-gray-200 rounded-lg bg-opacity-50">
+              Cancelled
+            </span>
+          </div>
+        </div>
+        <div className="text-sm -text--clr-silver-v1">
+          John Doe <br /> Credit
+        </div>
+        <div className="text-sm font-medium -text--clr-silver-v1">
+          $150.00
+        </div>
+        <div className="text-sm font-medium -text--clr-silver-v1">
+          Freelance Work
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
         </div>
       </div>
     </>
