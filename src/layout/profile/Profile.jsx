@@ -1,9 +1,13 @@
 import React from 'react';
 import 'tailwindcss/tailwind.css';
 import bar from "../../assets/icons/barChart.svg"
+import ContentTop from '../../components/ContentTop/ContentTop';
 
 const Profile = () => {
   return (
+    <>
+    <div className="main-content">
+    <ContentTop />
     <div className="p-6 space-y-6 -bg--clr-secondary">
       {/* Header */}
       <div className="text-2xl font-bold -text--clr-white">Hi, Audrey Jerome Welcome back!</div>
@@ -121,6 +125,8 @@ const Profile = () => {
         </div>
       </div>
     </div>
+    </div>
+    </>
   );
 }
 
