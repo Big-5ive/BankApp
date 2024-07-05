@@ -1,0 +1,193 @@
+.addAccountParent{
+    width: 100%;
+    height: 100%;
+    /* padding-bottom: 30px; */
+    background-color: white;
+}
+.addformHold{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: white;
+}
+.addformrow{
+    width: 100%;
+    height: 70px;
+    padding-left: 5px;
+    padding-right: 5px;
+    display: flex;
+    /* background-color: yellow; */
+}
+.inputHold{
+    width: 25%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* background-color: yellow; */
+}
+.inputHold input{
+    width: 90%;
+    height: 60%;
+    padding-left: 2%;
+    border-radius: 7px;
+    border: 1px solid silver;
+}
+.addformrowbutt{
+    width: 100%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.addformrowbutt button{
+    width: 20%;
+    height: 70%;
+    border: none;
+    border-radius: 3px;
+    color: white;
+    background-color: blue;
+}
+.addformrowbutt button:hover{
+    background-color: rgb(43, 43, 245);
+}
+.addformrowbutt button:active{
+    background-color: blue;
+}
+
+@media screen and (width < 1000px) {
+    .addformHold{
+        height: max-content;
+        gap: 25px;
+    }
+    .addformrow{
+        flex-direction: column;
+        height: max-content;
+    }
+    .inputHold{
+        width: 100%;
+        height: 100px;
+        justify-content: center;
+        gap: 5px;
+    }
+    .inputHold input{
+        width: 100%;
+        /* height: 80px; */
+    }
+    .addformrowbutt button{
+        width: 100%;
+        height: 90%;
+    }
+}
+
+
+.creditAccountHold{
+    width: 100%;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: pink; */
+}
+.creditAccount{
+    width: 40%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-color: white;
+}
+.creditTopic{
+    width: 100%;
+    height: 50px;
+    font-size: 20px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.creditAccountrow{
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 10px;
+    padding-right: 10px;
+    /* background-color: yellow; */
+}
+.creditInputHold{
+    width: 48%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+#accounts{
+    width: 100%;
+    height: 40px;
+    border: 1px solid silver;
+    outline: none;
+}
+.creditInputHold p{
+    font-weight: 600;
+}
+.creditInputHold input{
+    width: 100%;
+    height: 40px;
+    border: 1px solid silver;
+    outline: none;
+    padding-left: 2%;
+}
+.creditAcctButt{
+    width: 100%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: yellowgreen; */
+}
+.creditAcctButt button{
+    width: 50%;
+    height: 70%;
+    background-color: blue;
+    color: white;
+    border-radius: 5px;
+}
+.creditAcctButt button:hover{
+    background-color: rgb(69, 69, 252);
+}
+
+@media screen and (width < 1000px) {
+    /* .addAccountParent{
+        padding-bottom: 50px;
+    } */
+    .creditAccount{
+        width: 100%;
+        height: max-content;
+        /* gap: 30px; */
+    }
+    .creditAccountrow{
+        height: max-content;
+        flex-direction: column;
+        gap: 20px;
+    }
+    .creditInputHold{
+        width: 100%;
+        height: 100px;
+    }
+    .creditInputHold input{
+        height: 60px;
+    }
+    .creditInputHold p{
+        font-size: 20px;
+    }
+    #accounts{
+        height: 60px;
+    }
+    .creditAcctButt button{
+        width: 95%;
+    }
+}

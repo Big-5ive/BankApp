@@ -1,0 +1,92 @@
+.accountMangeParent{
+    width: 100%;
+    min-height: 600px;
+    position: relative;
+    background-color: white;
+}
+.accountAction{
+    width: 100%;
+    height: 600px;
+    position: absolute;
+    /* padding-bottom: 30px; */
+    background-color: khaki;
+}
+.remove{
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    background-color: white;
+}
+.remove div{
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+.remove div:hover{
+    background-color: red;
+    color: white;
+}
+.accountmanageHead{
+    width: 100%;
+    height: 50px;
+    font-size: 30px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: yellow; */
+}
+.manageFunctionHol{
+    width: 100%;
+    height: max-content;
+    padding-top: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.manageFunction{
+    width: 100%;
+    height: 80px;
+    display: flex;
+    border-radius: 10px;
+    /* background-color: yellow; */
+}
+.manageFunction:hover{
+    background-color: navy;
+    color: white;
+    cursor: pointer;
+}
+.manageFunctionIcon{
+    width: 5%;
+    height: 100%;
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: yellow; */
+}
+.manageFunctionName{
+    width: 90%;
+    height: 100%;
+    font-size: 25px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    /* background-color: yellowgreen; */
+}
+
+@media screen and (width < 1000px) {
+    .manageFunctionIcon{
+        width: 20%;
+    }
+    .accountAction{
+        padding-bottom: 50px;
+    }
+}
