@@ -6,6 +6,7 @@ import Content from "../layout/Content/Content";
 import Payment from "../layout/payment/Payment";
 import Transfer from "../layout/transfer/Transfer";
 import Loan from "../layout/loan/Loan";
+import Profile from "../layout/profile/Profile";
 
 const route = createHashRouter([
   {
@@ -19,6 +20,10 @@ const route = createHashRouter([
       {
         path: "/dashboard",
         element: <Content />,
+      },
+      {
+        path: "/dashboard/profile",
+        element: <Profile />,
       },
       {
         path: "/dashboard/transfer",
