@@ -13,6 +13,7 @@ import Transfer from "../layout/transfer/Transfer";
 import Loan from "../layout/loan/Loan";
 import Profile from "../layout/profile/Profile";
 import Transaction from "../layout/Transaction/Transaction";
+import CustomerDetail from "../layout/customerDetail/CustomerDetail";
 
 const route = createHashRouter([
   {
@@ -21,17 +22,17 @@ const route = createHashRouter([
   },
   {
     path: "/admin",
-    element: <AdminDashboardParent />
+    element: <AdminDashboardParent />,
   },
   {
     path: "/allacount",
-    element: <AccountDashboard /> 
+    element: <AccountDashboard />,
   },
   {
     path: "accountmanage",
-    element: <DashboardManageAccount />
+    element: <DashboardManageAccount />,
   },
-    {
+  {
     path: "/dashboard",
     element: <Dashboard />,
     children: [
@@ -42,6 +43,10 @@ const route = createHashRouter([
       {
         path: "/dashboard/profile",
         element: <Profile />,
+      },
+      {
+        path: "/dashboard/detail",
+        element: <CustomerDetail />,
       },
       {
         path: "/dashboard/transfer",
