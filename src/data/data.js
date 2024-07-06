@@ -4,7 +4,7 @@ import { personsImgs } from "../utils/images";
 export const navigationLinks = [
     { id: 1, title: 'Home', image: iconsImgs.home, route: "/#/dashboard" },
     { id: 2, title: 'Statement', image: iconsImgs.budget, route: "/#/dashboard/statement" },
-    { id: 3, title: 'Transactions', image: iconsImgs.plane, route: "/#/dashboard/transaction" },
+    { id: 3, title: 'Transactions', image: iconsImgs.transfer, route: "/#/dashboard/transaction" },
     { id: 4, title: 'Wire Transfer', image: iconsImgs.plane, route: "/#/dashboard/transfer" },
     { id: 5, title: 'Subscriptions', image: iconsImgs.wallet, route: "/#/dashboard" },
     { id: 6, title: 'Loans', image: iconsImgs.bills, route: "/#/dashboard/loan" },
