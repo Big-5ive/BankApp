@@ -3,15 +3,16 @@ import { personsImgs } from "../utils/images";
 
 export const navigationLinks = [
     { id: 1, title: 'Home', image: iconsImgs.home, route: "/#/dashboard" },
-    { id: 2, title: 'Budget', image: iconsImgs.budget, route: "/#/dashboard" },
-    { id: 3, title: 'Transactions', image: iconsImgs.plane, route: "/#/dashboard" },
-    { id: 4, title: 'Subscriptions', image: iconsImgs.wallet, route: "/#/dashboard" },
-    { id: 5, title: 'Loans', image: iconsImgs.bills, route: "/#/dashboard/loan" },
-    { id: 6, title: 'Reports', image: iconsImgs.report, route: "/#/dashboard" },
-    { id: 7, title: 'Savings', image: iconsImgs.wallet, route: "/#/dashboard" },
-    { id: 8, title: 'Financial Advice', image: iconsImgs.wealth, route: "/#/dashboard" },
-    { id: 9, title: 'Account', image: iconsImgs.user, route: "/#/dashboard" },
-    { id: 10, title: 'Settings', image: iconsImgs.gears, route: "/#/dashboard" }
+    { id: 2, title: 'Statement', image: iconsImgs.budget, route: "/#/dashboard/statement" },
+    { id: 3, title: 'Transactions', image: iconsImgs.plane, route: "/#/dashboard/transaction" },
+    { id: 4, title: 'Wire Transfer', image: iconsImgs.plane, route: "/#/dashboard/transfer" },
+    { id: 5, title: 'Subscriptions', image: iconsImgs.wallet, route: "/#/dashboard" },
+    { id: 6, title: 'Loans', image: iconsImgs.bills, route: "/#/dashboard/loan" },
+    { id: 7, title: 'Reports', image: iconsImgs.report, route: "/#/dashboard" },
+    { id: 8, title: 'Savings', image: iconsImgs.wallet, route: "/#/dashboard" },
+    { id: 9, title: 'Financial Advice', image: iconsImgs.wealth, route: "/#/dashboard" },
+    { id: 10, title: 'Account', image: iconsImgs.user, route: "/#/dashboard" },
+    { id: 11, title: 'Settings', image: iconsImgs.gears, route: "/#/dashboard" }
 ];
 
 export const transactions = [
