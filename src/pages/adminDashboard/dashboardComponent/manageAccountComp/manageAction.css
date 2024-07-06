@@ -87,7 +87,7 @@
     width: 100%;
     min-height: 500px;
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     justify-content: center;
     /* background-color: pink; */
 }
