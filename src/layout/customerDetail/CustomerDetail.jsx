@@ -57,6 +57,10 @@ const CustomerDetail = () => {
                 <div className="text-sm -text--clr-silver pl-5">Married</div>
                 <li className="text-sm font-medium mt-4">Date of Birth:</li>
                 <div className="text-sm -text--clr-silver pl-5">30/11/2019</div>
+                <li className="text-sm font-medium mt-4">Address:</li>
+                <div className="text-sm -text--clr-silver pl-5">West Georgia</div>
+                <li className="text-sm font-medium mt-4">Active Since</li>
+                <div className="text-sm -text--clr-silver pl-5">30/11/2019</div>
               </ul>
             </div>
           </div>
