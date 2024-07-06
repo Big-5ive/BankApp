@@ -10,14 +10,14 @@ const CustomerDetail = () => {
         <div className="flex flex-col md:flex-row -bg--clr-secondary p-4 rounded-lg shadow-md md:space-x-2">
           {/* Left Side */}
           <div className="flex-1 -bg--clr-primary p-4 rounded-lg shadow-sm mb-4 md:mb-0">
-            <div className="text-lg font-bold -text--clr-silver">Audrey Jerome</div>
+            <div className="text-2xl font-bold -text--clr-silver underline underline-offset-8 mb-2">Audrey Jerome</div>
             <div className="text-sm -text--clr-silver-v1">3112384778</div>
             <div className="mt-4">
               <div className="text-sm font-medium flex items-center -text--clr-silver-v1">
                 <FaEnvelope className="h-5 w-5 -text--clr-silver-v1 mr-2" /> Email:
               </div>
               <div className="text-sm -text--clr-silver">archillesmr@gmail.com</div>
-              <div className="w-full bg-blue-500 h-1 mt-2"></div>
+              <div className="w-full bg-blue-500 h-1 mt-2 rounded"></div>
             </div>
             <div className="mt-4">
               <div className="text-sm font-medium flex items-center -text--clr-silver-v1">
@@ -25,7 +25,7 @@ const CustomerDetail = () => {
                 Type:
               </div>
               <div className="text-sm -text--clr-silver">Savings ($)</div>
-              <div className="w-full bg-blue-500 h-1 mt-2"></div>
+              <div className="w-full bg-blue-500 h-1 mt-2 rounded"></div>
             </div>
             <div className="mt-4">
               <div className="text-sm font-medium flex items-center -text--clr-silver-v1">
@@ -33,7 +33,7 @@ const CustomerDetail = () => {
                 Available Balance:
               </div>
               <div className="text-sm -text--clr-silver">$900,000.00</div>
-              <div className="w-full bg-blue-500 h-1 mt-2"></div>
+              <div className="w-full bg-blue-500 h-1 mt-2 rounded"></div>
             </div>
           </div>
 
