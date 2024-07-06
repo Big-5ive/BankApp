@@ -1,6 +1,11 @@
 import { RouterProvider, createHashRouter } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import Login from "../pages/auth/login/Login";
+import AdminDashboardParent from "../pages/adminDashboard/dashboardMain/adminDashboard";
+// import AccountComponent from "../pages/adminDashboard/dashboardComponent/account/account";
+import AccountDashboard from "../pages/adminDashboard/dashboardMain/dashboardAccount/dashboardAccount";
+import DashboardManageAccount from "../pages/adminDashboard/dashboardMain/manageAccount/manageAccount";
+
 import Dashboard from "../dashboards/client/Dashboard";
 import Content from "../layout/Content/Content";
 import Payment from "../layout/payment/Payment";
@@ -15,6 +20,18 @@ const route = createHashRouter([
     element: <Login />,
   },
   {
+    path: "/admin",
+    element: <AdminDashboardParent />
+  },
+  {
+    path: "/allacount",
+    element: <AccountDashboard /> 
+  },
+  {
+    path: "accountmanage",
+    element: <DashboardManageAccount />
+  },
+    {
     path: "/dashboard",
     element: <Dashboard />,
     children: [
