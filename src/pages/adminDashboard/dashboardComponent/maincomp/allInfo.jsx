@@ -44,7 +44,7 @@ const AllInfoComponent = () => {
                 </div>
             </div>
             <div className="transactionDetailxx">
-                <div className="tablehead"><h1>Card Details</h1></div>
+                <div className="tablehead"><h1>All Card Details</h1></div>
                 <div className="cardHold">
                     <div className="card">
                         <div className="cardname">

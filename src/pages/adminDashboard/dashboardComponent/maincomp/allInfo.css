@@ -6,13 +6,14 @@
     flex-direction: column;
     gap: 20px;
     /* background-color: red; */
-    overflow: scroll !important;
+    /* overflow: scroll !important; */
 }
 .header{
     width: 100%;
     height: 80px;
     font-size: 25px;
-    color: navy;
+    font-weight: 700;
+    /* color: navy; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -20,7 +21,7 @@
 }
 .dashboardItemHold{
     width: 100%;
-    min-height: 300px;
+    min-height: 250px;
     display: flex;
     justify-content: space-around;
     /* background-color: aqua; */
@@ -30,15 +31,16 @@
     height: 300px;
     border-radius: 10px;
     border: 1px solid silver;
+    padding-bottom: 20px;
     /* background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpAs1H3stoau56sTZr2QOHkfsxRl44vsXdmg&s"); */
     /* background-color: rgb(163, 163, 245); */
-    background-color: whitesmoke;
+    /* background-color: red; */
 }
 .tti{
     width: 100%;
     height: 50px;
-    font-size: 25px;
-    font-weight: 500;
+    font-size: 20px;
+    font-weight: 400;
     /* color: white; */
     display: flex;
     align-items: center;
@@ -54,12 +56,12 @@
     /* background-color: yellow; */
 }
 .tt2 span{
-    color: blueviolet;
+    /* color: blue; */
     font-weight: 700;
 }
 .bigBut{
     width: 100%;
-    height: 80px;
+    height: 50px;
     display: flex;
     align-items: flex-end;
     justify-content: center;
@@ -79,7 +81,7 @@
 }
 .transactionDetailxx{
     width: 100%;
-    height: 300px;
+    min-height: 300px;
     /* background-color: yellow; */
 }
 .tablehead{
@@ -98,14 +100,14 @@
 }
 .cardHold{
     width: 100%;
-    height: 300px;
+    min-height: 300px;
     display: flex;
     align-items: center;
     justify-content: space-around;
     /* background-color: yellow; */
 }
 .card{
-    width: 25%;
+    width: 30%;
     height: 210px;
     border-radius: 7px;
     background-image: url("data:image/jpeg;base64,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");
@@ -115,7 +117,7 @@
 .cardname{
     width: 100%;
     height: 40px;
-    font-size: 25px;
+    font-size: 20px;
     font-weight: 600;
     color: white;
     padding-left: 15px;
@@ -149,8 +151,8 @@
     height: 40px;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    gap: 50px;
+    justify-content: space-around;
+    /* gap: 20px; */
     color: white;
     font-size: 20px;
     padding-right: 15px;

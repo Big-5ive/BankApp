@@ -3,9 +3,11 @@ import { IoPersonAddOutline } from "react-icons/io5";
 import { GiReceiveMoney } from "react-icons/gi";
 import { MdOutlineRemoveCircleOutline } from "react-icons/md";
 import { CiEdit } from "react-icons/ci";
+import { MdDeleteOutline } from "react-icons/md";
+import { TbArrowsExchange2 } from "react-icons/tb";
 import { useState } from "react";
 import { IoClose } from "react-icons/io5";
-import { AddAccount, DebitAccount, CreditAccount, UpdateAccount } from "./manageAction";
+import { AddAccount, DebitAccount, CreditAccount, UpdateAccount, DeleteAccount, ChangeAccountStatus } from "./manageAction";
 
 const AccountManageMentComponent = () => {
     const [show, setShow] = useState(false)
@@ -27,6 +29,14 @@ const AccountManageMentComponent = () => {
         setShow(true)
         setName("updateAccount")
     }
+    const handleDeleteAccount = () => {
+        setShow(true)
+        setName("deleteAccount")
+    }
+    const handleChangeAccountStatus = () => {
+        setShow(true)
+        setName("changeAccountStatus")
+    }
     return(
         <div className="accountMangeParent">
             {
@@ -41,7 +51,9 @@ const AccountManageMentComponent = () => {
                         name === "addAccount" ? <AddAccount /> :
                         name === "creditAccount" ? <CreditAccount /> :
                         name === "debitAccount" ? <DebitAccount /> :
-                        name === "updateAccount" ? <UpdateAccount />: null
+                        name === "updateAccount" ? <UpdateAccount />: 
+                        name === "deleteAccount" ? <DeleteAccount /> :
+                        name === "changeAccountStatus" ? <ChangeAccountStatus /> : null
                     }
                 </div>
                 : null
@@ -80,6 +92,22 @@ const AccountManageMentComponent = () => {
                     </div>
                     <div className="manageFunctionName">
                         <p>Update Account</p>
+                    </div>
+                </div>
+                <div className="manageFunction" onClick={handleDeleteAccount}>
+                    <div className="manageFunctionIcon">
+                        <MdDeleteOutline />
+                    </div>
+                    <div className="manageFunctionName">
+                        <p>Delete Account</p>
+                    </div>
+                </div>
+                <div className="manageFunction" onClick={handleChangeAccountStatus}>
+                    <div className="manageFunctionIcon">
+                        <TbArrowsExchange2 />
+                    </div>
+                    <div className="manageFunctionName">
+                        <p>Change Account Status</p>
                     </div>
                 </div>
             </div>

@@ -90,22 +90,23 @@ const AccountComponent = () => {
                         </div>
                     </div>
                 </div>
-                : null
-            }
-            <div className="accountHead">
-                <p>All Accounts</p>
-            </div>
-            <div className="accountHold">
-                <div className="accountHold2" onClick={()=> setShow(true)}>
-                    <div className="numberLine">
-                        <p>1 :</p>
-                    </div>
-                    <div className="accountit">
-                        <p>Ekele Jeremiah</p>
+                : <div>
+                <div className="accountHead">
+                    <p>All Accounts</p>
+                </div>
+                <div className="accountHold">
+                    <div className="accountHold2" onClick={()=> setShow(true)}>
+                        <div className="numberLine">
+                            <p>1 :</p>
+                        </div>
+                        <div className="accountit">
+                            <p>Ekele Jeremiah</p>
+                        </div>
                     </div>
                 </div>
-              
             </div>
+            }
+            
         </div>
     )
 }
