@@ -203,7 +203,7 @@
     height: max-content;
     background-color: white;
     /* overflow: scroll; */
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
 }
 
 @media screen and (width < 1000px) {
@@ -217,6 +217,7 @@
     }
     .adminHeadHold{
         width: 100%;
+        /* background-color: red; */
     }
     /* .adminHeadHold{} */
     .welcome{
@@ -247,5 +248,10 @@
     .adminComponentHold{
         width: 97%;
         min-height: 650px;
+        box-shadow: none;
+        background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTv7sYSJWNDcQ0V5gxwVDWwLQLTiZ04Lqs0iw&s");
+        background-size: cover;
+        padding-bottom: 100px;
+        /* background-color: navy; */
     }
 }

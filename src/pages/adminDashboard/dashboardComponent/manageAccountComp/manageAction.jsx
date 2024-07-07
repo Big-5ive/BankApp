@@ -139,7 +139,12 @@ export const CreditAccount = () => {
                         </div>
                         <div className="creditInputHold">
                             <p>From</p>
-                            <input type="text" />
+                            <select name="accounts" id="accounts">
+                                <option value="select">Select</option>
+                                <option value="jerry">jerry</option>
+                                <option value="david">David</option>
+                                <option value="jonathan">Jonathan</option>
+                            </select>
                         </div>
                     </div>
                     <div className="creditAccountrow">
@@ -188,7 +193,12 @@ export const DebitAccount = () => {
                         </div>
                         <div className="creditInputHold">
                             <p>Debit to</p>
-                            <input type="text" />
+                            <select name="accounts" id="accounts">
+                                <option value="select">Select</option>
+                                <option value="jerry">jerry</option>
+                                <option value="david">David</option>
+                                <option value="jonathan">Jonathan</option>
+                            </select>
                         </div>
                     </div>
                     <div className="creditAccountrow">
