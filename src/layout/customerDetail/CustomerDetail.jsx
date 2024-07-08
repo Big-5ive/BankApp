@@ -1,8 +1,11 @@
 import React from "react";
 import { FaEnvelope, FaDollarSign } from "react-icons/fa";
 import ContentTop from "../../components/ContentTop/ContentTop";
+import customerData from "./customerData"; 
 
 const CustomerDetail = () => {
+  const { name, id, email, accountType, balance, profileDetails } = customerData;
+
   return (
     <>
       <div className="main-content">
@@ -10,13 +13,13 @@ const CustomerDetail = () => {
         <div className="flex flex-col md:flex-row -bg--clr-secondary p-4 rounded-lg shadow-md md:space-x-2">
           {/* Left Side */}
           <div className="flex-1 -bg--clr-primary p-4 rounded-lg shadow-sm mb-4 md:mb-0">
-            <div className="text-2xl font-bold -text--clr-silver underline underline-offset-8 mb-2">Audrey Jerome</div>
-            <div className="text-sm -text--clr-silver-v1">3112384778</div>
+            <div className="text-2xl font-bold -text--clr-silver underline underline-offset-8 mb-2">{name}</div>
+            <div className="text-sm -text--clr-silver-v1">{id}</div>
             <div className="mt-4">
               <div className="text-sm font-medium flex items-center -text--clr-silver-v1">
                 <FaEnvelope className="h-5 w-5 -text--clr-silver-v1 mr-2" /> Email:
               </div>
-              <div className="text-sm -text--clr-silver">archillesmr@gmail.com</div>
+              <div className="text-sm -text--clr-silver">{email}</div>
               <div className="w-full bg-blue-500 h-1 mt-2 rounded"></div>
             </div>
             <div className="mt-4">
@@ -24,7 +27,7 @@ const CustomerDetail = () => {
                 <FaDollarSign className="h-5 w-5 -text--clr-silver-v1 mr-2" /> Account
                 Type:
               </div>
-              <div className="text-sm -text--clr-silver">Savings ($)</div>
+              <div className="text-sm -text--clr-silver">{accountType}</div>
               <div className="w-full bg-blue-500 h-1 mt-2 rounded"></div>
             </div>
             <div className="mt-4">
@@ -32,7 +35,7 @@ const CustomerDetail = () => {
                 <FaDollarSign className="h-5 w-5 -text--clr-silver-v1 mr-2" />{" "}
                 Available Balance:
               </div>
-              <div className="text-sm -text--clr-silver">$900,000.00</div>
+              <div className="text-sm -text--clr-silver">{balance}</div>
               <div className="w-full bg-blue-500 h-1 mt-2 rounded"></div>
             </div>
           </div>
@@ -50,17 +53,17 @@ const CustomerDetail = () => {
             <div className="mt-4">
               <ul className="list-disc pl-5 -text--clr-silver-v1">
                 <li className="text-sm font-medium">Phone:</li>
-                <div className="text-sm -text--clr-silver pl-5">+19639991232</div>
+                <div className="text-sm -text--clr-silver pl-5">{profileDetails.phone}</div>
                 <li className="text-sm font-medium mt-4">Sex:</li>
-                <div className="text-sm -text--clr-silver pl-5">Male</div>
+                <div className="text-sm -text--clr-silver pl-5">{profileDetails.sex}</div>
                 <li className="text-sm font-medium mt-4">Marital Status:</li>
-                <div className="text-sm -text--clr-silver pl-5">Married</div>
+                <div className="text-sm -text--clr-silver pl-5">{profileDetails.maritalStatus}</div>
                 <li className="text-sm font-medium mt-4">Date of Birth:</li>
-                <div className="text-sm -text--clr-silver pl-5">30/11/2019</div>
+                <div className="text-sm -text--clr-silver pl-5">{profileDetails.dateOfBirth}</div>
                 <li className="text-sm font-medium mt-4">Address:</li>
-                <div className="text-sm -text--clr-silver pl-5">West Georgia</div>
+                <div className="text-sm -text--clr-silver pl-5">{profileDetails.address}</div>
                 <li className="text-sm font-medium mt-4">Active Since</li>
-                <div className="text-sm -text--clr-silver pl-5">30/11/2019</div>
+                <div className="text-sm -text--clr-silver pl-5">{profileDetails.activeSince}</div>
               </ul>
             </div>
           </div>
