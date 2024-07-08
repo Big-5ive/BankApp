@@ -2,7 +2,9 @@
     width: 100%;
     min-height: 600px;
     position: relative;
+    /* background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTr2aXhyTLwpF_yHokiPXY_-9JZbKG1oqM4qg&s"); */
     background-color: white;
+    /* background-size: cover; */
 }
 .accountAction{
     width: 100%;
@@ -52,7 +54,7 @@
 }
 .manageFunction{
     width: 100%;
-    height: 60px;
+    height: 50px;
     display: flex;
     border-radius: 10px;
     /* background-color: yellow; */
@@ -65,7 +67,7 @@
 .manageFunctionIcon{
     width: 5%;
     height: 100%;
-    font-size: 30px;
+    font-size: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -74,8 +76,8 @@
 .manageFunctionName{
     width: 90%;
     height: 100%;
-    font-size: 20px;
-    font-weight: 600;
+    font-size: 18px;
+    font-weight: 700;
     display: flex;
     align-items: center;
     /* justify-content: center; */
@@ -83,6 +85,11 @@
 }
 
 @media screen and (width < 1000px) {
+    .accountMangeParent{
+        background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTr2aXhyTLwpF_yHokiPXY_-9JZbKG1oqM4qg&s");
+        /* background-color: white; */
+        background-size: cover;
+    }
     .manageFunctionIcon{
         width: 20%;
     }

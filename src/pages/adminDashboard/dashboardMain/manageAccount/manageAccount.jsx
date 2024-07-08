@@ -12,8 +12,11 @@ import { BsMotherboard } from "react-icons/bs";
 // import AllInfoComponent from '../dashboardComponent/maincomp/allInfo';
 import { useNavigate } from 'react-router-dom';
 import AccountManageMentComponent from "../../dashboardComponent/manageAccountComp/manageAccountComp";
+import { useState } from "react";
+import { CgCloseR } from "react-icons/cg";
 
 const DashboardManageAccount = () => {
+    const [dropDown, setDropDown] = useState(false)
     const navigate = useNavigate()
     return(
         <div className="adminDashboardParent">
@@ -87,11 +90,13 @@ const DashboardManageAccount = () => {
                         </div>
                         <div className="notify">
                             <div className="notifyHold">
-                                <div className="notifyicon">
+                                {/* <div className="notifyicon">
                                     <IoNotificationsOutline />
-                                </div>
-                                <div className="notifyicon2">
-                                    <LuMenu />
+                                </div> */}
+                                <div className="notifyicon2" onClick={()=> setDropDown(!dropDown)}>
+                                    {
+                                        dropDown ? <CgCloseR /> : <LuMenu />
+                                    }
                                 </div>
                                 <div className="profilepic">
                                     <div className="picpic"></div>
@@ -101,8 +106,44 @@ const DashboardManageAccount = () => {
                     </div>
                 </div>
                 <div className="adminComponents">
+                {
+                        dropDown ? 
+                        <div className="dropDownMenu">
+                            <div className="dropdownHold" onClick={()=> navigate("/admin")}>
+                                <RxDashboard />
+                                <p>Dashboard</p>
+                            </div>
+                            <div className="dropdownHold" onClick={()=> navigate("/allacount")}>
+                                <MdOutlineManageAccounts />
+                                <p>Accounts</p>
+                            </div>
+                            <div className="dropdownHold" onClick={()=> navigate("/accountmanage")}>
+                                <GrUserManager />
+                                <p>Manage Accounts</p>
+                            </div>
+                            <div className="dropdownHold">
+                                <RiMessage2Line />
+                                <p>Messages</p>
+                            </div>
+                            <div className="dropdownHold">
+                                <MdOutlineManageHistory />
+                                <p>Transaction History</p>
+                            </div>
+                            <div className="dropdownHold">
+                                <BsMotherboard />
+                                <p>Others</p>
+                            </div>
+                            <div className="dropdownHold">
+                                <MdOutlineSettings />
+                                <p>Settings</p>
+                            </div>
+                        </div>
+                        : null
+                    }
                     <div className="adminComponentHold">
-                        <AccountManageMentComponent />
+                        {
+                            !dropDown ? <AccountManageMentComponent /> : null
+                        }
                     </div>
                 </div>
             </div>
