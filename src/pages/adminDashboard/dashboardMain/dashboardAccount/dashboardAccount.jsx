@@ -5,7 +5,8 @@ import { MdOutlineManageAccounts } from "react-icons/md";
 import { RiMessage2Line } from "react-icons/ri";
 import { MdOutlineManageHistory } from "react-icons/md";
 import { MdOutlineSettings } from "react-icons/md";
-import { IoNotificationsOutline } from "react-icons/io5";
+// import { IoNotificationsOutline } from "react-icons/io5";
+import { MdOutlineMonetizationOn } from "react-icons/md";
 import { GrUserManager } from "react-icons/gr";
 import { LuMenu } from "react-icons/lu";
 import { BsMotherboard } from "react-icons/bs";
@@ -31,7 +32,7 @@ const AccountDashboard = () => {
                             <p>Dashboard</p>
                         </div>
                     </div>
-                    <div className="navHolddivn">
+                    <div className="navHolddivn" onClick={()=> navigate("/allacount")}>
                         <div className="navlogo">
                             <MdOutlineManageAccounts />
                         </div>
@@ -47,7 +48,15 @@ const AccountDashboard = () => {
                             <p>Manage Accounts</p>
                         </div>
                     </div>
-                    <div className="navHolddiv">
+                    <div className="navHolddiv" onClick={()=>navigate("/loanrequest")}>
+                        <div className="navlogo">
+                            <MdOutlineMonetizationOn />
+                        </div>
+                        <div className="navWrited">
+                            <p>Loan Requests</p>
+                        </div>
+                    </div>
+                    <div className="navHolddiv" onClick={()=>navigate("/messages")}>
                         <div className="navlogo">
                             <RiMessage2Line />
                         </div>
@@ -55,7 +64,7 @@ const AccountDashboard = () => {
                             <p>Messages</p>
                         </div>
                     </div>
-                    <div className="navHolddiv">
+                    <div className="navHolddiv" onClick={()=> navigate("/history")}>
                         <div className="navlogo">
                             <MdOutlineManageHistory />
                         </div>
@@ -120,11 +129,15 @@ const AccountDashboard = () => {
                                 <GrUserManager />
                                 <p>Manage Accounts</p>
                             </div>
-                            <div className="dropdownHold">
-                                <RiMessage2Line />
-                                <p>Messages</p>
+                            <div className="dropdownHold" onClick={()=> navigate("/loanrequest")}>
+                                <MdOutlineMonetizationOn />
+                                <p>Loan Requests</p>
                             </div>
-                            <div className="dropdownHold">
+                            <div className="dropdownHold" onClick={()=> navigate("/messages")}>
+                                <RiMessage2Line />
+                                <p>Messagea</p>
+                            </div>
+                            <div className="dropdownHold" onClick={()=> navigate("/history")}>
                                 <MdOutlineManageHistory />
                                 <p>Transaction History</p>
                             </div>

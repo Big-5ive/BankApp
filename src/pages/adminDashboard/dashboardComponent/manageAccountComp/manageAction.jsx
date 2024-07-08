@@ -83,37 +83,20 @@ export const AddAccount = () => {
                         <p>Account currency</p>
                         <input type="text" />
                     </div>
-                    <div className="inputHold">
+                    {/* <div className="inputHold">
                         <p>COT code</p>
                         <input type="text" />
-                    </div>
-                    <div className="inputHold">
-                        <p>IMF code</p>
-                        <input type="text" />
-                    </div>
-                    <div className="inputHold">
-                        <p>Complaint code</p>
-                        <input type="text" />
-                    </div>
-                </div>
-                <div className="addformrow">
-                    <div className="inputHold">
-                        <p>Login / ATM pin</p>
-                        <input type="text" />
-                    </div>
-                    <div className="inputHold">
-                        <p>Domestic Transfer pin</p>
-                        <input type="text" />
-                    </div>
+                    </div> */}
                     {/* <div className="inputHold">
                         <p>IMF code</p>
                         <input type="text" />
-                    </div>
-                    <div className="inputHold">
+                    </div> */}
+                    {/* <div className="inputHold">
                         <p>Complaint code</p>
                         <input type="text" />
                     </div> */}
                 </div>
+                
                 <div className="addformrowbutt">
                    <button>Create Account</button>
                 </div>
