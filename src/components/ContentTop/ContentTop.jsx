@@ -32,6 +32,21 @@ const ContentTop = () => {
     }, 200);
   };
 
+  function handleKYC(){
+    setAddKYCModalOpen(true)
+    setShowSettings(false)
+  }
+  
+  function handleUploadImage(){
+    setUploadImageModalOpen(true)
+    setShowSettings(false)
+  }
+
+  function handleEditProfile(){
+    setEditProfileModalOpen(true)
+    setShowSettings(false)
+  }
+
   return (
     <>
       <div className="main-content-top">
@@ -46,7 +61,7 @@ const ContentTop = () => {
           <h3 className="content-top-title uppercase">{currentPath}</h3>
         </div>
         <div className="content-top-btns flex mb-1 relative">
-          <button className="notification-btn content-top-btn">
+          <button className="notification-btn content-top-btn mb-1">
             <img src={iconsImgs.bell} alt="Notifications" />
             <span className="notification-btn-dot"></span>
           </button>
@@ -63,15 +78,15 @@ const ContentTop = () => {
                 ref={dropdownRef}
                 className="absolute right-0 mt-2 w-48 -bg--clr-primary shadow-lg rounded-lg -text--clr-silver-v1"
               >
-                <div className="flex items-center p-2 hover:bg-gray-100 cursor-pointer" onClick={() => setAddKYCModalOpen(true)}>
+                <div className="flex items-center p-2 hover:bg-gray-100 cursor-pointer" onClick={() => handleKYC()}>
                   <FaIdCard className="mr-2 -text--clr-silver" />
                   <span>Add KYC</span>
                 </div>
-                <div className="flex items-center p-2 hover:bg-gray-100 cursor-pointer" onClick={() => setEditProfileModalOpen(true)}>
+                <div className="flex items-center p-2 hover:bg-gray-100 cursor-pointer" onClick={() => handleEditProfile()}>
                   <FaUserEdit className="mr-2" />
                   <span>Edit Profile</span>
                 </div>
-                <div className="flex items-center p-2 hover:bg-gray-100 cursor-pointer" onClick={() => setUploadImageModalOpen(true)}>
+                <div className="flex items-center p-2 hover:bg-gray-100 cursor-pointer" onClick={() => handleUploadImage()}>
                   <FaUpload className="mr-2" />
                   <span>Upload Image</span>
                 </div>
