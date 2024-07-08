@@ -44,11 +44,11 @@ const MessageComponent = () => {
           {messages.map((message) => (
             <div
               key={message.id}
-              className="-bg--clr-primary p-4 rounded shadow-md flex flex-col cursor-pointer"
+              className="-bg--clr-primary p-4 rounded shadow-md flex flex-col cursor-pointer hover:scale-105 "
               onClick={() => handleClick(message)}
             >
               <div className="flex items-center mb-2">
-                <div className="w-10 h-10 bg-blue-500 text-white flex items-center justify-center rounded-full text-lg font-bold mr-3">
+                <div className="w-10 h-10 -bg--clr-pumpkin text-white flex items-center justify-center rounded-full text-lg font-bold mr-3">
                   {message.sender.charAt(0)}
                 </div>
                 <div className="flex-1 text-lg font-bold -text--clr-silver">
