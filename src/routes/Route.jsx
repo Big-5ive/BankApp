@@ -14,6 +14,7 @@ import Loan from "../layout/loan/Loan";
 import Profile from "../layout/profile/Profile";
 import Transaction from "../layout/Transaction/Transaction";
 import CustomerDetail from "../layout/customerDetail/CustomerDetail";
+import Statement from "../layout/statement/Statement";
 
 const route = createHashRouter([
   {
@@ -51,6 +52,10 @@ const route = createHashRouter([
       {
         path: "/dashboard/transfer",
         element: <Transfer />,
+      },
+      {
+        path: "/dashboard/account-statement",
+        element: <Statement />,
       },
       {
         path: "/dashboard/transaction",
