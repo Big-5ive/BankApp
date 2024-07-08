@@ -25,7 +25,7 @@ const DashboardManageAccount = () => {
             <div className="adminLeft">
                 <div className="logo"><BsBank /></div>
                 <div className="navHold">
-                    <div className="navHolddiv" onClick={()=> navigate("/loanrequest")}>
+                    <div className="navHolddiv" onClick={()=> navigate("/admin")}>
                         <div className="navlogo">
                             <RxDashboard />
                         </div>
@@ -57,7 +57,7 @@ const DashboardManageAccount = () => {
                             <p>Loan Requests</p>
                         </div>
                     </div>
-                    <div className="navHolddiv" onClick={()=> navigate("/loanrequest")}>
+                    <div className="navHolddiv" onClick={()=> navigate("/messages")}>
                         <div className="navlogo">
                             <RiMessage2Line />
                         </div>
@@ -65,7 +65,7 @@ const DashboardManageAccount = () => {
                             <p>Messages</p>
                         </div>
                     </div>
-                    <div className="navHolddiv">
+                    <div className="navHolddiv" onClick={navigate("/history")}>
                         <div className="navlogo">
                             <MdOutlineManageHistory />
                         </div>
@@ -134,11 +134,11 @@ const DashboardManageAccount = () => {
                                 <MdOutlineMonetizationOn />
                                 <p>Loan Requests</p>
                             </div>
-                            <div className="dropdownHold" onClick={()=> navigate("/loanrequest")}>
+                            <div className="dropdownHold" onClick={()=> navigate("/messages")}>
                                 <RiMessage2Line />
                                 <p>Messages</p>
                             </div>
-                            <div className="dropdownHold">
+                            <div className="dropdownHold" onClick={()=>navigate("/history")}>
                                 <MdOutlineManageHistory />
                                 <p>Transaction History</p>
                             </div>
