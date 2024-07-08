@@ -14,14 +14,11 @@ import Loan from "../layout/loan/Loan";
 import Profile from "../layout/profile/Profile";
 import Transaction from "../layout/Transaction/Transaction";
 import CustomerDetail from "../layout/customerDetail/CustomerDetail";
-<<<<<<< HEAD
 import RequestLoan from "../pages/adminDashboard/dashboardComponent/loanRequest/loanRequest";
 // import MessageComponent from "../pages/adminDashboard/dashboardComponent/Messages/messageComponent";
 import AllMessage from "../pages/adminDashboard/dashboardComponent/Messages/messages";
 import AllHistory from "../pages/adminDashboard/dashboardComponent/history/history";
-=======
 import Statement from "../layout/statement/Statement";
->>>>>>> ff6a6c4c4b55e117c10dee0675c2919b6f6c9882
 
 const route = createHashRouter([
   {
