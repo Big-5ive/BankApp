@@ -14,6 +14,10 @@ import Loan from "../layout/loan/Loan";
 import Profile from "../layout/profile/Profile";
 import Transaction from "../layout/Transaction/Transaction";
 import CustomerDetail from "../layout/customerDetail/CustomerDetail";
+import RequestLoan from "../pages/adminDashboard/dashboardComponent/loanRequest/loanRequest";
+// import MessageComponent from "../pages/adminDashboard/dashboardComponent/Messages/messageComponent";
+import AllMessage from "../pages/adminDashboard/dashboardComponent/Messages/messages";
+import AllHistory from "../pages/adminDashboard/dashboardComponent/history/history";
 import Statement from "../layout/statement/Statement";
 import Message from "../layout/message/Message";
 
@@ -33,6 +37,18 @@ const route = createHashRouter([
   {
     path: "accountmanage",
     element: <DashboardManageAccount />,
+  },
+  {
+    path: "/loanrequest",
+    element: <RequestLoan />
+  },
+  {
+    path: "/messages",
+    element: <AllMessage />
+  },
+  {
+    path: "/history",
+    element: <AllHistory />
   },
   {
     path: "/dashboard",

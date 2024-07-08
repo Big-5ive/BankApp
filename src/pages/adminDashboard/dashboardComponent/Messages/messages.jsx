@@ -1,4 +1,4 @@
-import './adminDashboard.css'
+// import './adminDashboard.css'
 import { BsBank } from "react-icons/bs";
 import { RxDashboard } from "react-icons/rx";
 import { MdOutlineManageAccounts } from "react-icons/md";
@@ -10,12 +10,13 @@ import { MdOutlineMonetizationOn } from "react-icons/md";
 import { GrUserManager } from "react-icons/gr";
 import { LuMenu } from "react-icons/lu";
 import { BsMotherboard } from "react-icons/bs";
-import AllInfoComponent from '../dashboardComponent/maincomp/allInfo';
+// import AllInfoComponent from '../dashboardComponent/maincomp/allInfo';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { CgCloseR } from "react-icons/cg";
+import MessageComponent from "./messageComponent";
 
-const AdminDashboardParent = () => {
+const AllMessage = () => {
     const navigate = useNavigate()
     const [dropDown, setDropDown] = useState(false)
     return(
@@ -24,7 +25,7 @@ const AdminDashboardParent = () => {
             <div className="adminLeft">
                 <div className="logo"><BsBank /></div>
                 <div className="navHold">
-                    <div className="navHolddivn" onClick={()=>navigate("/admin")}>
+                    <div className="navHolddiv" onClick={()=> navigate("/admin")}>
                         <div className="navlogo">
                             <RxDashboard />
                         </div>
@@ -48,7 +49,7 @@ const AdminDashboardParent = () => {
                             <p>Manage Accounts</p>
                         </div>
                     </div>
-                    <div className="navHolddiv" onClick={()=> navigate("/loanrequest")}>
+                    <div className="navHolddiv" onClick={()=>navigate("/loanrequest")}>
                         <div className="navlogo">
                             <MdOutlineMonetizationOn />
                         </div>
@@ -56,7 +57,7 @@ const AdminDashboardParent = () => {
                             <p>Loan Requests</p>
                         </div>
                     </div>
-                    <div className="navHolddiv" onClick={()=> navigate("/messages")}>
+                    <div className="navHolddivn" onClick={()=>navigate("/messages")}>
                         <div className="navlogo">
                             <RiMessage2Line />
                         </div>
@@ -133,7 +134,7 @@ const AdminDashboardParent = () => {
                                 <MdOutlineMonetizationOn />
                                 <p>Loan Requests</p>
                             </div>
-                            <div className="dropdownHold" onClick={()=>navigate("/messages")}>
+                            <div className="dropdownHold" onClick={()=> navigate("/messages")}>
                                 <RiMessage2Line />
                                 <p>Messages</p>
                             </div>
@@ -155,7 +156,7 @@ const AdminDashboardParent = () => {
                     <div className="adminComponentHold">
                         {
                             !dropDown ? 
-                            <AllInfoComponent />
+                            <MessageComponent />
                             : null
                         }
                     </div>
@@ -166,4 +167,4 @@ const AdminDashboardParent = () => {
     )
 }
 
-export default AdminDashboardParent
+export default AllMessage
