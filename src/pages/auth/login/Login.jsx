@@ -75,7 +75,7 @@ const Login = () => {
         <div className="text-center mt-6 flex flex-col items-center lg:flex-row lg:justify-center lg:space-x-1 ">
          <span className="italic"> Don't have an account?</span>
           <Link
-            to="/create-account"
+            to="/signup"
             className="-text--clr-pumpkin hover:-text--clr-pumpkin-light"
           >
             Create an Account
