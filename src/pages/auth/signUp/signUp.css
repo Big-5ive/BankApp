@@ -83,3 +83,39 @@
     color: black;
     border-radius: 5px;
 }
+
+@media screen and (width < 1000px) {
+    .signupParent{
+        background-color: white;
+    }
+    .signUpbody{
+        height: max-content;
+        width: 100%;
+        box-shadow: none;
+    }
+    .signUptop{
+        height: 100px;
+    }
+    .signUptop p{
+        width: 100%;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .signupInputHold{
+        height: max-content;
+    }
+    .signUpinput{
+        height: max-content;
+        flex-direction: column;
+    }
+    .signupInputone{
+        width: 100%;
+        height: 90px;
+    }
+    .signUpbottonHold{
+        height: 150px;
+    }
+}
