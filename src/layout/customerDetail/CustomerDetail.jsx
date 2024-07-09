@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaEnvelope, FaDollarSign } from "react-icons/fa";
 import ContentTop from "../../components/ContentTop/ContentTop";
 import customerData from "./customerData"; 
+import EditProfileModal from "../../components/ContentTop/modals/EditProfileModal";
 
 const CustomerDetail = () => {
   const { name, id, email, accountType, balance, profileDetails } = customerData;
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
 
   return (
     <>
@@ -24,16 +30,14 @@ const CustomerDetail = () => {
             </div>
             <div className="mt-4">
               <div className="text-sm font-medium flex items-center -text--clr-silver-v1">
-                <FaDollarSign className="h-5 w-5 -text--clr-silver-v1 mr-2" /> Account
-                Type:
+                <FaDollarSign className="h-5 w-5 -text--clr-silver-v1 mr-2" /> Account Type:
               </div>
               <div className="text-sm -text--clr-silver">{accountType}</div>
               <div className="w-full bg-blue-500 h-1 mt-2 rounded"></div>
             </div>
             <div className="mt-4">
               <div className="text-sm font-medium flex items-center -text--clr-silver-v1">
-                <FaDollarSign className="h-5 w-5 -text--clr-silver-v1 mr-2" />{" "}
-                Available Balance:
+                <FaDollarSign className="h-5 w-5 -text--clr-silver-v1 mr-2" /> Available Balance:
               </div>
               <div className="text-sm -text--clr-silver">{balance}</div>
               <div className="w-full bg-blue-500 h-1 mt-2 rounded"></div>
@@ -44,9 +48,8 @@ const CustomerDetail = () => {
           <div className="flex-1 -bg--clr-primary p-4 rounded-lg shadow-sm">
             <div className="text-lg font-bold -text--clr-silver">Profile Overview</div>
             <div className="text-sm -text--clr-silver-v1 mt-2">
-              Below is your profile details, should we wish to make any changes
-              to your profile, kindly click{" "}
-              <a href="#" className="text-blue-600">
+              Below are your profile details. Should you wish to make any changes to your profile, kindly click{" "}
+              <a className="text-blue-600 cursor-pointer" onClick={toggleModal}>
                 Here
               </a>
             </div>
@@ -69,6 +72,7 @@ const CustomerDetail = () => {
           </div>
         </div>
       </div>
+      {isModalOpen && <EditProfileModal onClose={toggleModal} />}
     </>
   );
 };
