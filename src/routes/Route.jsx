@@ -20,11 +20,21 @@ import AllMessage from "../pages/adminDashboard/dashboardComponent/Messages/mess
 import AllHistory from "../pages/adminDashboard/dashboardComponent/history/history";
 import Statement from "../layout/statement/Statement";
 import Message from "../layout/message/Message";
+import ForgotPassword from "../pages/auth/forgot-password/ForgotPassword";
+import ResetPassword from "../pages/auth/reset-password/ResetPassword";
 
 const route = createHashRouter([
   {
     path: "/",
     element: <Login />,
+  },
+  {
+    path: "/forgot-password",
+    element: <ForgotPassword />,
+  },
+  {
+    path: "/reset-password",
+    element: <ResetPassword />,
   },
   {
     path: "/admin",

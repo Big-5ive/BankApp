@@ -8,6 +8,7 @@ export default {
       },
       colors: {
         "--clr-pumpkin": "#fe6c00",
+        "--clr-pumpkin-light": "#fe6e00bb",
         "--clr-primary": "#29221d",
         "--clr-primar-light": "#473b33",
         "--clr-secondary": "#1e1611",
