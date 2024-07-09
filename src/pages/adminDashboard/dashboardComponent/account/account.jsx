@@ -1,6 +1,7 @@
 import { useState } from "react"
 import "./account.css"
 import { IoCloseSharp } from "react-icons/io5";
+import { FaArrowLeftLong } from "react-icons/fa6";
 // import AdminDashboardParent from "../../.dashboardMain/adminDashboard"
 
 const AccountComponent = () => {
@@ -13,6 +14,9 @@ const AccountComponent = () => {
                     <div className="close">
                         <div className="closexx" onClick={()=> setShow(false)}>
                             <IoCloseSharp />
+                        </div>
+                        <div className="closexxn" onClick={()=> setShow(false)}>
+                            <FaArrowLeftLong />
                         </div>
                     </div>
                     <div className="accountdetHold">

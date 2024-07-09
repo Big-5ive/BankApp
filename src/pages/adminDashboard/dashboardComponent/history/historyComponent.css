@@ -83,6 +83,9 @@
     align-items: center;
     justify-content: flex-end;
 }
+.closedvv{
+    display: none;
+}
 .addcancelhold:hover{
     color: red;
     cursor: pointer;
@@ -157,11 +160,21 @@
 }
 
 @media screen and (width < 1000px) {
+    .addCancel{
+        justify-content: flex-start;
+        gap: 50px;
+    }
+    .closedvv{
+        display: flex;
+    }
+    .closedv{
+        display: none;
+    }
     .tableHead{
         width: max-content;
     }
     .headTopic{
-        width: 150px;
+        width: 120px;
     }
     .tableBody{
         width: max-content;
@@ -183,6 +196,9 @@
         height: max-content;
         box-shadow: none;
         /* background-color: rebeccapurple; */
+    }
+    .addHistoryBodytopic{
+        display: none;
     }
     .addHistoryInputHold{
         height: max-content;

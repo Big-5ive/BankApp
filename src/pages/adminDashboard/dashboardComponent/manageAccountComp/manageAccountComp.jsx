@@ -7,6 +7,7 @@ import { MdDeleteOutline } from "react-icons/md";
 import { TbArrowsExchange2 } from "react-icons/tb";
 import { useState } from "react";
 import { IoClose } from "react-icons/io5";
+import { FaArrowLeftLong } from "react-icons/fa6";
 import { AddAccount, DebitAccount, CreditAccount, UpdateAccount, DeleteAccount, ChangeAccountStatus } from "./manageAction";
 
 const AccountManageMentComponent = () => {
@@ -43,9 +44,13 @@ const AccountManageMentComponent = () => {
                 show ?
                 <div className="accountAction">
                     <div className="remove">
-                        <div onClick={()=> setShow(false)}>
+                        <div className="divv1" onClick={()=> setShow(false)}>
                             <IoClose />
                         </div>
+                        <div className="divv" onClick={()=> setShow(false)}>
+                            <FaArrowLeftLong />
+                        </div>
+                        <h1 className="infow">Fill in the correct information</h1>
                     </div>
                     {
                         name === "addAccount" ? <AddAccount /> :
