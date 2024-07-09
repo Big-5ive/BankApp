@@ -86,6 +86,7 @@
 
 @media screen and (width < 1000px) {
     .signupParent{
+        padding-top: 30px;
         background-color: white;
     }
     .signUpbody{

@@ -23,6 +23,7 @@ import Message from "../layout/message/Message";
 import ForgotPassword from "../pages/auth/forgot-password/ForgotPassword";
 import ResetPassword from "../pages/auth/reset-password/ResetPassword";
 import UserSignup from "../pages/auth/signUp/signUp";
+import OTPverify from "../pages/auth/otp/otp";
 
 const route = createHashRouter([
   {
@@ -32,6 +33,10 @@ const route = createHashRouter([
   {
     path: "/signup",
     element: <UserSignup />
+  },
+  {
+    path: "/otp",
+    element: <OTPverify />
   },
   {
     path: "/forgot-password",
