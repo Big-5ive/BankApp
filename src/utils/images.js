@@ -19,6 +19,7 @@ import wealth from "../assets/icons/wealth.svg";
 import transfer from "../assets/icons/transfer.svg";
 import logout from "../assets/icons/logout.svg";
 import profile from "../assets/icons/profile.svg";
+import mail from "../assets/icons/mail.svg";
 
 // person images
 import person_one from "../assets/images/person_one.jpg";
@@ -27,7 +28,7 @@ import person_three from "../assets/images/person_three.jpg";
 import person_four from "../assets/images/person_four.jpg";
 
 export const iconsImgs = {
-    alert, bell, bills, budget, card, check, empty_check, gears, home, menu, plane, plus, report, search, user, wallet, wealth, transfer, logout, profile
+    alert, bell, bills, budget, card, check, empty_check, gears, home, menu, plane, plus, report, search, user, wallet, wealth, transfer, logout, profile, mail
 }
 
 export const personsImgs = {

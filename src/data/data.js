@@ -7,7 +7,7 @@ export const navigationLinks = [
     { id: 3, title: 'Statement', image: iconsImgs.budget, route: "/#/dashboard/account-statement" },
     { id: 4, title: 'Transactions', image: iconsImgs.transfer, route: "/#/dashboard/transaction" },
     { id: 5, title: 'Wire Transfer', image: iconsImgs.plane, route: "/#/dashboard/transfer" },
-    { id: 6, title: 'Subscriptions', image: iconsImgs.wallet, route: "/#/dashboard" },
+    { id: 6, title: 'Message', image: iconsImgs.mail, route: "/#/dashboard/message" },
     { id: 7, title: 'Loans', image: iconsImgs.bills, route: "/#/dashboard/loan" },
     { id: 8, title: 'Reports', image: iconsImgs.report, route: "/#/dashboard" },
     { id: 9, title: 'Savings', image: iconsImgs.wallet, route: "/#/dashboard" },

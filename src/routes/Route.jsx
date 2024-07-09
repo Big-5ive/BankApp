@@ -19,6 +19,7 @@ import RequestLoan from "../pages/adminDashboard/dashboardComponent/loanRequest/
 import AllMessage from "../pages/adminDashboard/dashboardComponent/Messages/messages";
 import AllHistory from "../pages/adminDashboard/dashboardComponent/history/history";
 import Statement from "../layout/statement/Statement";
+import Message from "../layout/message/Message";
 
 const route = createHashRouter([
   {
@@ -80,6 +81,10 @@ const route = createHashRouter([
       {
         path: "/dashboard/payment",
         element: <Payment />,
+      },
+      {
+        path: "/dashboard/message",
+        element: <Message />,
       },
       {
         path: "/dashboard/loan",
