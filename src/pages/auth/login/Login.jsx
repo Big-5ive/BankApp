@@ -1,6 +1,7 @@
 // Login.jsx
 import React, { useState } from "react";
 import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
+import { MdAccountBalance } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
@@ -17,16 +18,16 @@ const Login = () => {
 
   return (
     <div className="flex justify-center items-center min-h-screen -bg--clr-secondary px-4">
-      <div className="w-full max-w-md md:max-w-lg lg:max-w-xl -bg--clr-primary p-8 rounded-lg shadow-lg sm:w-[50%] sm:shadow-none -text--clr-silver-v1">
-        <h1 className="text-3xl font-bold text-center mb-6 ">Trust Finance</h1>
+      <div className="w-full max-w-md md:max-w-lg lg:w-[40%] -bg--clr-primary p-8 rounded-lg shadow-lg sm:w-[60%] sm:shadow-none -text--clr-silver-v1">
+        <h1 className="text-3xl font-bold text-center mb-3 uppercase -text--clr-pumpkin">Welcome to Trust Finance bank</h1>
         <h2 className="text-2xl font-bold text-center mb-6">Login</h2>
         <form onSubmit={handleLogin} className="space-y-6">
           <div className="flex items-center border-b -border--clr-silver-v1 py-2 -text--clr-silver-v1">
-            <FaEnvelope className="-text--clr-silver-v1 mr-3" />
+            <MdAccountBalance  className="-text--clr-silver-v1 mr-3" />
             <input
-              type="email"
-              placeholder="Email"
-              name="email"
+              type="number"
+              placeholder="Account Number"
+              name="accountNumber"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="appearance-none bg-transparent border-none w-full -text--clr-silver-v1 leading-tight focus:outline-none"
@@ -71,15 +72,15 @@ const Login = () => {
             </Link>
           </div>
         </form>
-        <p className="text-center mt-6">
-          Don't have an account?{" "}
+        <div className="text-center mt-6 flex flex-col items-center lg:flex-row lg:justify-center lg:space-x-1 ">
+         <span className="italic"> Don't have an account?</span>
           <Link
             to="/create-account"
             className="-text--clr-pumpkin hover:-text--clr-pumpkin-light"
           >
             Create an Account
           </Link>
-        </p>
+        </div>
       </div>
     </div>
   );

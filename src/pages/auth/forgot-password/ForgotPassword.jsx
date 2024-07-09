@@ -14,31 +14,31 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100 px-4">
-      <div className="w-full max-w-md md:max-w-lg lg:max-w-xl bg-white p-8 rounded-lg shadow-lg sm:w-[50%] sm:shadow-none">
-        <h1 className="text-3xl font-bold text-center mb-6">Trust Finance</h1>
-        <h2 className="text-2xl font-bold text-center mb-6">Forgot Password</h2>
-        {message && <p className="text-green-500 text-center mb-4">{message}</p>}
+    <div className="flex justify-center items-center min-h-screen -bg--clr-secondary px-4">
+      <div className="w-full max-w-md md:max-w-lg lg:w-[40%] -bg--clr-primary p-8 rounded-lg shadow-lg sm:w-[60%] sm:shadow-none">
+        <h1 className="text-3xl font-bold text-center mb-3 -text--clr-pumpkin">Trust Finance</h1>
+        <h2 className="text-2xl font-bold mb-6 -text--clr-silver-v1">Forgot Password</h2>
+        {message && <p className="text-green-500 font-bold text-center mb-4">{message}</p>}
         <form onSubmit={handleForgotPassword} className="space-y-6">
-          <div className="flex items-center border-b-2 border-gray-300 py-2">
-            <FaEnvelope className="text-gray-500 mr-3" />
+          <div className="flex items-center border-b -border--clr-silver-v1 py-2">
+            <FaEnvelope className="-text--clr-silver-v1 mr-3" />
             <input
               type="email"
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="appearance-none bg-transparent border-none w-full text-gray-700 leading-tight focus:outline-none"
+              className="appearance-none bg-transparent border-none w-full -text--clr-silver-v1 leading-tight focus:outline-none"
               required
             />
           </div>
           <div className="flex items-center justify-between">
             <button
               type="submit"
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              className="-bg--clr-pumpkin hover:-bg--clr-pumpkin-light text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             >
               Reset Password
             </button>
-            <Link to="/" className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
+            <Link to="/" className="inline-block align-baseline font-bold text-sm -text--clr-pumpkin hover:-text--clr-pumpkin-light">
               Back to Login
             </Link>
           </div>
