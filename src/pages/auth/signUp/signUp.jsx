@@ -76,7 +76,7 @@ const UserSignup = () => {
                         </div>
                     </div>
                     <div className="signUpbottonHold">
-                        <button className="signButton1">Sign-Up</button>
+                        <button className="signButton1" onClick={()=>navigate("/otp")}>Sign-Up</button>
                         <button className="signButton2" onClick={()=>navigate("/")}>allready have an account? LOGIN</button>
                     </div>
                 </div>
