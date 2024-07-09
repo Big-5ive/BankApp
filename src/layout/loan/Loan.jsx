@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ContentTop from "../../components/ContentTop/ContentTop";
+import Ticket from "./Ticket";
 
 const Loan = () => {
   const [currentTime, setCurrentTime] = useState("");
@@ -8,12 +9,12 @@ const Loan = () => {
   useEffect(() => {
     const updateTime = () => {
       const now = new Date();
-      const hours = now.getHours().toString().padStart(2, '0');
-      const minutes = now.getMinutes().toString().padStart(2, '0');
-      const seconds = now.getSeconds().toString().padStart(2, '0');
-      const day = now.toLocaleString('default', { weekday: 'short' });
-      const date = now.getDate().toString().padStart(2, '0');
-      const month = now.toLocaleString('default', { month: 'long' });
+      const hours = now.getHours().toString().padStart(2, "0");
+      const minutes = now.getMinutes().toString().padStart(2, "0");
+      const seconds = now.getSeconds().toString().padStart(2, "0");
+      const day = now.toLocaleString("default", { weekday: "short" });
+      const date = now.getDate().toString().padStart(2, "0");
+      const month = now.toLocaleString("default", { month: "long" });
       const year = now.getFullYear();
       setCurrentTime(`${hours}:${minutes}:${seconds}`);
       setCurrentDate(`${day} ${date} ${month} ${year}`);
@@ -49,36 +50,7 @@ const Loan = () => {
             </div>
 
             {/* Tickets */}
-            <div>
-              <div className="text-blue-800 font-bold">TICKETS</div>
-              <div className="mt-2 p-6 -bg--clr-primary rounded shadow-md">
-                <div className="flex justify-between items-center mb-4">
-                  <button className="px-4 py-2 bg-blue-500 text-white rounded">
-                    Open Ticket
-                  </button>
-                  <button className="text-blue-500">Discard</button>
-                </div>
-                <div className="space-y-4">
-                  <div>
-                    <label className="block text-gray-700">To:</label>
-                    <input
-                      type="text"
-                      value="Customer Care"
-                      readOnly
-                      className="w-full p-2 border rounded"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-gray-700">Amount:</label>
-                    <input type="text" className="w-full p-2 border rounded" />
-                  </div>
-                  <div>
-                    <label className="block text-gray-700">Loan Reason:</label>
-                    <textarea className="w-full p-2 border rounded"></textarea>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <Ticket />
           </div>
 
           {/* Right Side */}
@@ -98,15 +70,21 @@ const Loan = () => {
                 <div className="flex space-x-2">
                   <div className="flex-1">
                     <div className="-text--clr-silver-v1">Ex.Date</div>
-                    <div className="p-2 border rounded -text--clr-silver-v1">06/2</div>
+                    <div className="p-2 border rounded -text--clr-silver-v1">
+                      06/2
+                    </div>
                   </div>
                   <div className="flex-1">
                     <div className="-text--clr-silver-v1">Csv</div>
-                    <div className="p-2 border rounded -text--clr-silver-v1">268</div>
+                    <div className="p-2 border rounded -text--clr-silver-v1">
+                      268
+                    </div>
                   </div>
                   <div className="flex-1">
                     <div className="-text--clr-silver-v1">Pin</div>
-                    <div className="p-2 border rounded -text--clr-silver-v1">5460</div>
+                    <div className="p-2 border rounded -text--clr-silver-v1">
+                      5460
+                    </div>
                   </div>
                 </div>
               </div>
