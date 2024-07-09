@@ -21,7 +21,7 @@
     justify-content: flex-end;
     background-color: white;
 }
-.remove div{
+.divv1{
     width: 50px;
     height: 50px;
     font-size: 30px;
@@ -31,9 +31,23 @@
     justify-content: center;
     border-radius: 50%;
 }
-.remove div:hover{
+.divv{
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    display: none;
+}
+.divv1:hover{
     background-color: red;
     color: white;
+}
+.infow{
+    display: none;
 }
 .accountmanageHead{
     width: 100%;
@@ -95,5 +109,25 @@
     }
     .accountAction{
         padding-bottom: 50px;
+    }
+    .remove{
+        /* background-color: red; */
+        gap: 50px;
+        justify-content: flex-start;
+    }
+    .manageFunctionHol{
+        /* background-color: red; */
+        padding: 0;
+    }
+    .divv1{
+        display: none;
+    }
+    .divv{
+        display: flex;
+    }
+    .infow{
+        display: flex;
+        font-weight: 600;
+        font-size: 15px;
     }
 }

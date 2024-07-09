@@ -1,6 +1,7 @@
 import { useState } from "react"
 import "./manageAction.css"
 import { IoCloseSharp } from "react-icons/io5";
+import { FaArrowLeftLong } from "react-icons/fa6";
 
 export const AddAccount = () => {
     return(
@@ -232,6 +233,10 @@ export const UpdateAccount = () => {
                         <div className="updateClose" onClick={()=>setShowUpdate(false)}>
                             <IoCloseSharp />
                         </div>
+                        <div className="updateClose2" onClick={()=>setShowUpdate(false)}>
+                            <FaArrowLeftLong />
+                        </div>
+                        <h1 className="infow">change only the info you want</h1>
                     </div>
                     
                     <div className="addformHold">

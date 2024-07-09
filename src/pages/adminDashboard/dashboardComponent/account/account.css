@@ -31,6 +31,17 @@
     justify-content: center;
     /* background-color: red; */
 }
+.closexxn{
+    width: 40px;
+    height: 40px;
+    font-size: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: none;
+    /* background-color: red; */
+}
 .closexx:hover{
     cursor: pointer;
     color: white;
@@ -122,12 +133,14 @@
 
 @media screen and (width < 1000px) {
     .accountHead{
+        height: 40px;
         font-size: 25px;
         background-color: white;
     }
     .accountdet{
         height: max-content;
-        top: 100px;
+        top: 0px;
+        background-color: white;
     }
     .accountdetHold{
         height: max-content;
@@ -150,10 +163,20 @@
         align-items: flex-start;
     }
     .close{
-        background-color: white;
+        height: 30px;
+        /* align-items: flex-start; */
+        justify-content: flex-start;
+        /* background-color: red; */
+    }
+    .closexx{
+        display: none;
+    }
+    .closexxn{
+        display: flex;
     }
     .accountHold2{
         align-items: center;
+        font-weight: bold;
         /* background-color: yellow; */
     }
     .numberLine{

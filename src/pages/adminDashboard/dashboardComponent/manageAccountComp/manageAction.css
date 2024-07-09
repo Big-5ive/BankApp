@@ -166,9 +166,10 @@
 }
 
 @media screen and (width < 1000px) {
-    /* .addAccountParent{
-        padding-bottom: 50px;
-    } */
+    .creditTopic{
+        height: 30px;
+        /* background-color: red; */
+    }
     .creditAccount{
         width: 100%;
         height: max-content;
@@ -184,20 +185,22 @@
     }
     .creditInputHold{
         width: 100%;
-        height: 100px;
+        height: 80px;
     }
     .creditInputHold input{
-        height: 60px;
-        border: 1px solid blue;
+        height: 50px;
+        border: 1px solid black;
+        border-radius: 7px;
     }
     .creditInputHold p{
         font-size: 20px;
-        color: skyblue;
+        /* color: skyblue; */
     }
     #accounts{
-        height: 60px;
+        height: 50px;
         /* background-color: red; */
-        border: 1px solid blue;
+        border: 1px solid black;
+        border-radius: 7px;
     }
     .creditAcctButt button{
         width: 95%;
@@ -267,6 +270,16 @@
     font-size: 25px;
     border-radius: 50%;
     display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: red; */
+}
+.updateClose2{
+    width: 40px;
+    height: 40px;
+    font-size: 25px;
+    border-radius: 50%;
+    display: none;
     align-items: center;
     justify-content: center;
     /* background-color: red; */
@@ -367,6 +380,16 @@
     }
     .deleteButt button{
         width: 30%;
+    }
+    .closeUpdate{
+        justify-content: flex-start;
+        gap: 50px;
+    }
+    .updateClose{
+        display: none;
+    }
+    .updateClose2{
+        display: flex;
     }
 }
 

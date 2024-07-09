@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./historyComponent.css"
 import { IoMdAdd } from "react-icons/io";
+import { FaArrowLeftLong } from "react-icons/fa6";
 
 const TransactionHistory = () => {
     const [addHistory, setAddHistory] = useState(false)
@@ -15,8 +16,12 @@ const TransactionHistory = () => {
                 <div className="addHistoryParent">
                     <div className="addCancel">
                         <div className="addcancelhold" onClick={()=>setAddHistory(false)}>
-                            close
+                            <p className="closedv">close</p>
+                            <div className="closedvv">
+                                <FaArrowLeftLong />
+                            </div>
                         </div>
+                        <p className="infow">Add Credit / Debit History</p>
                     </div>
                     <div className="addHistoryHold">
                         <div className="addHistoryBody">
