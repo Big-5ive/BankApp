@@ -74,7 +74,7 @@ const Login = () => {
         <p className="text-center mt-6">
           Don't have an account?{" "}
           <Link
-            to="/create-account"
+            to="/signup"
             className="-text--clr-pumpkin hover:-text--clr-pumpkin-light"
           >
             Create an Account

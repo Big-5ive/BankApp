@@ -22,11 +22,16 @@ import Statement from "../layout/statement/Statement";
 import Message from "../layout/message/Message";
 import ForgotPassword from "../pages/auth/forgot-password/ForgotPassword";
 import ResetPassword from "../pages/auth/reset-password/ResetPassword";
+import UserSignup from "../pages/auth/signUp/signUp";
 
 const route = createHashRouter([
   {
     path: "/",
     element: <Login />,
+  },
+  {
+    path: "/signup",
+    element: <UserSignup />
   },
   {
     path: "/forgot-password",
