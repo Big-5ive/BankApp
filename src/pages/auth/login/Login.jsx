@@ -18,8 +18,8 @@ const Login = () => {
 
   return (
     <div className="flex justify-center items-center min-h-screen -bg--clr-secondary px-4">
-      <div className="w-full max-w-md md:max-w-lg lg:w-[40%] -bg--clr-primary p-8 rounded-lg shadow-lg sm:w-[60%] sm:shadow-none -text--clr-silver-v1">
-        <h1 className="text-3xl font-bold text-center mb-3 uppercase -text--clr-pumpkin">Welcome to Trust Finance bank</h1>
+      <div className="w-full max-w-md md:max-w-lg lg:w-[40%] lg:-bg--clr-primary p-8 rounded-lg shadow-lg sm:w-[60%] sm:shadow-none -text--clr-silver-v1">
+        <h1 className="text-2xl lg:text-3xl font-bold text-center mb-3 uppercase -text--clr-pumpkin">Welcome to Trust Finance bank</h1>
         <h2 className="text-2xl font-bold text-center mb-6">Login</h2>
         <form onSubmit={handleLogin} className="space-y-6">
           <div className="flex items-center border-b -border--clr-silver-v1 py-2 -text--clr-silver-v1">

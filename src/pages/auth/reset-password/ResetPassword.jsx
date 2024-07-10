@@ -16,9 +16,9 @@ const ResetPassword = () => {
 
   return (
     <div className="flex justify-center items-center min-h-screen -bg--clr-secondary px-4">
-      <div className="w-full max-w-md md:w-[40%] lg:max-w-xl -bg--clr-primary p-8 rounded-lg shadow-lg sm:w-[60%] sm:shadow-none">
-        <h1 className="text-3xl font-bold text-center mb-4 -text--clr-pumpkin">Trust Finance</h1>
-        <h2 className="text-2xl font-bold mb-6 -text--clr-silver-v1">Reset Password</h2>
+      <div className="w-full max-w-md md:w-[40%] lg:max-w-xl lg:-bg--clr-primary p-8 rounded-lg shadow-lg sm:w-[60%] sm:shadow-none">
+        <h1 className="text-2xl lg:text-3xl font-bold text-center mb-4 -text--clr-pumpkin">Trust Finance</h1>
+        <h2 className="text-xl lg:text-2xl font-bold mb-6 -text--clr-silver-v1">Reset Password</h2>
         <form onSubmit={handleResetPassword} className="space-y-6 -text--clr-silver-v1">
           <div className="flex items-center border-b -border--clr-silver-v1 py-2 relative">
             <FaLock className="-text--clr-silver mr-3" />
