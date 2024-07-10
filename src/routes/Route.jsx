@@ -58,10 +58,10 @@ const route = createHashRouter([
     path: "accountmanage",
     element: <DashboardManageAccount />,
   },
-  {
-    path: "/loanrequest",
-    element: <RequestLoan />
-  },
+  // {
+  //   path: "/loanrequest",
+  //   element: <RequestLoan />
+  // },
   {
     path: "/messages",
     element: <AllMessage />

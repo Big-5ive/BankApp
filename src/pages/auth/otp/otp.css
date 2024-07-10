@@ -77,8 +77,12 @@
 .otpCan{
     width: 30%;
     height: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border: 1px solid black;
     border-radius: 4px;
+    cursor: pointer;
 }
 .otpVer{
     width: 30%;

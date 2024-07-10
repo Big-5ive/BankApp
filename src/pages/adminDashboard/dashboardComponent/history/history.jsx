@@ -50,14 +50,7 @@ const AllHistory = () => {
                             <p>Manage Accounts</p>
                         </div>
                     </div>
-                    <div className="navHolddiv" onClick={()=>navigate("/loanrequest")}>
-                        <div className="navlogo">
-                            <MdOutlineMonetizationOn />
-                        </div>
-                        <div className="navWrited">
-                            <p>Loan Requests</p>
-                        </div>
-                    </div>
+                    
                     <div className="navHolddiv" onClick={()=>navigate("/messages")}>
                         <div className="navlogo">
                             <RiMessage2Line />
@@ -74,20 +67,13 @@ const AllHistory = () => {
                             <p>Transaction History</p>
                         </div>
                     </div>
-                    <div className="navHolddiv">
-                        <div className="navlogo">
-                            <BsMotherboard />
-                        </div>
-                        <div className="navWrited">
-                            <p>Others</p>
-                        </div>
-                    </div>
+                    
                     <div className="navHolddiv">
                         <div className="navlogo">
                             <MdOutlineSettings />
                         </div>
                         <div className="navWrited">
-                            <p>Settings</p>
+                            <p>LogOut</p>
                         </div>
                     </div>
                 </div>
@@ -131,10 +117,10 @@ const AllHistory = () => {
                                 <GrUserManager />
                                 <p>Manage Accounts</p>
                             </div>
-                            <div className="dropdownHold" onClick={()=>navigate("/loanrequest")}>
+                            {/* <div className="dropdownHold" onClick={()=>navigate("/loanrequest")}>
                                 <MdOutlineMonetizationOn />
                                 <p>Loan Requests</p>
-                            </div>
+                            </div> */}
                             <div className="dropdownHold" onClick={()=> navigate("/messages")}>
                                 <RiMessage2Line />
                                 <p>Messages</p>
@@ -143,13 +129,13 @@ const AllHistory = () => {
                                 <MdOutlineManageHistory />
                                 <p>Transaction History</p>
                             </div>
-                            <div className="dropdownHold">
+                            {/* <div className="dropdownHold">
                                 <BsMotherboard />
                                 <p>Others</p>
-                            </div>
+                            </div> */}
                             <div className="dropdownHold">
                                 <MdOutlineSettings />
-                                <p>Settings</p>
+                                <p>Logout</p>
                             </div>
                         </div>
                         : null

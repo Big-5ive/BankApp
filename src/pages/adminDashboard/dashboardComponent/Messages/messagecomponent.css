@@ -209,6 +209,7 @@
     width: 40%;
     height: 80%;
     background-color: blue;
+    border-radius: 5px;
     color: white;
     border: none;
 }
