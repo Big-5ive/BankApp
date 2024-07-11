@@ -9,23 +9,26 @@
     background-color: #eae6ff;
 }
 .signUpbody{
-    width: 35%;
-    height: 100vh;
+    width: 40%;
+    height: 90vh;
     border-radius: 10px;
-    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    /* padding-top: 1px; */
     background-color: white;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 .signUptop{
     width: 100%;
-    height: 60px;
+    height: 100px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* background-color: white; */
+    justify-content: center;
+    /* background-color: yellow; */
 }
 .signUptop p{
-    font-size: 20px;
+    font-size: 15px;
     font-weight: 600;
 }
 .signUptop span{
@@ -62,7 +65,7 @@
 }
 .signUpbottonHold{
     width: 100%;
-    height: 90px;
+    height: 110px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -80,9 +83,10 @@
 .signButton2{
     width: 100%;
     height: 40%;
+    font-weight: bold;
     /* background-color: #f91e1a; */
     border: 1px solid black;
-    color: black;
+    color: orangered;
     border-radius: 5px;
 }
 

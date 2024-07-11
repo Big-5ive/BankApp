@@ -47,7 +47,7 @@ const OTPverify = () => {
                 </div>
                 <div className="read">
                     <h1>please check your email</h1>
-                    <p>we've sent a code to <span>joshua@gmail.com</span></p>
+                    <p>we've sent a code to <span>your email</span></p>
                 </div>
                 <div className="otpInputHold">
                     <input 

@@ -60,6 +60,13 @@
     width: 100%;
     min-height: 400px;
     display: flex;
+    flex-direction: column;
+    /* background-color: yellow; */
+}
+.tableBodyHold{
+    min-width: 100%;
+    height: max-content;
+    display: flex;
 }
 .addHistoryParent{
     width: 100%;
@@ -92,8 +99,9 @@
 }
 .addHistoryHold{
     width: 100%;
-    height: 550px;
+    height: 650px;
     display: flex;
+    /* padding: 20px; */
     justify-content: center;
     /* background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQavsq6DcjenOtAGJzXHfd9STsn7ZdKmzmqNA&s"); */
     background-color: white;
@@ -117,7 +125,7 @@
 }
 .addHistoryInputHold{
     width: 100%;
-    height: 65px;
+    height: 85px;
     display: flex;
     padding: 5px;
     justify-content: space-between;
@@ -126,6 +134,7 @@
 .addHistoryInput{
     width: 48%;
     height: 100%;
+    font-weight: 600;
     display: flex;
     flex-direction: column;
     justify-content: space-between;

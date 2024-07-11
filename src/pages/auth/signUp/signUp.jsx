@@ -3,6 +3,7 @@ import "./signUp.css"
 import { toast, ToastContainer } from "react-toastify"
 import { useState } from "react"
 import { BeatLoader } from "react-spinners"
+import axios from "axios"
 
 const UserSignup = () => {
     const navigate = useNavigate()
@@ -15,6 +16,7 @@ const UserSignup = () => {
     const [maritalStatus, setMaritalStatus] = useState("")
     const [address, setAddress] = useState("")
     const [accountType, setAccountType] = useState("")
+    const [gender, setGender] = useState("")
     const [password, setPassword] = useState("")
     const [retypePassword, setRetypePassword] = useState("")
     const [loading, setLoading] = useState(false)
@@ -26,8 +28,8 @@ const UserSignup = () => {
 
     const userData = {
         fullName: fullName,
-        userName: userName,
-        phone: phone,
+        username: userName,
+        phoneNumber: phone,
         email: email,
         occupation: occupation,
         dateOfBirth: dateOfBirth,
@@ -35,6 +37,7 @@ const UserSignup = () => {
         address: address,
         accountType: accountType,
         password: password,
+        // gender: gender,
         retypePassword: retypePassword
     }
 
@@ -159,15 +162,29 @@ const UserSignup = () => {
             })
             toast.error(error.type === "passwordmatch" ? error.message : "" )
         }else{
-            setLoading(false)
-            toast.success("Registeration successful")
+            const url = "https://avantgardefinance-api.onrender.com/sign-up"
+            axios.post(url, userData)
+            .then((response)=> {
+                // console.log(response)
+                setLoading(false)
+                toast.success("Regiteration successfull")
+                setTimeout(()=>{
+                    navigate("/otp")
+                }, 4000)
+            })
+            .catch((error)=> {
+                console.log(error)
+                // console.log("user name", userName)
+                setLoading(false)
+                toast.error(error.response.data.message)
+            })
         }
     }
     return(
         <div className="signupParent">
             <div className="signUpbody">
                 <div className="signUptop">
-                    <p>Welcome to TRUST FINANCE <span>Get Started!</span></p>
+                    <p>Welcome to AVANT GARDE FINANCE <span>Get Started!</span></p>
                     <i>Provide the following information to get started</i>
                 </div>
                 <ToastContainer />
@@ -198,7 +215,7 @@ const UserSignup = () => {
                             required
                             value={phone}
                             onChange={(e)=>setPhone(e.target.value)}
-                            type="text" />
+                            type= "number" />
                         </div>
                         <div className="signupInputone">
                             <p>Email</p>
@@ -236,9 +253,9 @@ const UserSignup = () => {
                             onChange={(e)=>setMaritalStatus(e.target.value)}
                             name="marital" id="marital">
                                 <option value="">select</option>
-                                <option value="single">Single</option>
-                                <option value="maried">Maried</option>
-                                <option value="divorced">Divorced</option>
+                                <option value="Single">Single</option>
+                                <option value="Married">Maried</option>
+                                <option value="Divorced">Divorced</option>
                             </select>
                         </div>
                         <div className="signupInputone">
@@ -272,8 +289,10 @@ const UserSignup = () => {
                             onChange={(e)=>setPassword(e.target.value)}
                             type="text" />
                         </div>
+
                     </div>
                     <div className="signUpinput">
+                        
                         <div className="signupInputone">
                             <p>Retype-Password</p>
                             <input 
@@ -289,7 +308,7 @@ const UserSignup = () => {
                                 loading ? <BeatLoader color="white" />: "Sign-Up"
                             }
                         </button>
-                        <button className="signButton2" onClick={()=>navigate("/")}>allready have an account? LOGIN</button>
+                        <button className="signButton2" onClick={()=>navigate("/")}>allready have an account? <span style={{color: "blue"}}>LOGIN</span></button>
                     </div>
                 </div>
                 </form>

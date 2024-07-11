@@ -6,10 +6,10 @@ import { RiMessage2Line } from "react-icons/ri";
 import { MdOutlineManageHistory } from "react-icons/md";
 import { MdOutlineSettings } from "react-icons/md";
 // import { IoNotificationsOutline } from "react-icons/io5";
-import { MdOutlineMonetizationOn } from "react-icons/md";
+// import { MdOutlineMonetizationOn } from "react-icons/md";
 import { GrUserManager } from "react-icons/gr";
 import { LuMenu } from "react-icons/lu";
-import { BsMotherboard } from "react-icons/bs";
+// import { BsMotherboard } from "react-icons/bs";
 import AllInfoComponent from '../dashboardComponent/maincomp/allInfo';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
@@ -18,6 +18,7 @@ import { CgCloseR } from "react-icons/cg";
 const AdminDashboardParent = () => {
     const navigate = useNavigate()
     const [dropDown, setDropDown] = useState(false)
+    const admin = JSON.parse(localStorage.getItem("adminData"))
     return(
         <div className="adminDashboardParent">
         <div className="adminHold">
@@ -80,7 +81,7 @@ const AdminDashboardParent = () => {
                 <div className="adminHead">
                     <div className="adminHeadHold">
                         <div className="welcome">
-                            <p>Welcome <span>Maxwell</span></p>
+                            <p>Welcome <span>{admin?.username}</span></p>
                         </div>
                         <div className="notify">
                             <div className="notifyHold">
@@ -115,10 +116,6 @@ const AdminDashboardParent = () => {
                                 <GrUserManager />
                                 <p>Manage Accounts</p>
                             </div>
-                            {/* <div className="dropdownHold" onClick={()=>navigate("/loanrequest")}>
-                                <MdOutlineMonetizationOn />
-                                <p>Loan Requests</p>
-                            </div> */}
                             <div className="dropdownHold" onClick={()=>navigate("/messages")}>
                                 <RiMessage2Line />
                                 <p>Messages</p>
@@ -127,10 +124,6 @@ const AdminDashboardParent = () => {
                                 <MdOutlineManageHistory />
                                 <p>Transaction History</p>
                             </div>
-                            {/* <div className="dropdownHold">
-                                <BsMotherboard />
-                                <p>Others</p>
-                            </div> */}
                             <div className="dropdownHold">
                                 <MdOutlineSettings />
                                 <p>LogOut</p>

@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./historyComponent.css"
 import { IoMdAdd } from "react-icons/io";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { ToastContainer, toast } from "react-toastify";
+import axios from "axios";
+import { BeatLoader } from "react-spinners";
 
 const TransactionHistory = () => {
     const [addHistory, setAddHistory] = useState(false)
@@ -14,13 +16,77 @@ const TransactionHistory = () => {
     const [bank, setBank] = useState("")
     const [date, setDate] = useState("")
     const [time, setTime] = useState("")
+    const [history, setHistory] = useState()
+    const [allAccount, setAllAccount] = useState()
     const [loading, setLoading] = useState(false)
+
+    const admin = JSON.parse(localStorage.getItem("adminData"))
+    const token = admin.token
+    const headers = {
+        'Authorization' : `Bearer ${token}`
+    }
+    // console.log("history", history)
+
+    const url = "https://avantgardefinance-api.onrender.com/view-all-history"
+    useEffect(() => {
+    const fetchData = async () => {
+        setLoading(true)
+      try {
+        const response = await axios.get(url, { headers });
+        setHistory(response.data.history)
+        // console.log(response)
+        setLoading(false);
+      } catch (err) {
+        // setError(err);
+        console.log(err)
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
+        
+    useEffect(() => {
+        const url = "https://avantgardefinance-api.onrender.com/view-all-users"
+        const fetchData = async () => {
+            try {
+            const response = await axios.get(url, { headers });
+            setAllAccount(response?.data.data)
+            } catch (err) {
+            }
+        };
+        fetchData();
+    }, []);
+
+  const data = {
+    sender: sender,
+    amountTransferred: amount,
+    accountTransferedTo: account,
+    transactionType: type,
+    bank: bank,
+    accountName: account,
+    remark: description,
+    date: date,
+
+  }
 
     const handleSubmit = (e) => {
         e.preventDefault()
         setLoading(true)
-        toast.success("history added successfully")
+        const url = "https://avantgardefinance-api.onrender.com/transaction-history"
+        axios.post(url, data, { headers })
+        .then((response)=> {
+            console.log(response)
+            setLoading(false)
+            toast.success("history added successfully")
+        })
+        .catch((error) => {
+            console.log(error)
+            setLoading(false)
+            toast.error("operation fai")
+        })
+        
     }
+
     return(
         <div className="transactionHistoryParent">
             <div className="historyTopic">
@@ -46,15 +112,18 @@ const TransactionHistory = () => {
                             <div className="addHistoryBodytopic"><p>Add Credit / Debit History</p></div>
                             <div className="addHistoryInputHold">
                                 <div className="addHistoryInput">
-                                    <p>Select Account</p>
+                                    <p>Select the account you want the history to be added</p>
                                     <select 
                                     required
                                     value={account}
                                     onChange={(e)=>setAccount(e.target.value)}
                                     name="history" id="history">
                                         <option value="">choose</option>
-                                        <option value="Jeremiah">Ekele Jeremiah</option>
-                                        <option value="Micheal">Adekunle Micheal</option>
+                                        {
+                                            allAccount.map((e, index)=> (
+                                                <option key={index} value={e._id}>{e.fullName}</option>
+                                            ))
+                                        }
                                     </select>
                                 </div>
                                 <div className="addHistoryInput">
@@ -96,9 +165,12 @@ const TransactionHistory = () => {
                                     value={sender}
                                     onChange={(e)=>setSender(e.target.value)}
                                     name="history" id="history">
-                                        <option value="">Jerry</option>
-                                        <option value="credit">Customer</option>
-                                        <option value="debit">john</option>
+                                        <option value="">choose</option>
+                                        {
+                                            allAccount.map((e, index)=> (
+                                                <option key={index} value={e._id}>{e.fullName}</option>
+                                            ))
+                                        }
                                     </select>
                                 </div>
                                 <div className="addHistoryInput">
@@ -128,7 +200,11 @@ const TransactionHistory = () => {
                                 </div>
                             </div>
                             <div className="addHistoryButton">
-                                <button>Add</button>
+                                <button>
+                                    {
+                                        loading ?<BeatLoader color="white"/> : "Add"
+                                    }
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -137,8 +213,8 @@ const TransactionHistory = () => {
                 :
                 <div className="historyTableHold">
                 <div className="tableHead">
-                    <div className="headTopic"><p>ACCOUNT NUMBER</p></div>
-                    <div className="headTopic"><p>ACCOUNT NAME</p></div>
+                    <div className="headTopic"><p>SENDER</p></div>
+                    <div className="headTopic"><p>RECEIVER</p></div>
                     <div className="headTopic"><p>AMOUNT</p></div>
                     <div className="headTopic"><p>DESCRIPTION</p></div>
                     <div className="headTopic"><p>TYPE</p></div>
@@ -147,14 +223,20 @@ const TransactionHistory = () => {
                     <div className="headTopic"><p>TIME</p></div>
                 </div>
                 <div className="tableBody">
-                <div className="headTopic"><p>123456789</p></div>
-                    <div className="headTopic"><p>Ekele Jeremiah</p></div>
-                    <div className="headTopic"><p>1000000</p></div>
-                    <div className="headTopic"><p>Loan</p></div>
-                    <div className="headTopic"><p>Credit</p></div>
-                    <div className="headTopic"><p>Opay</p></div>
-                    <div className="headTopic"><p>8/7/2024</p></div>
-                    <div className="headTopic"><p>5:14</p></div>
+                    {
+                        history?.map((e, index)=> (
+                        <div key={index} className="tableBodyHold">
+                            <div className="headTopic"><p>{e.sender}</p></div>
+                            <div className="headTopic"><p>{e.accountName}</p></div>
+                            <div className="headTopic"><p>{e.amountTransferred}</p></div>
+                            <div className="headTopic"><p>Loan</p></div>
+                            <div className="headTopic"><p>Credit</p></div>
+                            <div className="headTopic"><p>{e.bank}</p></div>
+                            <div className="headTopic"><p>{e.date}</p></div>
+                            <div className="headTopic"><p>5:14</p></div>
+                        </div>
+                        ))
+                    }
                 </div>
             </div>
             }

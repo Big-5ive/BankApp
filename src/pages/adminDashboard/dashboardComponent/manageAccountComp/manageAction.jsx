@@ -1,9 +1,10 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import "./manageAction.css"
 import { IoCloseSharp } from "react-icons/io5";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { ToastContainer, toast } from "react-toastify";
 import { BeatLoader } from "react-spinners";
+import axios from "axios";
 
 export const AddAccount = () => {
     const [fullName, setFullName] = useState("")
@@ -28,10 +29,13 @@ export const AddAccount = () => {
         message: ""
     })
 
+    const balance = parseInt(totalBalance)
+    const available = parseInt(availableBalance)
+
     const userData = {
         fullName: fullName,
-        userName: userName,
-        phone: phone,
+        username: userName,
+        phoneNumber: phone,
         email: email,
         occupation: occupation,
         dateOfBirth: dateOfBirth,
@@ -39,11 +43,11 @@ export const AddAccount = () => {
         address: address,
         accountType: accountType,
         accountNumber: accountNumber,
-        availableBalance: availableBalance,
-        totalBalance: totalBalance,
+        availableBalance: available,
+        totalBalance: balance,
         registerationDate: registerationDate,
         password: password,
-        retypePassword: retypePassword
+        retype_password: retypePassword
     }
 
     const passwordValidator = () => {
@@ -69,16 +73,53 @@ export const AddAccount = () => {
             })
             toast.error(error.type === "password match" ? error.message : "")
         } else if (passwordValidator() === false){
+            setLoading(false)
             setError({
                 type: "password valid",
                 message: "password must contain lowercase, uppercase number and special character"
             })
             toast.error(error.type === "password valid" ? error.message : "")
-        }else{
+        } else if (totalBalance !== availableBalance){
             setLoading(false)
-            toast.success("user added successfully")
+            setError({
+                type: "balance check",
+                message: "total balance and available balance must be the same for a new user"
+            })
+            toast.error(error.type === "password valid" ? error.message : "")
+        } else{
+            // const url = "https://avantgardefinance-api.onrender.com/admin-login"
+            const url = "https://avantgardefinance-api.onrender.com/admin-create"
+            const admin = JSON.parse(localStorage.getItem("adminData"))
+            const token = admin.token
+            const headers = {
+                'Authorization' : `Bearer ${token}`
+            }
+            const adminData = {
+                username: "Jerikoko",
+                password: "Mykehirl10@",
+            }
+            axios.post(url, userData, { headers })
+            .then((response) => {
+                console.log(response.data.data)
+                toast.success("user added successfully")
+                setLoading(false)
+                const oldData = JSON.parse(localStorage.getItem("allUsers")) || []
+                const newData = [...oldData, response.data.data]
+                localStorage.setItem("allUsers", JSON.stringify(newData))
+            })
+            .catch((error)=> {
+                console.log(error)
+                toast.error(error.response.data.message)
+                setLoading(false)
+                console.log(admin)
+            })
+            
+            
         }
+       
     }
+    
+    // console.log(myApp)
     return(
         <div className="addAccountParent">
             <ToastContainer />
@@ -169,9 +210,9 @@ export const AddAccount = () => {
                         onChange={(e)=> setMaritalStatus(e.target.value)}
                         name="accounts" id="accounts">
                             <option value="">Select</option>
-                            <option value="single">Single</option>
-                            <option value="maried">Maried</option>
-                            <option value="divorced">divorced</option>
+                            <option value="Single">Single</option>
+                            <option value="Married">Married</option>
+                            <option value="Divorced">divorced</option>
                         </select>
                     </div>
                     <div className="inputHold">
@@ -239,7 +280,11 @@ export const AddAccount = () => {
                     </div>
                 </div>
                 <div className="addformrowbutt">
-                   <button>Create Account</button>
+                   <button>
+                        {
+                            loading ? <BeatLoader color="white"/> : "Create Account"
+                        }
+                    </button>
                 </div>
             </div>
             </form>
@@ -254,11 +299,60 @@ export const CreditAccount = () => {
     const [date, setDate] = useState("")
     const [time, setTime] = useState("")
     const [loading, setLoading] = useState(false)
+    const [loading2, setLoading2] = useState(false)
+    const [allAccount, setAllAccount] = useState()
+
+    const chooseAccount = creditAccount
+    const from = parseInt(debitAccount)
+
+    const data = {
+        chooseAccount : chooseAccount,
+        from : from,
+        amount: amount,
+        description : description,
+        date : date,
+        time : time
+    }
+    const admin = JSON.parse(localStorage.getItem("adminData"))
+            const token = admin.token
+            const headers = {
+                'Authorization' : `Bearer ${token}`
+            }
+            const url = "https://avantgardefinance-api.onrender.com/view-all-users"
+    useEffect(() => {
+        const fetchData = async () => {
+            setLoading2(true)
+            try {
+            const response = await axios.get(url, { headers });
+            setAllAccount(response?.data.data)
+            setLoading2(false);
+            } catch (err) {
+            setLoading2(false);
+            }
+        };
+        fetchData();
+    }, []);
+          
 
     const handleSubmit = (e) => {
+        setLoading(true)
         e.preventDefault()
-        toast.success("transfer successful")
+        const url = `https://avantgardefinance-api.onrender.com/credit/${creditAccount}`
+        axios.post(url,data, { headers })
+        .then((response)=> {
+            // console.log(response)
+            toast.success(response.data.message)
+            setLoading(false)
+        })
+        .catch((error)=> {
+            // console.log(error)
+            setLoading(false)
+            toast.error(error.response.data.message)
+            // console.log(data)
+        })
     }
+    // console.log("sender",creditAccount)
+    // console.log("debit",id)
     return(
         <div className="addAccountParent">
         <ToastContainer />
@@ -272,12 +366,14 @@ export const CreditAccount = () => {
                             <select 
                             required
                             value={creditAccount}
-                            onChange={(e)=>setCreditAccount(e.target.value)}
+                            onChange={(e)=> setCreditAccount(e.target.value)}
                             name="accounts" id="accounts">
                                 <option value="">Select</option>
-                                <option value="jerry">jerry</option>
-                                <option value="david">David</option>
-                                <option value="jonathan">Jonathan</option>
+                                {
+                                    allAccount?.map((e, index)=> (
+                                        <option key={index} value={e._id}>{e.fullName}</option>
+                                    ))
+                                }
                             </select>
                         </div>
                         <div className="creditInputHold">
@@ -286,11 +382,13 @@ export const CreditAccount = () => {
                             required
                             value={debitAccount}
                             onChange={(e)=>setDebitAccount(e.target.value)}
-                            name="accounts" id="accounts">
+                            name="account" id="accounts">
                                 <option value="">Select</option>
-                                <option value="jerry">jerry</option>
-                                <option value="david">David</option>
-                                <option value="jonathan">Jonathan</option>
+                                {
+                                    allAccount?.map((e, index)=> (
+                                        <option key={index} value={e.accountNumber}>{e.fullName}</option>
+                                    ))
+                                }
                             </select>
                         </div>
                     </div>
@@ -331,7 +429,11 @@ export const CreditAccount = () => {
                         </div>
                     </div>
                     <div className="creditAcctButt">
-                        <button>SEND</button>
+                        <button>
+                            {
+                                loading ? <BeatLoader color="white"/> : "SEND"
+                            }
+                        </button>
                     </div>
                 </div>
             </div>
@@ -347,12 +449,54 @@ export const DebitAccount = () => {
     const [date, setDate] = useState("")
     const [time, setTime] = useState("")
     const [loading, setLoading] = useState(false)
+    const [allAccount, setAllAccount] = useState()
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        setLoading(true)
-        toast.success("debit successful")
-    }
+        const chooseAccount = debitAccount
+        const credit = parseInt(creditAccount)
+    
+        const data = {
+            chooseAccount : chooseAccount,
+            to : credit,
+            amount: amount,
+            description : description,
+            date : date,
+            time : time
+        }
+        const admin = JSON.parse(localStorage.getItem("adminData"))
+        const token = admin.token
+        const headers = {
+            'Authorization' : `Bearer ${token}`
+        }
+        const url = "https://avantgardefinance-api.onrender.com/view-all-users"
+        useEffect(() => {
+            const fetchData = async () => {
+                try {
+                const response = await axios.get(url, { headers });
+                setAllAccount(response?.data.data)
+                } catch (err) {
+                }
+            };
+            fetchData();
+        }, []);
+    
+        const handleSubmit = (e) => {
+            setLoading(true)
+            e.preventDefault()
+            const url = `https://avantgardefinance-api.onrender.com/debit/${debitAccount}`
+            axios.post(url,data, { headers })
+            .then((response)=> {
+                // console.log(response)
+                toast.success(response.data.message)
+                setLoading(false)
+            })
+            .catch((error)=> {
+                // console.log(error)
+                setLoading(false)
+                toast.error(error.response.data.message)
+                // console.log(data)
+            })
+        }
+    
     return(
         <div className="addAccountParent">
             <ToastContainer />
@@ -369,9 +513,11 @@ export const DebitAccount = () => {
                             onChange={(e)=> setDebitAccount(e.target.value)}
                             name="accounts" id="accounts">
                                 <option value="">Select</option>
-                                <option value="jerry">jerry</option>
-                                <option value="david">David</option>
-                                <option value="jonathan">Jonathan</option>
+                                {
+                                    allAccount?.map((e, index)=> (
+                                        <option key={index} value={e._id}>{e.fullName}</option>
+                                    ))
+                                }
                             </select>
                         </div>
                         <div className="creditInputHold">
@@ -381,10 +527,12 @@ export const DebitAccount = () => {
                             value={creditAccount}
                             onChange={(e)=> setCreditAccount(e.target.value)}
                             name="accounts" id="accounts">
-                                <option value="">Select</option>
-                                <option value="jerry">jerry</option>
-                                <option value="david">David</option>
-                                <option value="jonathan">Jonathan</option>
+                                <option value="">select</option>
+                                {
+                                    allAccount?.map((e, index)=> (
+                                        <option key={index} value={e.accountNumber}>{e.fullName}</option>
+                                    ))
+                                }
                             </select>
                         </div>
                     </div>
@@ -438,20 +586,121 @@ export const DebitAccount = () => {
 }
 export const UpdateAccount = () => {
     const [showUpdate, setShowUpdate] = useState(false)
+    const [allAccount, setAllAccount] = useState()
+    const [loading, setLoading] = useState(false)
+
+    const [fullName, setFullName] = useState("")
+    const [userName, setUserName] = useState("")
+    const [phone, setPhone] = useState("")
+    const [password, setPassword] = useState("")
+    const [email, setEmail] = useState("")
+    const [occupation, setOccupation] = useState("")
+    const [dateOfBirth, setDateOfBirth] = useState("")
+    const [maritalStatus, setMaritalStatus] = useState("")
+    const [address, setAddress] = useState("")
+    const [accountType, setAccountType] = useState("")
+    const [accountNumber, setAccountNumber] = useState("")
+    const [availableBalance, setAvailableBalance] = useState("")
+    const [totalBalance, setTotalBalance] = useState("")
+    const [registerationDate, setRegisterationDate] = useState("")
+    const [currency, setCurrency] = useState("")
+    const [loading2, setLoading2] = useState(false)
+    const [placeholder, setPlaceholder] = useState(false)
+    const [error, setError] = useState({
+        // isError: false,
+        type: "",
+        message: ""
+    })
+
+    const handlePlaceholder = (e) => {
+        setPlaceholder(e)
+        setShowUpdate(true)
+    }
+
+    const balance = parseInt(totalBalance)
+    const available = parseInt(availableBalance)
+
+    const userData = {
+        fullName: fullName,
+        username: userName,
+        phoneNumber: phone,
+        password: password,
+        email: email,
+        occupation: occupation,
+        dateOfBirth: dateOfBirth,
+        maritalStatus: maritalStatus,
+        address: address,
+        accountType: accountType,
+        accountNumber: accountNumber,
+        availableBalance: available,
+        totalBalance: balance,
+        registerationDate: registerationDate,
+        currency
+    }
+    const admin = JSON.parse(localStorage.getItem("adminData"))
+    const token = admin.token
+    const headers = {
+        'Authorization' : `Bearer ${token}`
+    }
+
+    const handleUpdate = () => {
+        setLoading2(true)
+        const url = `https://avantgardefinance-api.onrender.com/admin-update/${placeholder._id}`
+        axios.put(url,userData, { headers })
+        .then((response)=> {
+            // console.log(response)
+            setLoading2(false)
+            toast.success("user update successful")
+            setTimeout(()=>{
+                setShowUpdate(false)
+            },4000)
+        })
+        .catch((error)=> {
+            // console.log(error)
+            setLoading2(false)
+            toast.error("update failed")
+        })
+    }
+
+
+    
+    useEffect(() => {
+    const url = "https://avantgardefinance-api.onrender.com/view-all-users"
+    const fetchData = async () => {
+        setLoading(true)
+        try {
+        const response = await axios.get(url, { headers });
+        setAllAccount(response?.data.data)
+        setLoading(false)
+        } catch (err) {
+            setLoading(false)
+        }
+    };
+    fetchData();
+    }, []);
+
     return(
         <div className="addAccountParent">
             <div className="updateAccountHold">
                 <div className="updateHeadtopic">
                     <p>Choose the account to update</p>
                 </div>
-                <div className="accountChooseHold">
-                    <div className="accountChooseDetail" onClick={()=>setShowUpdate(true)}>
-                        <p>1 : </p><p>Ekele Jeremiah</p>
-                    </div>
+                {
+                    loading ? <BeatLoader color="blue"/> : 
+                    <div className="accountChooseHold">
+                    {
+                        allAccount?.map((e, index)=> (
+                            <div className="accountChooseDetail" onClick={()=>handlePlaceholder(e)}>
+                                <p>{index + 1} : </p><p>{e.fullName}</p>
+                            </div>
+                        ))
+                    }
                 </div>
+                }
                 {
                     showUpdate ? 
                     <div className="updateInfoDetails">
+                        <ToastContainer />
                     <div className="closeUpdate">
                         <div className="updateClose" onClick={()=>setShowUpdate(false)}>
                             <IoCloseSharp />
@@ -459,22 +708,34 @@ export const UpdateAccount = () => {
                         <div className="updateClose2" onClick={()=>setShowUpdate(false)}>
                             <FaArrowLeftLong />
                         </div>
-                        <h1 className="infow">change only the info you want</h1>
+                        <h1 className="infow">change only the info you want to update</h1>
                     </div>
                     
                     <div className="addformHold">
                 <div className="addformrow">
                     <div className="inputHold">
                         <p>Full Name</p>
-                        <input type="text" />
+                        <input 
+                        value={fullName}
+                        placeholder={placeholder.fullName}
+                        onChange={(e)=>setFullName(e.target.value)}
+                        type="text" />
                     </div>
                     <div className="inputHold">
                         <p>User Name</p>
-                        <input type="text" />
+                        <input 
+                        value={userName}
+                        placeholder={placeholder.username}
+                        onChange={(e)=>setUserName(e.target.value)}
+                        type="text" />
                     </div>
                     <div className="inputHold">
                         <p>Password</p>
-                        <input type="text" />
+                        <input 
+                        value={password}
+                        placeholder={placeholder.password}
+                        onChange={(e)=>setPassword(e.target.value)}
+                        type="text" />
                     </div>
                     <div className="inputHold">
                         <p>Retype Password</p>
@@ -484,25 +745,45 @@ export const UpdateAccount = () => {
                 <div className="addformrow">
                     <div className="inputHold">
                         <p>Phone</p>
-                        <input type="text" />
+                        <input 
+                        value={phone}
+                        placeholder={placeholder.phoneNumber}
+                        onChange={(e)=>setPhone(e.target.value)}
+                        type="text" />
                     </div>
                     <div className="inputHold">
                         <p>Email</p>
-                        <input type="text" />
+                        <input 
+                        value={email}
+                        placeholder={placeholder.email}
+                        onChange={(e)=>setEmail(e.target.value)}
+                        type="text" />
                     </div>
                     <div className="inputHold">
                         <p>Occupation</p>
-                        <input type="text" />
+                        <input 
+                        value={occupation}
+                        placeholder={placeholder.occupation}
+                        onChange={(e)=>setOccupation(e.target.value)}
+                        type="text" />
                     </div>
                     <div className="inputHold">
                         <p>Date of birth</p>
-                        <input type="date" />
+                        <input 
+                        value={dateOfBirth}
+                        placeholder={placeholder.dateOfBirth}
+                        onChange={(e)=>setDateOfBirth(e.target.value)}
+                        type="text" />
                     </div>
                 </div>
                 <div className="addformrow">
                     <div className="inputHold">
                         <p>Marital Status</p>
-                        <input type="text" />
+                        <input 
+                        value={maritalStatus}
+                        placeholder={placeholder.maritalStatus}
+                        onChange={(e)=>setMaritalStatus(e.target.value)}
+                        type="text" />
                     </div>
                     <div className="inputHold">
                         <p>Gender</p>
@@ -510,37 +791,65 @@ export const UpdateAccount = () => {
                     </div>
                     <div className="inputHold">
                         <p>Address</p>
-                        <input type="text" />
+                        <input 
+                        value={address}
+                        placeholder={placeholder.address}
+                        onChange={(e)=>setAddress(e.target.value)}
+                        type="text" />
                     </div>
                     <div className="inputHold">
                         <p>Account Type</p>
-                        <input type="text" />
+                        <input 
+                        value={accountType}
+                        placeholder={placeholder.accountType}
+                        onChange={(e)=>setAccountType(e.target.value)}
+                        type="text" />
                     </div>
                 </div>
                 <div className="addformrow">
                     <div className="inputHold">
                         <p>Registeration Date</p>
-                        <input type="date" />
+                        <input 
+                        value={registerationDate}
+                        placeholder={placeholder.registrationDate}
+                        onChange={(e)=>setRegisterationDate(e.target.value)}
+                        type="text" />
                     </div>
                     <div className="inputHold">
                         <p>Total balance</p>
-                        <input type="text" />
+                        <input 
+                        value={totalBalance}
+                        placeholder={placeholder.totalBalance}
+                        onChange={(e)=>setTotalBalance(e.target.value)}
+                        type="number" />
                     </div>
                     <div className="inputHold">
                         <p>Available balance</p>
-                        <input type="text" />
+                        <input 
+                        value={availableBalance}
+                        placeholder={placeholder.availableBalance}
+                        onChange={(e)=>setAvailableBalance(e.target.value)}
+                        type="number" />
                     </div>
                     <div className="inputHold">
                         <p>Account number</p>
-                        <input type="text" />
+                        <input 
+                        value={accountNumber}
+                        placeholder={placeholder.accountNumber}
+                        onChange={(e)=>setAccountNumber(e.target.value)}
+                        type="text" />
                     </div>
                 </div>
                 <div className="addformrow">
                     <div className="inputHold">
                         <p>Account currency</p>
-                        <input type="text" />
+                        <input 
+                        value={currency}
+                        placeholder={placeholder.accountCurrency}
+                        onChange={(e)=>setCurrency(e.target.value)}
+                        type="text" />
                     </div>
-                    <div className="inputHold">
+                    {/* <div className="inputHold">
                         <p>COT code</p>
                         <input type="text" />
                     </div>
@@ -551,28 +860,15 @@ export const UpdateAccount = () => {
                     <div className="inputHold">
                         <p>Complaint code</p>
                         <input type="text" />
-                    </div>
-                </div>
-                <div className="addformrow">
-                    <div className="inputHold">
-                        <p>Login pin</p>
-                        <input type="text" />
-                    </div>
-                    <div className="inputHold">
-                        <p>Atm pin</p>
-                        <input type="text" />
-                    </div>
-                    {/* <div className="inputHold">
-                        <p>IMF code</p>
-                        <input type="text" />
-                    </div>
-                    <div className="inputHold">
-                        <p>Complaint code</p>
-                        <input type="text" />
                     </div> */}
                 </div>
+                
                 <div className="addformrowbutt">
-                   <button>Update Account</button>
+                   <button onClick={handleUpdate}>
+                        {
+                            loading2 ? <BeatLoader color="white"/> : "Update Account"
+                        }
+                   </button>
                 </div>
             </div>
                 </div> : null
@@ -582,19 +878,68 @@ export const UpdateAccount = () => {
     )
 }
 
+
 export const DeleteAccount = () => {
     const [deleteWarn, setDeleteWarn] = useState(false)
+    const [allAccount, setAllAccount] = useState()
+    const [loading, setLoading] = useState()
+    const [deleteId, setDeleteId] = useState()
+    const [loading2, setLoading2] = useState(false)
+
+
+    const admin = JSON.parse(localStorage.getItem("adminData"))
+    const token = admin.token
+    const headers = {
+        'Authorization' : `Bearer ${token}`
+    }
+    const url = "https://avantgardefinance-api.onrender.com/view-all-users"
+        const fetchData = async () => {
+            setLoading2(true)
+            try {
+            const response = await axios.get(url, { headers });
+            setAllAccount(response?.data.data)
+            setLoading2(false)
+            } catch (err) {
+                setLoading2(false)
+            }
+        };
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+        const handleDelete = () => {
+            setLoading(true)
+            const url = `https://avantgardefinance-api.onrender.com/admin-delete/${deleteId._id}`
+            axios.delete(url,{ headers })
+            .then((response)=> {
+                // console.log(response)
+                setLoading(false)
+                toast.success("account successfully deleted")
+                setDeleteWarn(false)
+                fetchData()
+            })
+            .catch((error)=> {
+                // console.log(error)
+                setLoading(false)
+                toast.error("error deleting account")
+            })
+        }
     return(
         <div className="deleteAcountParent">
+            <ToastContainer />
 
             {
                 deleteWarn ? 
                 <div className="deleteWarn">
-                    <p>Are you sure you want to delete this account ?</p>
+                    <p>Are you sure you want to delete <span style={{color: "blue"}}>{deleteId.fullName}</span> from your users ?</p>
                     <i>please note: Once this action is done it cannot be undone!!</i>
                     <div className="deleteButt">
                         <button className="cancelDel" onClick={()=>setDeleteWarn(false)}>cancel</button>
-                        <button className="del">Delete</button>
+                        <button className="del" onClick={handleDelete}>
+                            {
+                                loading ? <BeatLoader color="blue"/> : "Delete"
+                            }
+                        </button>
                     </div>
                 </div> 
                 : 
@@ -602,12 +947,23 @@ export const DeleteAccount = () => {
                     <div className="deleteActTopic">
                         <p>Select Account to delete</p>
                     </div>
-                    <div className="deleteSelectHold">
-                        <div className="deleteSelect" onClick={()=> setDeleteWarn(true)}>
-                            <p>1 :</p>
-                            <p>Ekele Jeremiah</p>
-                        </div>
-                    </div> 
+                    
+                   {
+                    loading2 ? <BeatLoader color="blue"/> :
+                     <div className="deleteSelectHold">
+                    {
+                        allAccount?.map((e, index)=> (
+                            <div key={index} className="deleteSelect" onClick={()=> {
+                                setDeleteWarn(true)
+                                setDeleteId(e)
+                            }}>
+                                <p>{index + 1} :</p>
+                                <p>{e.fullName}</p>
+                            </div>
+                        ))
+                    }
+                </div>
+                   }
                </div>
             }
         </div>
@@ -616,14 +972,50 @@ export const DeleteAccount = () => {
 
 
 export const ChangeAccountStatus = () => {
-    const [account, setAccount] = useState("")
-    const [status, setStatus] = useState("")
+    // const [account, setAccount] = useState("")
+    const [accountId, setAccountId] = useState("")
+    const [allAccount, setAllAccount] = useState()
+    const [accountStatus, setStatus] = useState("")
     const [loading, setLoading] = useState(false)
+    const [loading2, setLoading2] = useState(false)
+
+    const admin = JSON.parse(localStorage.getItem("adminData"))
+    const token = admin.token
+    const headers = {
+        'Authorization' : `Bearer ${token}`
+    }
+    const url = "https://avantgardefinance-api.onrender.com/view-all-users"
+    const fetchData = async () => {
+        setLoading2(true)
+        try {
+        const response = await axios.get(url, { headers });
+        setAllAccount(response?.data.data)
+        setLoading2(false)
+        } catch (err) {
+            setLoading2(false)
+        }
+    };
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+    // console.log(allAccount)
 
     const handleSubmit = (e) => {
-        e.preventDefault()
         setLoading(true)
-        toast.success("Account status changed successfully")
+        e.preventDefault()
+        const url =`https://avantgardefinance-api.onrender.com/admin-status/${accountId}`
+        axios.put(url, accountStatus, { headers })
+        .then((response)=> {
+            // console.log(response)
+            setLoading(false)
+            toast.success("Account status changed successfully")
+        })
+        .catch((error)=>{
+            console.log(error)
+            setLoading(false)
+            toast.error("operation failed")
+        })
     }
     return(
         <div className="deleteAcountParent">
@@ -637,20 +1029,23 @@ export const ChangeAccountStatus = () => {
                     <p>Select Account</p>
                     <select 
                     required
-                    value={account}
-                    onChange={(e)=> setAccount(e.target.value)}
+                    value={accountId}
+                    onChange={(e)=> setAccountId(e.target.value)}
                     name="status" id="status">
+                            loading2 ? <BeatLoader color="blue"/> :
                         <option value="">Choose</option>
-                        <option value="Ekele Jeremiah">Ekele Jeremiah</option>
-                        <option value="Ekele Jeremiah">Ekele Jeremiah</option>
-                        <option value="Ekele Jeremiah">Ekele Jeremiah</option>
+                        {
+                            allAccount?.map((e, index) => (
+                                <option key={index} value={e._id}>{e.fullName}</option>
+                            ))
+                        }
                     </select>
                 </div>
                 <div className="statuschangeWrap">
                     <p>Set Status</p>
                     <select 
                     required
-                    value={status}
+                    value={accountStatus}
                     onChange={(e)=> setStatus(e.target.value)}
                     name="status" id="status">
                         <option value="">Choose</option>
@@ -661,7 +1056,11 @@ export const ChangeAccountStatus = () => {
                     </select>
                 </div>
                 <div className="statusChangeButt">
-                    <button>SET</button>
+                    <button>
+                        {
+                            loading ? <BeatLoader color="white"/> : "SET"
+                        }
+                    </button>
                 </div>
                 <div className="guideline">
                     <p>Active : <span>This means that the client can access all functions within his/her account</span></p>

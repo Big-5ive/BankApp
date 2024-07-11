@@ -1,11 +1,50 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import "./account.css"
 import { IoCloseSharp } from "react-icons/io5";
 import { FaArrowLeftLong } from "react-icons/fa6";
+import axios from "axios";
+import { BeatLoader } from "react-spinners";
 // import AdminDashboardParent from "../../.dashboardMain/adminDashboard"
 
 const AccountComponent = () => {
+    // axios
     const [show, setShow] = useState(false)
+    const [allUsers, setAllUsers] = useState()
+    const [loading, setLoading] = useState(false)
+    // const allUsers =  JSON.parse(localStorage.getItem("allUsers"))
+    const [data, setData] = useState()
+
+    const admin = JSON.parse(localStorage.getItem("adminData"))
+    const token = admin.token
+    const headers = {
+        'Authorization' : `Bearer ${token}`
+    }
+    const url = "https://avantgardefinance-api.onrender.com/view-all-users"
+    useEffect(() => {
+    // Define the async function
+    const fetchData = async () => {
+        setLoading(true)
+      try {
+        const response = await axios.get(url, { headers });
+        // setData(response.data);
+        // console.log(response)
+        setAllUsers(response.data.data)
+        setLoading(false);
+      } catch (err) {
+        // setError(err);
+        console.log(err)
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
+
+    const handleShow = (item) => {
+        setShow(true)
+        setData(item)
+        // setData("")
+    }
+    // console.log(data)
     return(
         <div className="accountParent">
             {
@@ -23,58 +62,58 @@ const AccountComponent = () => {
                         <div className="acountLog">
                             <div className="log1">
                                 <h1>Full Name:</h1>
-                                <p>Ekele Jeremiah</p>
+                                <p>{data.fullName}</p>
                             </div>
                             <div className="log1">
                                 <h1>User Name:</h1>
-                                <p>Jerry</p>
+                                <p>{data.username}</p>
                             </div>
                             <div className="log1">
                                 <h1>Account Number:</h1>
-                                <p>1234567895</p>
+                                <p>{data.accountNumber}</p>
                             </div>
                             <div className="log1">
                                 <h1>Email:</h1>
-                                <p>officiallyyoung01@gmail.com</p>
+                                <p>{data.email}</p>
                             </div>
                         </div>
                         <div className="acountLog">
                             <div className="log1">
-                                <h1>Sex:</h1>
-                                <p>Male</p>
+                                <h1>Occupation:</h1>
+                                <p>{data.occupation}</p>
                             </div>
                             <div className="log1">
                                 <h1>Account Type:</h1>
-                                <p>current</p>
+                                <p>{data.accountType}</p>
                             </div>
                             <div className="log1">
                                 <h1>Total Balance:</h1>
-                                <p>5000000</p>
+                                <p>{data.totalBalance}</p>
                             </div>
                             <div className="log1">
                                 <h1>Available Balance:</h1>
-                                <p>4000000</p>
+                                <p>{data.availableBalance}</p>
                             </div>
                         </div>
                         <div className="acountLog">
                             <div className="log1">
-                                <h1>COT:</h1>
-                                <p>12345</p>
+                                <h1>Phone number:</h1>
+                                <p>{data.phoneNumber}</p>
                             </div>
                             <div className="log1">
-                                <h1>TAX:</h1>
-                                <p>54321</p>
+                                <h1>Account status:</h1>
+                                <p>{data.accountStatus}</p>
                             </div>
                             <div className="log1">
-                                <h1>IMF:</h1>
-                                <p>123</p>
+                                <h1>Reg date:</h1>
+                                <p>{data.registrationDate}</p>
                             </div>
                             <div className="log1">
                                 <h1>Currency:</h1>
                                 <p>$</p>
                             </div>
                         </div>
-                        <div className="acountLog">
+                        {/* <div className="acountLog">
                             <div className="log1">
                                 <h1>Status:</h1>
                                 <p>Active</p>
@@ -88,26 +127,33 @@ const AccountComponent = () => {
                                 <p>12/5/2020</p>
                             </div>
                             <div className="log1">
-                                {/* <h1>Email:</h1>
-                                <p>officiallyyoung01@gmail.com</p> */}
+                                <h1>Email:</h1>
+                                <p>officiallyyoung01@gmail.com</p>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
                 : <div>
                 <div className="accountHead">
                     <p>All Accounts</p>
                 </div>
-                <div className="accountHold">
-                    <div className="accountHold2" onClick={()=> setShow(true)}>
+                {
+                    loading ? <BeatLoader color="blue"/> :
+                    <div className="accountHold">
+                    {
+                        allUsers?.map((e, index)=> (
+                            <div key={index} className="accountHold2" onClick={()=> handleShow(e)}>
                         <div className="numberLine">
-                            <p>1 :</p>
+                            <p>{index + 1} :</p>
                         </div>
                         <div className="accountit">
-                            <p>Ekele Jeremiah</p>
+                            <p>{e.fullName}</p>
                         </div>
                     </div>
+                        ))
+                    }
                 </div>
+                }
             </div>
             }
             

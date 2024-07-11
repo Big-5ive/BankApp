@@ -19,6 +19,7 @@ import { CgCloseR } from "react-icons/cg";
 const DashboardManageAccount = () => {
     const [dropDown, setDropDown] = useState(false)
     const navigate = useNavigate()
+    const admin = JSON.parse(localStorage.getItem("adminData"))
     return(
         <div className="adminDashboardParent">
         <div className="adminHold">
@@ -81,7 +82,7 @@ const DashboardManageAccount = () => {
                 <div className="adminHead">
                     <div className="adminHeadHold">
                         <div className="welcome">
-                            <p>Welcome <span>Maxwell</span></p>
+                            <p>Welcome <span>{admin?.username}</span></p>
                         </div>
                         <div className="notify">
                             <div className="notifyHold">
