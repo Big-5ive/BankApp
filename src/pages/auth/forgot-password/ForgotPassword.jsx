@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FaEnvelope } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const ForgotPassword = () => {
   const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [message, setMessage] = useState('');
+  const navigate = useNavigate();
 
   const handleForgotPassword = async (e) => {
     e.preventDefault();
@@ -16,8 +16,11 @@ const ForgotPassword = () => {
     try {
       const response = await axios.post("https://avantgardefinance-api.onrender.com/forgot", { email });
       const { message } = response.data;
+      const { data } = response.data;
       toast.success(message);
-      setMessage(message);
+      setTimeout(() => {
+        navigate(`/otp-verification/${data}`);
+      }, 2000); // Navigate after 2 seconds to show the toast message
     } catch (error) {
       if (error.response) {
         const { message } = error.response.data;
@@ -36,13 +39,13 @@ const ForgotPassword = () => {
         <ToastContainer />
         <h1 className="text-2xl lg:text-3xl font-bold text-center mb-3 -text--clr-pumpkin">Trust Finance</h1>
         <h2 className="text-xl lg:text-2xl font-bold mb-6 -text--clr-silver-v1">Forgot Password</h2>
-        {message && <p className="text-green-500 font-bold text-center mb-4">{message}</p>}
         <form onSubmit={handleForgotPassword} className="space-y-6">
           <div className="flex items-center border-b -border--clr-silver-v1 py-2">
             <FaEnvelope className="-text--clr-silver-v1 mr-3" />
             <input
               type="email"
               placeholder="Email"
+              name='email'
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="appearance-none bg-transparent border-none w-full -text--clr-silver-v1 leading-tight focus:outline-none"

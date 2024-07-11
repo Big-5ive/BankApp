@@ -24,6 +24,8 @@ import ForgotPassword from "../pages/auth/forgot-password/ForgotPassword";
 import ResetPassword from "../pages/auth/reset-password/ResetPassword";
 import UserSignup from "../pages/auth/signUp/signUp";
 import OTPverify from "../pages/auth/otp/otp";
+import OTPClient from "../pages/auth/otp-client/OTPClient";
+import OTPVerification from "../pages/auth/otp-client/OTPClient";
 
 const route = createHashRouter([
   {
@@ -35,6 +37,10 @@ const route = createHashRouter([
     element: <UserSignup />
   },
   {
+    path: "/otp-verification/:userId",
+    element: <OTPVerification />
+  },
+  {
     path: "/otp",
     element: <OTPverify />
   },
@@ -43,7 +49,7 @@ const route = createHashRouter([
     element: <ForgotPassword />,
   },
   {
-    path: "/reset-password",
+    path: "/reset-password:userId",
     element: <ResetPassword />,
   },
   {
