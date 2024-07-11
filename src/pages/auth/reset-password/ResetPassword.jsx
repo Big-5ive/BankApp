@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FaLock, FaEye, FaEyeSlash } from 'react-icons/fa';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
@@ -12,6 +12,7 @@ const ResetPassword = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const nav= useNavigate()
 
   const handleResetPassword = async (e) => {
     e.preventDefault();
@@ -25,7 +26,7 @@ const ResetPassword = () => {
     setIsLoading(true);
 
     try {
-      const response = await axios.post(`https://avantgardefinance-api.onrender.com/reset-password/${userId}`, {
+      const response = await axios.post(`https://avantgardefinance-api.onrender.com/reset-user/${userId}`, {
         password,
         confirmPassword,
       });
@@ -34,6 +35,7 @@ const ResetPassword = () => {
       toast.success("Password reset successful!");
       localStorage.setItem('passwordResetStatus', 'successful');
       // Redirect or show success message as needed
+      nav('/')
     } catch (error) {
       if (error.response) {
         const { message } = error.response.data;
