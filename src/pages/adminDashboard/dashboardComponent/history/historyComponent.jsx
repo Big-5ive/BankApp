@@ -2,9 +2,25 @@ import { useState } from "react";
 import "./historyComponent.css"
 import { IoMdAdd } from "react-icons/io";
 import { FaArrowLeftLong } from "react-icons/fa6";
+import { ToastContainer, toast } from "react-toastify";
 
 const TransactionHistory = () => {
     const [addHistory, setAddHistory] = useState(false)
+    const [account, setAccount] = useState("")
+    const [type, setType] = useState("")
+    const [amount, setAmount] = useState("")
+    const [description, setDescription] = useState("")
+    const [sender, setSender] = useState("")
+    const [bank, setBank] = useState("")
+    const [date, setDate] = useState("")
+    const [time, setTime] = useState("")
+    const [loading, setLoading] = useState(false)
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        setLoading(true)
+        toast.success("history added successfully")
+    }
     return(
         <div className="transactionHistoryParent">
             <div className="historyTopic">
@@ -14,6 +30,7 @@ const TransactionHistory = () => {
             {
                 addHistory ? 
                 <div className="addHistoryParent">
+                    <ToastContainer />
                     <div className="addCancel">
                         <div className="addcancelhold" onClick={()=>setAddHistory(false)}>
                             <p className="closedv">close</p>
@@ -23,20 +40,31 @@ const TransactionHistory = () => {
                         </div>
                         <p className="infow">Add Credit / Debit History</p>
                     </div>
+                    <form action="" onSubmit={handleSubmit}>
                     <div className="addHistoryHold">
                         <div className="addHistoryBody">
                             <div className="addHistoryBodytopic"><p>Add Credit / Debit History</p></div>
                             <div className="addHistoryInputHold">
                                 <div className="addHistoryInput">
                                     <p>Select Account</p>
-                                    <select name="history" id="history">
+                                    <select 
+                                    required
+                                    value={account}
+                                    onChange={(e)=>setAccount(e.target.value)}
+                                    name="history" id="history">
+                                        <option value="">choose</option>
                                         <option value="Jeremiah">Ekele Jeremiah</option>
                                         <option value="Micheal">Adekunle Micheal</option>
                                     </select>
                                 </div>
                                 <div className="addHistoryInput">
                                     <p>Transaction Type</p>
-                                    <select name="history" id="history">
+                                    <select 
+                                    required
+                                    value={type}
+                                    onChange={(e)=>setType(e.target.value)}
+                                    name="history" id="history">
+                                        <option value="">choose</option>
                                         <option value="credit">Credit</option>
                                         <option value="debit">Debit</option>
                                     </select>
@@ -45,38 +73,66 @@ const TransactionHistory = () => {
                             <div className="addHistoryInputHold">
                                 <div className="addHistoryInput">
                                     <p>Amount</p>
-                                    <input type="text" />
+                                    <input 
+                                    required
+                                    value={amount}
+                                    onChange={(e)=>setAmount(e.target.value)}
+                                    type="number" />
                                 </div>
                                 <div className="addHistoryInput">
                                     <p>Description</p>
-                                    <input type="text" placeholder="eg, Flight payment"/>
+                                    <input 
+                                    required
+                                    value={description}
+                                    onChange={(e)=>setDescription(e.target.value)}
+                                    type="text" placeholder="eg, Flight payment"/>
                                 </div>
                             </div>
                             <div className="addHistoryInputHold">
                                 <div className="addHistoryInput">
                                     <p>From</p>
-                                    <input type="text" />
+                                    <select 
+                                    required
+                                    value={sender}
+                                    onChange={(e)=>setSender(e.target.value)}
+                                    name="history" id="history">
+                                        <option value="">Jerry</option>
+                                        <option value="credit">Customer</option>
+                                        <option value="debit">john</option>
+                                    </select>
                                 </div>
                                 <div className="addHistoryInput">
-                                    <p>Date</p>
-                                    <input type="date" />
+                                    <p>Bank</p>
+                                    <input 
+                                    required
+                                    value={bank}
+                                    onChange={(e)=>setBank(e.target.value)}
+                                    type="text" />
                                 </div>
                             </div>
                             <div className="addHistoryInputHold">
                                 <div className="addHistoryInput">
                                     <p>Time</p>
-                                    <input type="time" />
+                                    <input 
+                                    // required
+                                    value={time}
+                                    onChange={(e)=>setTime(e.target.value)}
+                                    type="time" />
                                 </div>
-                                {/* <div className="addHistoryInput">
-                                    <p>Description</p>
-                                    <input type="text" placeholder="eg, Flight payment"/>
-                                </div> */}
+                                <div className="addHistoryInput">
+                                    <p>Date</p>
+                                    <input 
+                                    value={date}
+                                    onChange={(e)=> setDate(e.target.value)}
+                                    type="date" />
+                                </div>
                             </div>
                             <div className="addHistoryButton">
                                 <button>Add</button>
                             </div>
                         </div>
                     </div>
+                    </form>
                 </div> 
                 :
                 <div className="historyTableHold">

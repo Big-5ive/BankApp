@@ -1,8 +1,10 @@
 import './allInfo.css'
 import { FcSimCardChip } from "react-icons/fc";
 import { RiMastercardFill } from "react-icons/ri";
+import { useNavigate } from 'react-router-dom';
 
 const AllInfoComponent = () => {
+    const nav = useNavigate()
     return(
         <div className="allInfoParentxx">
             <div className="header">
@@ -19,7 +21,7 @@ const AllInfoComponent = () => {
                         <p>Disabled accounts : <span>5</span></p>
                     </div>
                     <div className="bigBut">
-                        <button>Manage Accounts</button>
+                        <button onClick={()=> nav("/accountmanage")}>Manage Accounts</button>
                     </div>
                 </div>
                 <div className="dashboardItems">
@@ -30,16 +32,16 @@ const AllInfoComponent = () => {
                         <p>Credits : <span>20</span></p>
                     </div>
                     <div className="bigBut">
-                        <button>Manage History</button>
+                        <button onClick={()=> nav("/history")}>Manage History</button>
                     </div>
                 </div>
                 <div className="dashboardItems">
-                <div className="tti"><p>Notification</p></div>
+                <div className="tti"><p>Messages</p></div>
                     <div className="tt2">
                         <p>All notification : <span>50</span></p>
                     </div>
                     <div className="bigBut">
-                        <button>Manage Notification</button>
+                        <button onClick={()=> nav("/messages")}>Manage Messages</button>
                     </div>
                 </div>
             </div>
@@ -96,6 +98,7 @@ const AllInfoComponent = () => {
                         </div>
                         <div className="cardChip">
                             <FcSimCardChip />
+                            <p>pin - 1234</p>
                         </div>
                         <div className="cardNum">
                             <p>500</p>

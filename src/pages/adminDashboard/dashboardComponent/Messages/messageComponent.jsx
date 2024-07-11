@@ -2,13 +2,54 @@ import "./messagecomponent.css"
 import { IoMdAdd } from "react-icons/io";
 import { CgProfile } from "react-icons/cg";
 import { useState } from "react";
+import { BeatLoader } from "react-spinners";
+import { ToastContainer, toast } from "react-toastify";
 // import { ImCancelCircle } from "react-icons/im";
 
 const MessageComponent = () => {
     const [open, setOpen] = useState(false)
     const [compose, setCompose] = useState(false)
+    const [sender, setSender] = useState("")
+    const [receiver, setReceiver] = useState("")
+    const [message, setMessage] = useState("")
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState({
+        type: "",
+        message: ""
+    })
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        setLoading(true)
+        if(!sender){
+            setLoading(false)
+            setError({
+                type: "sender",
+                message: "choose the sender"
+            })
+            toast.error(error.type === "sender" ? error.message : "")
+        } else if(!receiver){
+            setLoading(false)
+            setError({
+                type: "receiver",
+                message: "cho0se the receiver"
+            })
+            toast.error(error.type === "receiver" ? error.message : "")
+        } else if(!message){
+            setLoading(false)
+            setError({
+                type: "message",
+                message: "you cant send an empty message!"
+            })
+            toast.error(error.type === "sender" ? error.message : "")
+        } else{
+            setLoading(false)
+            toast.success("message sent successfully")
+        }
+    }
     return(
         <div className="messagecomponentParent">
+            <ToastContainer />
             <div className="messageCompTop">Messages</div>
             <div className="messageAction">
                 <p>All messages</p>
@@ -70,30 +111,36 @@ const MessageComponent = () => {
                              <div className="messageFrom">
                                  <p>Compose A new message</p>
                              </div>
+                             <form onSubmit={handleSubmit}>
                              <div className="messageItself">
                                  <div className="composeInputhold">
                                     <p>Sender</p>
-                                    <select name="sender" id="sender">
-                                        <option value="sender">Sender</option>
+                                    <select required name="sender" id="sender" value={sender} onChange={(e)=>setSender(e.target.value)}>
+                                        <option value="">Sender</option>
                                         <option value="customer Care">Customer Care</option>
                                         <option value="account officer">Account officer</option>
                                     </select>
                                  </div>
                                  <div className="composeInputhold">
                                     <p>To</p>
-                                    <select name="sender" id="sender">
-                                        <option value="sender">receiver</option>
-                                        <option value="customer Care">Customer Care</option>
-                                        <option value="account officer">Account officer</option>
+                                    <select name="sender" required id="sender" value={receiver} onChange={(e)=>setReceiver(e.target.value)}>
+                                        <option value="">receiver</option>
+                                        <option value="customer Care">Ekele Jeremiah</option>
+                                        <option value="account officer">Adekunle Micheal</option>
                                     </select>
                                  </div>
                                  <div className="messageWrite">
-                                    <textarea name="message" id="message" placeholder="Message"></textarea>
+                                    <textarea required name="message" value={message} onChange={(e)=>setMessage(e.target.value)} id="message" placeholder="Message"></textarea>
                                  </div>
                                  <div className="messageButton">
-                                    <button>SEND</button>
+                                    <button>
+                                        {
+                                            loading ? <BeatLoader color="white"/> : "SEND"
+                                        }
+                                    </button>
                                  </div>
                              </div>
+                             </form>
                          </div>
                      </div>
                  </div>
