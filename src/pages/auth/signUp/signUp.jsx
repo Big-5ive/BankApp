@@ -165,7 +165,8 @@ const UserSignup = () => {
             const url = "https://avantgardefinance-api.onrender.com/sign-up"
             axios.post(url, userData)
             .then((response)=> {
-                // console.log(response)
+                // console.log(response.data)
+                localStorage.setItem("userData",JSON.stringify(response.data.data))
                 setLoading(false)
                 toast.success("Regiteration successfull")
                 setTimeout(()=>{

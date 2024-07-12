@@ -1002,19 +1002,24 @@ export const ChangeAccountStatus = () => {
     // console.log(allAccount)
 
     const handleSubmit = (e) => {
+        const data = {
+            accountStatus: accountStatus
+        }
         setLoading(true)
         e.preventDefault()
         const url =`https://avantgardefinance-api.onrender.com/admin-status/${accountId}`
-        axios.put(url, accountStatus, { headers })
+        axios.put(url, data, { headers })
         .then((response)=> {
-            // console.log(response)
+            console.log(response)
             setLoading(false)
             toast.success("Account status changed successfully")
+            console.log("status",accountStatus)
         })
         .catch((error)=>{
             console.log(error)
             setLoading(false)
             toast.error("operation failed")
+            
         })
     }
     return(
@@ -1050,9 +1055,9 @@ export const ChangeAccountStatus = () => {
                     name="status" id="status">
                         <option value="">Choose</option>
                         <option value="active">Active</option>
-                        <option value="Dormant">Dormant/Innactive</option>
+                        <option value="inactive">Dormant/Innactive</option>
                         <option value="closed">Closed</option>
-                        <option value="closed">Disabled</option>
+                        <option value="disabled">Disabled</option>
                     </select>
                 </div>
                 <div className="statusChangeButt">

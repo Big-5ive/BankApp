@@ -42,15 +42,10 @@ const AdminLogin = () => {
     //   localStorage.setItem("token", token);
       nav("/admin");
     } catch (error) {
-      if (error.response) {
-        const { message } = error.response.data;
-        toast.error(message);
-      } else {
+        console.log(error)
+        setIsLoading(false)
         toast.error("An error occurred. Please try again later.");
-      }
-    } finally {
-      setIsLoading(false);
-    }
+    } 
   }
   };
 

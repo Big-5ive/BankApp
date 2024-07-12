@@ -25,7 +25,7 @@ const AccountComponent = () => {
         setLoading(true)
       try {
         const response = await axios.get(url, { headers });
-        setAllUsers(response.data.data)
+        setAllUsers(response?.data.data)
         // console.log(response.data.data)
         setLoading(false);
       } catch (err) {
@@ -36,10 +36,26 @@ const AccountComponent = () => {
     fetchData();
   }, []);
 
-    const handleShow = (item) => {
+  const handleViewOneUser = (e) => {
+    const url = `https://avantgardefinance-api.onrender.com/admin-view-one-user/${e}`
+    axios.get(url, { headers })
+    .then((response)=> {
+        setData(response.data.user)
         setShow(true)
-        setData(item)
-    }
+        setLoading(false)
+        // console.log(response)
+    })
+    .catch((error)=> {
+        console.log(error)
+        setLoading(false)
+    })
+  }
+//   console.log(data)
+
+    // const handleShow = (item) => {
+        
+    //     setData(item._id)
+    // }
     return(
         <div className="accountParent">
             {
@@ -57,51 +73,51 @@ const AccountComponent = () => {
                         <div className="acountLog">
                             <div className="log1">
                                 <h1>Full Name:</h1>
-                                <p>{data.fullName}</p>
+                                <p>{data?.fullName}</p>
                             </div>
                             <div className="log1">
                                 <h1>User Name:</h1>
-                                <p>{data.username}</p>
+                                <p>{data?.username}</p>
                             </div>
                             <div className="log1">
                                 <h1>Account Number:</h1>
-                                <p>{data.accountNumber}</p>
+                                <p>{data?.accountNumber}</p>
                             </div>
                             <div className="log1">
                                 <h1>Email:</h1>
-                                <p>{data.email}</p>
+                                <p>{data?.email}</p>
                             </div>
                         </div>
                         <div className="acountLog">
                             <div className="log1">
                                 <h1>Occupation:</h1>
-                                <p>{data.occupation}</p>
+                                <p>{data?.occupation}</p>
                             </div>
                             <div className="log1">
                                 <h1>Account Type:</h1>
-                                <p>{data.accountType}</p>
+                                <p>{data?.accountType}</p>
                             </div>
                             <div className="log1">
                                 <h1>Total Balance:</h1>
-                                <p>{data.totalBalance}</p>
+                                <p>{data?.totalBalance}</p>
                             </div>
                             <div className="log1">
                                 <h1>Available Balance:</h1>
-                                <p>{data.availableBalance}</p>
+                                <p>{data?.availableBalance}</p>
                             </div>
                         </div>
                         <div className="acountLog">
                             <div className="log1">
                                 <h1>Phone number:</h1>
-                                <p>{data.phoneNumber}</p>
+                                <p>{data?.phoneNumber}</p>
                             </div>
                             <div className="log1">
                                 <h1>Account status:</h1>
-                                <p>{data.accountStatus}</p>
+                                <p>{data?.accountStatus}</p>
                             </div>
                             <div className="log1">
                                 <h1>Reg date:</h1>
-                                <p>{data.registrationDate}</p>
+                                <p>{data?.registrationDate}</p>
                             </div>
                             <div className="log1">
                                 <h1>Currency:</h1>
@@ -115,11 +131,11 @@ const AccountComponent = () => {
                             </div>
                             <div className="log1">
                                 <h1>Marital Status:</h1>
-                                <p>{data.maritalStatus}</p>
+                                <p>{data?.maritalStatus}</p>
                             </div>
                             <div className="log1">
                                 <h1>otp code:</h1>
-                                <p>{data.otpCode}</p>
+                                <p>{data?.otpCode}</p>
                             </div>
                             {/* <div className="log1">
                                 <h1>Email:</h1>
@@ -137,7 +153,7 @@ const AccountComponent = () => {
                     <div className="accountHold">
                     {
                         allUsers?.map((e, index)=> (
-                            <div key={index} className="accountHold2" onClick={()=> handleShow(e)}>
+                            <div key={index} className="accountHold2" onClick={()=> handleViewOneUser(e._id)}>
                         <div className="numberLine">
                             <p>{index + 1} :</p>
                         </div>
