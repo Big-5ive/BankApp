@@ -87,7 +87,7 @@ const MessageComponent = () => {
             .catch((error)=> {
                 console.log(error)
                 setLoading(false)
-                toast.success("could'nt send message")
+                toast.error("could'nt send message")
             })
            
         }
