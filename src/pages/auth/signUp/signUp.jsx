@@ -278,7 +278,7 @@ const UserSignup = () => {
                                 <option value="">select</option>
                                 <option value="savings">Savings account</option>
                                 <option value="current">Current account</option>
-                                <option value="checking">Checking account</option>
+                                {/* <option value="checking">Checking account</option> */}
                             </select>
                         </div>
                         <div className="signupInputone">

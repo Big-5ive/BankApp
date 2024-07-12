@@ -1,9 +1,10 @@
 import "./messagecomponent.css"
 import { IoMdAdd } from "react-icons/io";
 import { CgProfile } from "react-icons/cg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BeatLoader } from "react-spinners";
 import { ToastContainer, toast } from "react-toastify";
+import axios from "axios";
 // import { ImCancelCircle } from "react-icons/im";
 
 const MessageComponent = () => {
@@ -14,10 +15,35 @@ const MessageComponent = () => {
     const [receiver, setReceiver] = useState("")
     const [message, setMessage] = useState("")
     const [loading, setLoading] = useState(false)
+    const [loading2, setLoading2] = useState(false)
+    const [allUsers, setAllUsers] = useState()
     const [error, setError] = useState({
         type: "",
         message: ""
     })
+
+    const admin = JSON.parse(localStorage.getItem("adminData"))
+    const token = admin.token
+    const headers = {
+        'Authorization' : `Bearer ${token}`
+    }
+    
+    useEffect(() => {
+    const fetchData = async () => {
+        const url = "https://avantgardefinance-api.onrender.com/view-all-users"
+        setLoading2(true)
+      try {
+        const response = await axios.get(url, { headers });
+        setAllUsers(response.data.data)
+        // console.log(response.data.data)
+        setLoading2(false);
+      } catch (err) {
+        console.log(err)
+        setLoading2(false);
+      }
+    };
+    fetchData();
+  }, []);
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -44,8 +70,26 @@ const MessageComponent = () => {
             })
             toast.error(error.type === "sender" ? error.message : "")
         } else{
-            setLoading(false)
-            toast.success("message sent successfully")
+            
+            const url = "https://avantgardefinance-api.onrender.com/view-all-users"
+            const data = {
+                sender: sender,
+                receiver: receiver,
+                subject: subject,
+                message: message
+            }
+            axios.post(url, data, { headers })
+            .then((response)=> {
+                console.log(response)
+                setLoading(false)
+                toast.success("message sent successfully")
+            })
+            .catch((error)=> {
+                console.log(error)
+                setLoading(false)
+                toast.success("could'nt send message")
+            })
+           
         }
     }
     return(
@@ -133,8 +177,11 @@ const MessageComponent = () => {
                                     <p>To</p>
                                     <select name="sender" required id="sender" value={receiver} onChange={(e)=>setReceiver(e.target.value)}>
                                         <option value="">receiver</option>
-                                        <option value="customer Care">Ekele Jeremiah</option>
-                                        <option value="account officer">Adekunle Micheal</option>
+                                        {
+                                            allUsers?.map((e)=> (
+                                                <option value={e._id}>{e.fullName}</option>
+                                            ))
+                                        }
                                     </select>
                                  </div>
                                  <div className="messageWrite">
