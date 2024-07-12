@@ -10,6 +10,7 @@ const MessageComponent = () => {
     const [open, setOpen] = useState(false)
     const [compose, setCompose] = useState(false)
     const [sender, setSender] = useState("")
+    const [subject, setSubject] = useState("")
     const [receiver, setReceiver] = useState("")
     const [message, setMessage] = useState("")
     const [loading, setLoading] = useState(false)
@@ -107,7 +108,7 @@ const MessageComponent = () => {
                          </div>
                      </div>
                      <div className="messageContBody">
-                         <div className="mesageContMessage xxxm">
+                         <div className="mesageContMessage">
                              <div className="messageFrom">
                                  <p>Compose A new message</p>
                              </div>
@@ -117,9 +118,16 @@ const MessageComponent = () => {
                                     <p>Sender</p>
                                     <select required name="sender" id="sender" value={sender} onChange={(e)=>setSender(e.target.value)}>
                                         <option value="">Sender</option>
-                                        <option value="customer Care">Customer Care</option>
-                                        <option value="account officer">Account officer</option>
+                                        <option value="customerCare">Customer Care</option>
+                                        <option value="surpport">Surpport</option>
                                     </select>
+                                 </div>
+                                 <div className="composeInputhold">
+                                    <p>Subject</p>
+                                    <input 
+                                    value={subject}
+                                    onChange={(e)=> setSubject(e.target.value)}
+                                    type="text" />
                                  </div>
                                  <div className="composeInputhold">
                                     <p>To</p>

@@ -4,12 +4,12 @@ import { RxDashboard } from "react-icons/rx";
 import { MdOutlineManageAccounts } from "react-icons/md";
 import { RiMessage2Line } from "react-icons/ri";
 import { MdOutlineManageHistory } from "react-icons/md";
-import { MdOutlineSettings } from "react-icons/md";
+import { RiLogoutBoxLine } from "react-icons/ri";
 // import { IoNotificationsOutline } from "react-icons/io5";
-import { MdOutlineMonetizationOn } from "react-icons/md";
+// import { MdOutlineMonetizationOn } from "react-icons/md";
 import { GrUserManager } from "react-icons/gr";
 import { LuMenu } from "react-icons/lu";
-import { BsMotherboard } from "react-icons/bs";
+// import { BsMotherboard } from "react-icons/bs";
 // import AllInfoComponent from '../dashboardComponent/maincomp/allInfo';
 import { useNavigate } from 'react-router-dom';
 import AccountManageMentComponent from "../../dashboardComponent/manageAccountComp/manageAccountComp";
@@ -70,7 +70,7 @@ const DashboardManageAccount = () => {
                     
                     <div className="navHolddiv">
                         <div className="navlogo">
-                            <MdOutlineSettings />
+                            <RiLogoutBoxLine />
                         </div>
                         <div className="navWrited">
                             <p>Log Out</p>
@@ -134,7 +134,7 @@ const DashboardManageAccount = () => {
                                 <p>Others</p>
                             </div> */}
                             <div className="dropdownHold">
-                                <MdOutlineSettings />
+                                <RiLogoutBoxLine />
                                 <p>Log out</p>
                             </div>
                         </div>

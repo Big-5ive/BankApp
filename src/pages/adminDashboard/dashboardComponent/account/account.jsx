@@ -21,17 +21,14 @@ const AccountComponent = () => {
     }
     const url = "https://avantgardefinance-api.onrender.com/view-all-users"
     useEffect(() => {
-    // Define the async function
     const fetchData = async () => {
         setLoading(true)
       try {
         const response = await axios.get(url, { headers });
-        // setData(response.data);
-        // console.log(response)
         setAllUsers(response.data.data)
+        // console.log(response.data.data)
         setLoading(false);
       } catch (err) {
-        // setError(err);
         console.log(err)
         setLoading(false);
       }
@@ -42,9 +39,7 @@ const AccountComponent = () => {
     const handleShow = (item) => {
         setShow(true)
         setData(item)
-        // setData("")
     }
-    // console.log(data)
     return(
         <div className="accountParent">
             {
@@ -113,24 +108,24 @@ const AccountComponent = () => {
                                 <p>$</p>
                             </div>
                         </div>
-                        {/* <div className="acountLog">
+                        <div className="acountLog">
                             <div className="log1">
-                                <h1>Status:</h1>
-                                <p>Active</p>
+                                <h1>Verified ?:</h1>
+                                <p>{data.isVerified}</p>
                             </div>
                             <div className="log1">
-                                <h1>Logins:</h1>
-                                <p>0</p>
+                                <h1>Marital Status:</h1>
+                                <p>{data.maritalStatus}</p>
                             </div>
                             <div className="log1">
-                                <h1>Reg Date:</h1>
-                                <p>12/5/2020</p>
+                                <h1>otp code:</h1>
+                                <p>{data.otpCode}</p>
                             </div>
-                            <div className="log1">
+                            {/* <div className="log1">
                                 <h1>Email:</h1>
                                 <p>officiallyyoung01@gmail.com</p>
-                            </div>
-                        </div> */}
+                            </div> */}
+                        </div>
                     </div>
                 </div>
                 : <div>

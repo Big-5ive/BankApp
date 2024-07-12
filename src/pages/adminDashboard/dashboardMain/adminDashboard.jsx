@@ -4,7 +4,7 @@ import { RxDashboard } from "react-icons/rx";
 import { MdOutlineManageAccounts } from "react-icons/md";
 import { RiMessage2Line } from "react-icons/ri";
 import { MdOutlineManageHistory } from "react-icons/md";
-import { MdOutlineSettings } from "react-icons/md";
+import { RiLogoutBoxLine } from "react-icons/ri";
 // import { IoNotificationsOutline } from "react-icons/io5";
 // import { MdOutlineMonetizationOn } from "react-icons/md";
 import { GrUserManager } from "react-icons/gr";
@@ -69,7 +69,7 @@ const AdminDashboardParent = () => {
                     
                     <div className="navHolddiv">
                         <div className="navlogo">
-                            <MdOutlineSettings />
+                            <RiLogoutBoxLine />
                         </div>
                         <div className="navWrited">
                             <p>Logout</p>
@@ -125,7 +125,7 @@ const AdminDashboardParent = () => {
                                 <p>Transaction History</p>
                             </div>
                             <div className="dropdownHold">
-                                <MdOutlineSettings />
+                                <RiLogoutBoxLine />
                                 <p>LogOut</p>
                             </div>
                         </div>

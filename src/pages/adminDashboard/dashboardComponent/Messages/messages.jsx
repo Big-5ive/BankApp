@@ -4,12 +4,12 @@ import { RxDashboard } from "react-icons/rx";
 import { MdOutlineManageAccounts } from "react-icons/md";
 import { RiMessage2Line } from "react-icons/ri";
 import { MdOutlineManageHistory } from "react-icons/md";
-import { MdOutlineSettings } from "react-icons/md";
+import { RiLogoutBoxLine } from "react-icons/ri";
 // import { IoNotificationsOutline } from "react-icons/io5";
-import { MdOutlineMonetizationOn } from "react-icons/md";
+// import { MdOutlineMonetizationOn } from "react-icons/md";
 import { GrUserManager } from "react-icons/gr";
 import { LuMenu } from "react-icons/lu";
-import { BsMotherboard } from "react-icons/bs";
+// import { BsMotherboard } from "react-icons/bs";
 // import AllInfoComponent from '../dashboardComponent/maincomp/allInfo';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
@@ -19,6 +19,7 @@ import MessageComponent from "./messageComponent";
 const AllMessage = () => {
     const navigate = useNavigate()
     const [dropDown, setDropDown] = useState(false)
+    const admin = JSON.parse(localStorage.getItem("adminData"))
     return(
         <div className="adminDashboardParent">
         <div className="adminHold">
@@ -68,7 +69,7 @@ const AllMessage = () => {
                     
                     <div className="navHolddiv">
                         <div className="navlogo">
-                            <MdOutlineSettings />
+                            <RiLogoutBoxLine />
                         </div>
                         <div className="navWrited">
                             <p>Logout</p>
@@ -80,7 +81,7 @@ const AllMessage = () => {
                 <div className="adminHead">
                     <div className="adminHeadHold">
                         <div className="welcome">
-                            <p>Welcome <span>Maxwell</span></p>
+                            <p>Welcome <span>{admin.username}</span></p>
                         </div>
                         <div className="notify">
                             <div className="notifyHold">
@@ -132,7 +133,7 @@ const AllMessage = () => {
                                 <p>Others</p>
                             </div> */}
                             <div className="dropdownHold">
-                                <MdOutlineSettings />
+                                <RiLogoutBoxLine />
                                 <p>Logout</p>
                             </div>
                         </div>

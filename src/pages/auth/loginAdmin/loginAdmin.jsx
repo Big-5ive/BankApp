@@ -8,8 +8,9 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { DB } from "../../../Global/Features";
 
-const Login = () => {
-  const [accountNumber, setAccountNumber] = useState("");
+const AdminLogin = () => {
+//   const [accountNumber, setAccountNumber] = useState("");
+  const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -23,16 +24,23 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     setIsLoading(true);
+    if (username !== "jerikoko") {
+        setIsLoading(false)
+        toast.error("incorrect username")
+    } else if(password !== "Mykehirl10@") {
+        setIsLoading(false)
+        toast.error("incorrect password")
+    } else {
     try {
-      const response = await axios.post("https://avantgardefinance-api.onrender.com/loginA", {
-        accountNumber,
-        password,
+      const response = await axios.post("https://avantgardefinance-api.onrender.com/admin-login", {
+        username: username,
+        password: password,
       });
       const { message, data, token } = response.data;
       toast.success(message);
-      localStorage.setItem("user", JSON.stringify(data));
-      localStorage.setItem("token", token);
-      nav("/dashboard");
+      localStorage.setItem("adminData", JSON.stringify(data));
+    //   localStorage.setItem("token", token);
+      nav("/admin");
     } catch (error) {
       if (error.response) {
         const { message } = error.response.data;
@@ -43,6 +51,7 @@ const Login = () => {
     } finally {
       setIsLoading(false);
     }
+  }
   };
 
   return (
@@ -57,11 +66,11 @@ const Login = () => {
           <div className="flex items-center border-b -border--clr-silver-v1 py-2 -text--clr-silver-v1">
             <MdAccountBalance className="-text--clr-silver-v1 mr-3" />
             <input
-              type="number"
-              placeholder="Account Number"
+              type="text"
+              placeholder="username"
               name="accountNumber"
-              value={accountNumber}
-              onChange={(e) => setAccountNumber(e.target.value)}
+              value={username}
+              onChange={(e) => setUserName(e.target.value)}
               className="appearance-none bg-transparent border-none w-full -text--clr-silver-v1 leading-tight focus:outline-none"
               required
             />
@@ -119,26 +128,26 @@ const Login = () => {
                 "Login"
               )}
             </button>
-            <Link
+            {/* <Link
               to="/forgot-password"
               className="inline-block align-baseline font-bold text-sm -text--clr-pumpkin hover:-text--clr-pumpkin-light"
             >
               Forgot Password?
-            </Link>
+            </Link> */}
           </div>
         </form>
         <div className="text-center mt-6 flex flex-col items-center lg:flex-row lg:justify-center lg:space-x-1 ">
-          <span className="italic"> Don't have an account?</span>
+          {/* <span className="italic"> Don't have an account?</span>
           <Link
             to="/signup"
             className="-text--clr-pumpkin hover:-text--clr-pumpkin-light"
           >
             Create an Account
-          </Link>
+          </Link> */}
         </div>
       </div>
     </div>
   );
 };
 
-export default Login;
+export default AdminLogin;

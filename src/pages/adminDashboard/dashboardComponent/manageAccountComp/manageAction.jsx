@@ -294,7 +294,7 @@ export const AddAccount = () => {
 export const CreditAccount = () => {
     const [creditAccount, setCreditAccount] = useState("")
     const [debitAccount, setDebitAccount] = useState("")
-    const [amount, setAmount] = useState("")
+    const [amount, setAmount] = useState()
     const [description, setDescription] = useState("")
     const [date, setDate] = useState("")
     const [time, setTime] = useState("")
@@ -302,13 +302,13 @@ export const CreditAccount = () => {
     const [loading2, setLoading2] = useState(false)
     const [allAccount, setAllAccount] = useState()
 
-    const chooseAccount = creditAccount
+    const amount1 = parseInt(amount)
     const from = parseInt(debitAccount)
 
     const data = {
-        chooseAccount : chooseAccount,
+        chooseAccount : creditAccount,
         from : from,
-        amount: amount,
+        amount: amount1,
         description : description,
         date : date,
         time : time

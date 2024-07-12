@@ -2,7 +2,7 @@
     width: 100%;
     min-height: 600px;
     position: relative;
-    background-color: skyblue;
+    background-color: rgb(21, 156, 247);
     /* border: 1px solid blue; */
 }
 .historyTopic{
@@ -47,7 +47,7 @@
     background-color: blue;
 }
 .headTopic{
-    width: 12.5%;
+    width: 14.3%;
     height: 50px;
     display: flex;
     align-items: center;

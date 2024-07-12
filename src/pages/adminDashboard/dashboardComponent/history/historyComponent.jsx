@@ -40,6 +40,7 @@ const TransactionHistory = () => {
         // setError(err);
         console.log(err)
         setLoading(false);
+        console.log(err.message)
       }
     };
     fetchData();
@@ -52,6 +53,7 @@ const TransactionHistory = () => {
             const response = await axios.get(url, { headers });
             setAllAccount(response?.data.data)
             } catch (err) {
+                console.log(err.message)
             }
         };
         fetchData();
@@ -60,7 +62,7 @@ const TransactionHistory = () => {
   const data = {
     sender: sender,
     amountTransferred: amount,
-    accountTransferedTo: account,
+    accountTransferredTo: account,
     transactionType: type,
     bank: bank,
     accountName: account,
@@ -81,6 +83,7 @@ const TransactionHistory = () => {
         })
         .catch((error) => {
             console.log(error)
+            console.log(data)
             setLoading(false)
             toast.error("operation fai")
         })
@@ -220,27 +223,31 @@ const TransactionHistory = () => {
                     <div className="headTopic"><p>TYPE</p></div>
                     <div className="headTopic"><p>BANK</p></div>
                     <div className="headTopic"><p>DATE</p></div>
-                    <div className="headTopic"><p>TIME</p></div>
+                    {/* <div className="headTopic"><p>TIME</p></div> */}
                 </div>
                 <div className="tableBody">
-                    {
+                    {history?.lenght === 0 ? (
+                        <div className="tableBodyHold"><p> You have no history yet</p></div>
+                    ) : (
                         history?.map((e, index)=> (
                         <div key={index} className="tableBodyHold">
-                            <div className="headTopic"><p>{e.sender}</p></div>
-                            <div className="headTopic"><p>{e.accountName}</p></div>
+                            <div className="headTopic"><p>{e.senderName}</p></div>
+                            <div className="headTopic"><p>{e.receiverName}</p></div>
                             <div className="headTopic"><p>{e.amountTransferred}</p></div>
-                            <div className="headTopic"><p>Loan</p></div>
-                            <div className="headTopic"><p>Credit</p></div>
+                            <div className="headTopic"><p>{e.remark}</p></div>
+                            <div className="headTopic"><p>{e.transactionType}</p></div>
                             <div className="headTopic"><p>{e.bank}</p></div>
                             <div className="headTopic"><p>{e.date}</p></div>
-                            <div className="headTopic"><p>5:14</p></div>
+                            {/* <div className="headTopic"><p>5:14</p></div> */}
                         </div>
                         ))
+                    )
                     }
                 </div>
             </div>
             }
         </div>
+        
     )
 }
 
