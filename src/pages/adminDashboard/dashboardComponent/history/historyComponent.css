@@ -18,8 +18,10 @@
     /* background-color: aqua; */
 }
 .historyTopic button{
-    width: 10%;
+    width: max-content;
     height: 70%;
+    padding-left: 10px;
+    padding-right: 10px;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -55,6 +57,14 @@
     color: white;
     font-weight: 500;
     border: 1px solid white;
+}
+.deleteHistory{
+    font-size: 20px;
+    color: black;
+    cursor: pointer;
+}
+.deleteHistory:hover{
+    color: red;
 }
 .tableBody{
     width: 100%;

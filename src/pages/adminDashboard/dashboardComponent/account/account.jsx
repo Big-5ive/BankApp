@@ -11,7 +11,7 @@ const AccountComponent = () => {
     const [show, setShow] = useState(false)
     const [allUsers, setAllUsers] = useState()
     const [loading, setLoading] = useState(false)
-    // const allUsers =  JSON.parse(localStorage.getItem("allUsers"))
+    const [loading2, setLoading2] = useState(false)
     const [data, setData] = useState()
 
     const admin = JSON.parse(localStorage.getItem("adminData"))
@@ -37,29 +37,29 @@ const AccountComponent = () => {
   }, []);
 
   const handleViewOneUser = (e) => {
+    setLoading2(true)
     const url = `https://avantgardefinance-api.onrender.com/admin-view-one-user/${e}`
     axios.get(url, { headers })
     .then((response)=> {
         setData(response.data.user)
+        setLoading2(false)
         setShow(true)
-        setLoading(false)
+        
         // console.log(response)
     })
     .catch((error)=> {
         console.log(error)
-        setLoading(false)
+        setLoading2(false)
     })
   }
 //   console.log(data)
 
-    // const handleShow = (item) => {
-        
-    //     setData(item._id)
-    // }
     return(
         <div className="accountParent">
             {
+                loading2 ? <BeatLoader color="blue"/> :
                 show? 
+                
                 <div className="accountdet">
                     <div className="close">
                         <div className="closexx" onClick={()=> setShow(false)}>
@@ -67,6 +67,11 @@ const AccountComponent = () => {
                         </div>
                         <div className="closexxn" onClick={()=> setShow(false)}>
                             <FaArrowLeftLong />
+                        </div>
+                    </div>
+                    <div className="accountPicture">
+                        <div className="accountPictureHold">
+                            <img src={data.profilePhoto.public_id} alt="no picture" />
                         </div>
                     </div>
                     <div className="accountdetHold">
@@ -143,6 +148,7 @@ const AccountComponent = () => {
                             </div> */}
                         </div>
                     </div>
+                    
                 </div>
                 : <div>
                 <div className="accountHead">

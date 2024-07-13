@@ -293,6 +293,7 @@ export const AddAccount = () => {
 }
 export const CreditAccount = () => {
     const [creditAccount, setCreditAccount] = useState("")
+    const [accountToCredit, setAccountToCredit] = useState()
     const [debitAccount, setDebitAccount] = useState("")
     const [amount, setAmount] = useState()
     const [description, setDescription] = useState("")
@@ -301,12 +302,13 @@ export const CreditAccount = () => {
     const [loading, setLoading] = useState(false)
     const [loading2, setLoading2] = useState(false)
     const [allAccount, setAllAccount] = useState()
+    const [id, setId] = useState()
 
     const amount1 = parseInt(amount)
     const from = parseInt(debitAccount)
 
     const data = {
-        chooseAccount : creditAccount,
+        chooseAccount : accountToCredit,
         from : from,
         amount: amount1,
         description : description,
@@ -314,11 +316,12 @@ export const CreditAccount = () => {
         time : time
     }
     const admin = JSON.parse(localStorage.getItem("adminData"))
-            const token = admin.token
-            const headers = {
-                'Authorization' : `Bearer ${token}`
-            }
-            const url = "https://avantgardefinance-api.onrender.com/view-all-users"
+    const token = admin.token
+    const headers = {
+        'Authorization' : `Bearer ${token}`
+    }
+
+    const url = "https://avantgardefinance-api.onrender.com/view-all-users"
     useEffect(() => {
         const fetchData = async () => {
             setLoading2(true)
@@ -332,12 +335,21 @@ export const CreditAccount = () => {
         };
         fetchData();
     }, []);
+    
+
+    const handleSelectChange = (e) => {
+        const selectedUser = allAccount.find(user => user._id === e.target.value);
+        if (selectedUser) {
+          setId(selectedUser._id);
+          setAccountToCredit(selectedUser.accountNumber)
+        }
+      };
           
 
     const handleSubmit = (e) => {
         setLoading(true)
         e.preventDefault()
-        const url = `https://avantgardefinance-api.onrender.com/credit/${creditAccount}`
+        const url = `https://avantgardefinance-api.onrender.com/credit/${id}`
         axios.post(url,data, { headers })
         .then((response)=> {
             // console.log(response)
@@ -345,14 +357,16 @@ export const CreditAccount = () => {
             setLoading(false)
         })
         .catch((error)=> {
-            // console.log(error)
+            console.log(error)
             setLoading(false)
             toast.error(error.response.data.message)
-            // console.log(data)
+            // console.log("id", id)
+            // console.log("number", accountToCredit)
+            // console.log("number", allAccount)
         })
     }
     // console.log("sender",creditAccount)
-    // console.log("debit",id)
+    // console.log("id",accountToCredit)
     return(
         <div className="addAccountParent">
         <ToastContainer />
@@ -364,11 +378,11 @@ export const CreditAccount = () => {
                         <div className="creditInputHold">
                             <p>Choose account to credit</p>
                             <select 
-                            required
-                            value={creditAccount}
-                            onChange={(e)=> setCreditAccount(e.target.value)}
+                            // required
+                            value={accountToCredit}
+                            onChange={handleSelectChange}
                             name="accounts" id="accounts">
-                                <option value="">Select</option>
+                                <option value="" >Select</option>
                                 {
                                     allAccount?.map((e, index)=> (
                                         <option key={index} value={e._id}>{e.fullName}</option>

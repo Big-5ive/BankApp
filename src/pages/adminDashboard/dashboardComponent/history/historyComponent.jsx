@@ -5,6 +5,7 @@ import { FaArrowLeftLong } from "react-icons/fa6";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import { BeatLoader } from "react-spinners";
+import { AiFillDelete } from "react-icons/ai";
 
 const TransactionHistory = () => {
     const [addHistory, setAddHistory] = useState(false)
@@ -16,46 +17,53 @@ const TransactionHistory = () => {
     const [bank, setBank] = useState("")
     const [date, setDate] = useState("")
     const [time, setTime] = useState("")
-    const [history, setHistory] = useState()
+    const [allHistory, setAllHistory] = useState([])
     const [allAccount, setAllAccount] = useState()
     const [loading, setLoading] = useState(false)
+    const [loading2, setLoading2] = useState(false)
+    const [loading3, setLoading3] = useState(false)
+    const [deleteId, setDeleteId] = useState("")
 
     const admin = JSON.parse(localStorage.getItem("adminData"))
     const token = admin.token
     const headers = {
         'Authorization' : `Bearer ${token}`
     }
-    // console.log("history", history)
-
-    const url = "https://avantgardefinance-api.onrender.com/view-all-history"
-    useEffect(() => {
-    const fetchData = async () => {
-        setLoading(true)
-      try {
+    const fetchData1 = async () => {
+        setLoading2(true)
+        const url = "https://avantgardefinance-api.onrender.com/view-all-history"
+        console.log("hello wold 2")
+        setLoading2(true)
+        try {
         const response = await axios.get(url, { headers });
-        setHistory(response.data.history)
-        // console.log(response)
-        setLoading(false);
-      } catch (err) {
+        setAllHistory(response?.data.history)
+        console.log(response)
+        setLoading2(false);
+        } catch (err) {
         // setError(err);
         console.log(err)
-        setLoading(false);
-        console.log(err.message)
-      }
+        setLoading2(false);
+        console.log(err)
+        }
     };
-    fetchData();
-  }, []);
+
+
+  
+    const fetchData = async () => {
+        const url = "https://avantgardefinance-api.onrender.com/view-all-users"
+        try {
+        const response = await axios.get(url, { headers });
+        setAllAccount(response?.data.data)
+        // console.log(response?.data.data)
+        } catch (err) {
+            console.log(err.message)
+        }
+    };
+  
         
     useEffect(() => {
-        const url = "https://avantgardefinance-api.onrender.com/view-all-users"
-        const fetchData = async () => {
-            try {
-            const response = await axios.get(url, { headers });
-            setAllAccount(response?.data.data)
-            } catch (err) {
-                console.log(err.message)
-            }
-        };
+        
+        fetchData1();
         fetchData();
     }, []);
 
@@ -77,24 +85,47 @@ const TransactionHistory = () => {
         const url = "https://avantgardefinance-api.onrender.com/transaction-history"
         axios.post(url, data, { headers })
         .then((response)=> {
-            console.log(response)
+            // console.log(response)
             setLoading(false)
             toast.success("history added successfully")
         })
         .catch((error) => {
             console.log(error)
-            console.log(data)
+            // console.log(data)
             setLoading(false)
-            toast.error("operation fai")
+            toast.error("operation failed")
         })
         
     }
+
+    // const handleDeleteHistory = (e) => {
+    //     setDeleteId(e)
+    //     console.log("id",deleteId)
+    //     setLoading3(true)
+    //     const url = `https://avantgardefinance-api.onrender.com/delete-history/${deleteId._id}`
+    //     axios.delete(url, { headers })
+    //     .then((response)=> {
+    //         console.log(response)
+    //         setLoading3(false)
+    //         toast.success("this history record has been deleted successfully")
+    //     })
+    //     .catch((error)=> {
+    //         console.log(error)
+    //         setLoading3(false)
+    //         toast.error("Action failed")
+    //     })
+    // }
 
     return(
         <div className="transactionHistoryParent">
             <div className="historyTopic">
                 <button onClick={()=>setAddHistory(true)}> <IoMdAdd/> Add History</button>
                 <p>All Transaction History</p>
+                {/* <button onClick={fetchData1}> 
+                    {
+                        loading2? <BeatLoader color="white"/> : "View all history"
+                    }
+                </button> */}
             </div>
             {
                 addHistory ? 
@@ -223,13 +254,13 @@ const TransactionHistory = () => {
                     <div className="headTopic"><p>TYPE</p></div>
                     <div className="headTopic"><p>BANK</p></div>
                     <div className="headTopic"><p>DATE</p></div>
-                    {/* <div className="headTopic"><p>TIME</p></div> */}
+                    {/* <div className="headTopic"><p>DELETE</p></div> */}
                 </div>
                 <div className="tableBody">
                     {history?.lenght === 0 ? (
                         <div className="tableBodyHold"><p> You have no history yet</p></div>
-                    ) : (
-                        history?.map((e, index)=> (
+                    ) : ( loading2 ? <BeatLoader color="white"/> :
+                        allHistory?.map((e, index)=> (
                         <div key={index} className="tableBodyHold">
                             <div className="headTopic"><p>{e.senderName}</p></div>
                             <div className="headTopic"><p>{e.receiverName}</p></div>
@@ -238,7 +269,11 @@ const TransactionHistory = () => {
                             <div className="headTopic"><p>{e.transactionType}</p></div>
                             <div className="headTopic"><p>{e.bank}</p></div>
                             <div className="headTopic"><p>{e.date}</p></div>
-                            {/* <div className="headTopic"><p>5:14</p></div> */}
+                            {/* <div className="headTopic deleteHistory">
+                                {
+                                    loading3 ? <BeatLoader color="white"/> : <AiFillDelete/>
+                                }
+                            </div> */}
                         </div>
                         ))
                     )

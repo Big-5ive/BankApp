@@ -35,7 +35,7 @@ const MessageComponent = () => {
       const handleOpen = (e) => {
         setOpen(true)
         SetMessageDetail(e)
-      }
+    }
 
     const admin = JSON.parse(localStorage.getItem("adminData"))
     const token = admin.token
@@ -173,9 +173,10 @@ const MessageComponent = () => {
                                     <p style={{color: "blue"}}>To: {messageDetail.email}</p>
                                 </div>
                                 <div className="messageItself">
-                                    <p>
+                                    <p>Message Body</p>
+                                    <i>
                                         {messageDetail.subject}
-                                    </p>
+                                    </i>
                                 </div>
                             </div>
                         </div>
