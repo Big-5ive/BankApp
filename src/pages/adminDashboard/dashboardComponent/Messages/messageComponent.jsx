@@ -162,6 +162,7 @@ const MessageComponent = () => {
                 : 
                     
                         loading2 ? <BeatLoader color="white"/> :
+                        allMessages?.length === 0 ? (<div><p>No Message Found</p></div>):
                         allMessages?.map((e, index)=> (
                         <div key={index} className="messageBody" onClick={()=> handleOpen(e)}>
                         <div className="messagePic">

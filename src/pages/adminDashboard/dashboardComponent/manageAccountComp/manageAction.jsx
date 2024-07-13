@@ -601,6 +601,7 @@ export const DebitAccount = () => {
 export const UpdateAccount = () => {
     const [showUpdate, setShowUpdate] = useState(false)
     const [allAccount, setAllAccount] = useState()
+    // const [allAccount2, setAllAccount2] = useState([])
     const [loading, setLoading] = useState(false)
 
     const [fullName, setFullName] = useState("")
@@ -702,7 +703,7 @@ export const UpdateAccount = () => {
                 {
                     loading ? <BeatLoader color="blue"/> : 
                     <div className="accountChooseHold">
-                    {
+                    { allAccount?.length === 0 ? (<div><p>No Account Found</p></div>):
                         allAccount?.map((e, index)=> (
                             <div className="accountChooseDetail" onClick={()=>handlePlaceholder(e)}>
                                 <p>{index + 1} : </p><p>{e.fullName}</p>
@@ -965,7 +966,7 @@ export const DeleteAccount = () => {
                    {
                     loading2 ? <BeatLoader color="blue"/> :
                      <div className="deleteSelectHold">
-                    {
+                    { allAccount?.length === 0 ? (<div><p>No Account Found</p></div>):
                         allAccount?.map((e, index)=> (
                             <div key={index} className="deleteSelect" onClick={()=> {
                                 setDeleteWarn(true)

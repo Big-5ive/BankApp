@@ -260,6 +260,7 @@ const TransactionHistory = () => {
                     {history?.lenght === 0 ? (
                         <div className="tableBodyHold"><p> You have no history yet</p></div>
                     ) : ( loading2 ? <BeatLoader color="white"/> :
+                        allHistory?.length === 0 ? (<div><p>No History Found</p></div>):
                         allHistory?.map((e, index)=> (
                         <div key={index} className="tableBodyHold">
                             <div className="headTopic"><p>{e.senderName}</p></div>

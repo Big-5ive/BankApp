@@ -62,7 +62,7 @@
 }
 .documentBody{
     width: 70%;
-    height: 600px;
+    min-height: 600px;
     background-color: white;
     padding: 5px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -80,7 +80,7 @@
 }
 .picture{
     width: 100%;
-    height: 450px;
+    height: 500px;
     /* background-color: firebrick; */
 }
 .picture img{
@@ -88,7 +88,21 @@
     height: 100%;
     object-fit: contain;
 }
-
+.pdf{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: red; */
+}
+.pdf button{
+    width: 50%;
+    height: 70%;
+    background-color: blue;
+    color: white;
+    border-radius: 5px;
+}
 
 .dashboardItemHold{
     width: 100%;

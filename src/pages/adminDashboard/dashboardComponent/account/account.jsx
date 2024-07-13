@@ -10,6 +10,7 @@ const AccountComponent = () => {
     // axios
     const [show, setShow] = useState(false)
     const [allUsers, setAllUsers] = useState()
+    // const [allUser, setAllUser] = useState([])
     const [loading, setLoading] = useState(false)
     const [loading2, setLoading2] = useState(false)
     const [data, setData] = useState()
@@ -157,7 +158,7 @@ const AccountComponent = () => {
                 {
                     loading ? <BeatLoader color="blue"/> :
                     <div className="accountHold">
-                    {
+                    { allUsers?.length === 0 ? (<div><p>No Account found</p></div>):
                         allUsers?.map((e, index)=> (
                             <div key={index} className="accountHold2" onClick={()=> handleViewOneUser(e._id)}>
                         <div className="numberLine">
