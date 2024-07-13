@@ -135,29 +135,7 @@ const MessageComponent = () => {
                 <button onClick={()=>setCompose(true)}> <IoMdAdd /> Compose</button>
             </div>
             <div className="messageBodyHold">
-                {
-                    loading2 ? <BeatLoader color="white"/> :
-                    allMessages?.map((e, index)=> (
-                    <div key={index} className="messageBody" onClick={()=> handleOpen(e)}>
-                    <div className="messagePic">
-                        <CgProfile />
-                    </div>
-                    <div className="messageItem">
-                        <div className="messageName">
-                            <p>sender: {e.sender}</p>
-                            <p>receiver: {e.email}</p>
-                        </div>
-                        <div className="messageMessage">
-                            <p>{e.subject}</p>
-                        </div>
-                    </div>
-                    <div className="messageDate">
-                        <p>{e.date}</p>
-                        <p>{e.time}</p>
-                    </div>
-                </div>
-                    ))
-                }
+               
                 {
                     open ? 
                     <div className="messageContent">
@@ -181,7 +159,31 @@ const MessageComponent = () => {
                             </div>
                         </div>
                     </div>
-                : null
+                : 
+                    
+                        loading2 ? <BeatLoader color="white"/> :
+                        allMessages?.map((e, index)=> (
+                        <div key={index} className="messageBody" onClick={()=> handleOpen(e)}>
+                        <div className="messagePic">
+                            <CgProfile />
+                        </div>
+                        <div className="messageItem">
+                            <div className="messageName">
+                                <p>sender: {e.sender}</p>
+                                <p>receiver: {e.email}</p>
+                            </div>
+                            <div className="messageMessage">
+                                <p>{e.subject}</p>
+                            </div>
+                        </div>
+                        <div className="messageDate">
+                            <p>{e.date}</p>
+                            <p>{e.time}</p>
+                        </div>
+                    </div>
+                        ))
+                    
+                
                 }
 
                 { compose?
