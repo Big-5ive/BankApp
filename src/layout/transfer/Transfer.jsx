@@ -6,7 +6,7 @@ import AtmCardDetail from "../statement/AtmCardDetail";
 const Transfer = () => {
   const [currentTime, setCurrentTime] = useState("");
   const [currentDate, setCurrentDate] = useState("");
-  const userData = JSON.parse(localStorage.getItem("user"));
+  const userData =JSON.parse(localStorage.getItem('balance'))
 
   const formatNumber = (number) => {
     return new Intl.NumberFormat('en-US').format(number);
