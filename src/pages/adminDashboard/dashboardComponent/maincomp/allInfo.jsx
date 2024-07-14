@@ -53,9 +53,9 @@ const AllInfoComponent = () => {
         setLoading(false);
         } catch (err) {
         // setError(err);
-        // console.log(err)
+        console.log(err)
         setLoading(false);
-        //   console.log(err.message)
+          console.log(err.message)
         }
     };
   fetchData();
