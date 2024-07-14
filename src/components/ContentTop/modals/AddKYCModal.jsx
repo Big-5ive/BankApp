@@ -4,8 +4,13 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const AddKYCModal = ({ onClose }) => {
+  const [title, setTitle] = useState("");
   const [document, setDocument] = useState(null);
   const [loading, setLoading] = useState(false);
+
+  const handleTitleChange = (e) => {
+    setTitle(e.target.value);
+  };
 
   const handleFileChange = (e) => {
     setDocument(e.target.files[0]);
@@ -13,13 +18,14 @@ const AddKYCModal = ({ onClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!document) {
-      toast.error("Please upload a document");
+    if (!title || !document) {
+      toast.error("Please provide a title and upload a document");
       return;
     }
 
     const formData = new FormData();
-    formData.append("document", document);
+    formData.append("title", title);
+    formData.append("documents", document);
 
     setLoading(true);
 
@@ -35,10 +41,18 @@ const AddKYCModal = ({ onClose }) => {
           },
         }
       );
-
+      toast.success("Document successfully uploaded!", {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       const { documents } = response.data;
       localStorage.setItem("documents", JSON.stringify(documents));
-      toast.success("Document successfully uploaded!");
+      setTitle("");
       setDocument(null);
       onClose();
     } catch (error) {
@@ -61,6 +75,20 @@ const AddKYCModal = ({ onClose }) => {
         </span>
         <h2 className="text-2xl mb-4">Add KYC Document</h2>
         <form onSubmit={handleSubmit}>
+          <label
+            htmlFor="title"
+            className="block text-sm font-medium -text--clr-silver-v1"
+          >
+            Title
+          </label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            className="mt-1 block w-full border -border--clr-silver-v1 rounded-md p-2 bg-transparent outline-none mb-2"
+            value={title}
+            onChange={handleTitleChange}
+          />
           <label
             htmlFor="document"
             className="block text-sm font-medium -text--clr-silver-v1"

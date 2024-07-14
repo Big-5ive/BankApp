@@ -59,7 +59,7 @@ const ContentTop = () => {
   function handleLogout() {
    localStorage.removeItem('token')
    localStorage.removeItem('user')
-   nav('#/')
+   nav('/')
   }
 
   function handleNotification() {
