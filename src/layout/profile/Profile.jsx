@@ -8,10 +8,11 @@ import AtmCardDetail from "../statement/AtmCardDetail";
 
 const Profile = () => {
   const userData = JSON.parse(localStorage.getItem("user"));
+  const userData1 = JSON.parse(localStorage.getItem("balance"));
   const formatNumber = (number) => {
     return new Intl.NumberFormat('en-US').format(number);
   };
-  
+
   return (
     <>
       <div className="main-content">
@@ -32,7 +33,7 @@ const Profile = () => {
                 <div>
                   <div className="-text--clr-silver">Available Balance</div>
                   <div className="text-3xl font-bold -text--clr-silver-v1">
-                    {`$ ${formatNumber(userData?.availableBalance)}`}
+                    {`$ ${formatNumber(userData1?.availableBalance)}`}
                   </div>
                 </div>
                 <div className="-text--clr-white font-bold ml-1 bg-blue-800 py-1 px-2 rounded ">
@@ -76,7 +77,7 @@ const Profile = () => {
               <div className="-bg--clr-primary p-6 rounded shadow-md space-y-2">
                 <div className="-text--clr-silver">Total Book Balance</div>
                 <div className="text-3xl font-bold -text--clr-silver-v1">
-                  {`$${formatNumber(userData?.totalBalance)}`}
+                  {`$${formatNumber(userData1?.totalBalance)}`}
                 </div>
                 <div className="-text--clr-silver-v1">as at July 4, 2024</div>
 

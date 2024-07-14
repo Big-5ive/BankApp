@@ -6,10 +6,11 @@ import AtmCardDetail from "../statement/AtmCardDetail";
 const Loan = () => {
   const [currentTime, setCurrentTime] = useState("");
   const [currentDate, setCurrentDate] = useState("");
-  const userData = JSON.parse(localStorage.getItem("user"));
-  const data = JSON.parse(localStorage.getItem("user"));
-  const userId = data._id;
-  const token = localStorage.getItem("token");
+  const userData = JSON.parse(localStorage.getItem("balance"));
+
+  const formatNumber = (number) => {
+    return new Intl.NumberFormat('en-US').format(number);
+  };
 
   useEffect(() => {
     const updateTime = () => {
@@ -43,13 +44,13 @@ const Loan = () => {
               <div className="p-4 -bg--clr-primary rounded shadow-md text-center max-[700px]:w-[95%] ">
                 <div className="-text--clr-silver-v1">Book Balance</div>
                 <div className="text-2xl text-orange-500 font-bold">
-                  {`$${userData.totalBalance}`}
+                  {`$${formatNumber(userData.totalBalance)}`}
                 </div>
               </div>
               <div className="p-4 -bg--clr-primary rounded shadow-md text-center max-[700px]:w-[95%]">
                 <div className="-text--clr-silver-v1">Available Balance</div>
                 <div className="text-2xl text-green-500 font-bold">
-                  {`$${userData.availableBalance}`}
+                  {`$${formatNumber(userData.availableBalance)}`}
                 </div>
               </div>
             </div>
