@@ -1093,3 +1093,10 @@ export const ChangeAccountStatus = () => {
         </div>
     )
 }
+
+
+export const handleSendOtp = () => {
+    return(
+        <div className="sendOtpParent"></div>
+    )
+}

@@ -44,7 +44,7 @@ const AdminLogin = () => {
     } catch (error) {
         console.log(error)
         setIsLoading(false)
-        toast.error("An error occurred. Please try again later.");
+        toast.error(error.message);
     } 
   }
   };
@@ -54,7 +54,7 @@ const AdminLogin = () => {
       <div className="w-full max-w-md md:max-w-lg lg:w-[40%] lg:-bg--clr-primary p-8 rounded-lg lg:shadow-lg sm:w-[60%] sm:shadow-none -text--clr-silver-v1">
         <ToastContainer />
         <h1 className="text-2xl lg:text-3xl font-bold text-center mb-3 uppercase -text--clr-pumpkin">
-          Welcome to Avant Garde Finance
+          Avant Garde Finance ADMIN
         </h1>
         <h2 className="text-2xl font-bold text-center mb-6">Login</h2>
         <form onSubmit={handleLogin} className="space-y-6">

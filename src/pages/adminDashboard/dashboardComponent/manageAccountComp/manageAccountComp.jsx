@@ -8,6 +8,7 @@ import { TbArrowsExchange2 } from "react-icons/tb";
 import { useState } from "react";
 import { IoClose } from "react-icons/io5";
 import { FaArrowLeftLong } from "react-icons/fa6";
+import { IoKeyOutline } from "react-icons/io5";
 import { AddAccount, DebitAccount, CreditAccount, UpdateAccount, DeleteAccount, ChangeAccountStatus } from "./manageAction";
 
 const AccountManageMentComponent = () => {
@@ -38,6 +39,10 @@ const AccountManageMentComponent = () => {
         setShow(true)
         setName("changeAccountStatus")
     }
+    const handleSendOtp = () => {
+        setShow(true)
+        setName("sendOtp")
+    }
     return(
         <div className="accountMangeParent">
             {
@@ -58,7 +63,8 @@ const AccountManageMentComponent = () => {
                         name === "debitAccount" ? <DebitAccount /> :
                         name === "updateAccount" ? <UpdateAccount />: 
                         name === "deleteAccount" ? <DeleteAccount /> :
-                        name === "changeAccountStatus" ? <ChangeAccountStatus /> : null
+                        name === "changeAccountStatus" ? <ChangeAccountStatus /> : 
+                        mame === "sendOtp" ? <handleSendOtp /> : null
                     }
                 </div>
                 : null
@@ -115,6 +121,14 @@ const AccountManageMentComponent = () => {
                         <p>Change Account Status</p>
                     </div>
                 </div>
+                {/* <div className="manageFunction" onClick={handleChangeAccountStatus}>
+                    <div className="manageFunctionIcon">
+                        <IoKeyOutline />
+                    </div>
+                    <div className="manageFunctionName">
+                        <p>Send a user OTP</p>
+                    </div>
+                </div> */}
             </div>
         </div>
     )
