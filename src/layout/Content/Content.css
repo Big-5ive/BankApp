@@ -18,14 +18,14 @@
     background-color: var(--clr-secondary);
     flex: 1;
     padding: 32px;
-    margin-left: 70px; /* Offset the sidebar width */
+    margin-left: 0px !important; /* Offset the sidebar width */
     /* margin-left: 260px; */
     /* transition: margin-left 0.3s; */
   }
   
   .sidebar-change ~ .main-content {
-    margin-left: 0px; /* Adjust for when the sidebar is toggled */
-    flex: 1;
+    margin-left: 70px !important; /* Adjust for when the sidebar is toggled */
+    /* flex: 1; */
   }
 }
 @media screen and (max-width: 1199px) {
