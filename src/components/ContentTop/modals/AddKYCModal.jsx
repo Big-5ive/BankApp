@@ -25,7 +25,7 @@ const AddKYCModal = ({ onClose }) => {
 
     const formData = new FormData();
     formData.append("title", title);
-    formData.append("document", document);
+    formData.append("documents", document);
 
     setLoading(true);
 
@@ -41,10 +41,9 @@ const AddKYCModal = ({ onClose }) => {
           },
         }
       );
-
+      toast.success("Document successfully uploaded!");
       const { documents } = response.data;
       localStorage.setItem("documents", JSON.stringify(documents));
-      toast.success("Document successfully uploaded!");
       setTitle("");
       setDocument(null);
       onClose();
