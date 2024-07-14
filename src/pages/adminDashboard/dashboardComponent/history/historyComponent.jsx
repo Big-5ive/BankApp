@@ -7,7 +7,7 @@ import axios from "axios";
 import { BeatLoader } from "react-spinners";
 import { AiFillDelete } from "react-icons/ai";
 
-const TransactionHistory = () => {
+const TransactionHistory = ({initial}) => {
     const [addHistory, setAddHistory] = useState(false)
     const [account, setAccount] = useState("")
     const [type, setType] = useState("")
@@ -21,8 +21,8 @@ const TransactionHistory = () => {
     const [allAccount, setAllAccount] = useState()
     const [loading, setLoading] = useState(false)
     const [loading2, setLoading2] = useState(false)
-    const [loading3, setLoading3] = useState(false)
-    const [deleteId, setDeleteId] = useState("")
+    const [history, setHistory] = useState(allHistory)
+    const [loadingState, setLoadingState] = useState([])
 
     const admin = JSON.parse(localStorage.getItem("adminData"))
     const token = admin.token
@@ -32,18 +32,19 @@ const TransactionHistory = () => {
     const fetchData1 = async () => {
         setLoading2(true)
         const url = "https://avantgardefinance-api.onrender.com/view-all-history"
-        console.log("hello wold 2")
+        // console.log("hello wold 2")
         setLoading2(true)
         try {
         const response = await axios.get(url, { headers });
         setAllHistory(response?.data.history)
-        console.log(response)
+        setLoadingState(Array(response.data.length).fill(false));
+        // console.log(response)
         setLoading2(false);
         } catch (err) {
         // setError(err);
-        console.log(err)
+        // console.log(err)
         setLoading2(false);
-        console.log(err)
+        // console.log(err)
         }
     };
 
@@ -90,7 +91,7 @@ const TransactionHistory = () => {
             toast.success("history added successfully")
         })
         .catch((error) => {
-            console.log(error)
+            // console.log(error)
             // console.log(data)
             setLoading(false)
             toast.error("operation failed")
@@ -98,26 +99,30 @@ const TransactionHistory = () => {
         
     }
 
-    // const handleDeleteHistory = (e) => {
-    //     setDeleteId(e)
-    //     console.log("id",deleteId)
-    //     setLoading3(true)
-    //     const url = `https://avantgardefinance-api.onrender.com/delete-history/${deleteId._id}`
-    //     axios.delete(url, { headers })
-    //     .then((response)=> {
-    //         console.log(response)
-    //         setLoading3(false)
-    //         toast.success("this history record has been deleted successfully")
-    //     })
-    //     .catch((error)=> {
-    //         console.log(error)
-    //         setLoading3(false)
-    //         toast.error("Action failed")
-    //     })
-    // }
+    // console.log(allHistory)
+
+    const handleDeleteHistory = (e,index) => {
+        const newLoadingState = [...loadingState]
+        newLoadingState[index] = true
+        setLoadingState(newLoadingState)
+        const url = `https://avantgardefinance-api.onrender.com/delete-history/${e}`
+        axios.delete(url, { headers })
+        .then((response)=> {
+            fetchData1()
+            toast.success("This history record has been deleted successfully");
+        })
+        .catch((error)=> {
+            console.log(error)
+            newLoadingState[index] = false
+            setLoadingState(newLoadingState)
+            toast.error("Action failed")
+            // console.log("id", deleteId)
+        })
+    }
 
     return(
         <div className="transactionHistoryParent">
+            <ToastContainer />
             <div className="historyTopic">
                 <button onClick={()=>setAddHistory(true)}> <IoMdAdd/> Add History</button>
                 <p>All Transaction History</p>
@@ -254,7 +259,7 @@ const TransactionHistory = () => {
                     <div className="headTopic"><p>TYPE</p></div>
                     <div className="headTopic"><p>BANK</p></div>
                     <div className="headTopic"><p>DATE</p></div>
-                    {/* <div className="headTopic"><p>DELETE</p></div> */}
+                    <div className="headTopic"><p>DELETE</p></div>
                 </div>
                 <div className="tableBody">
                     {history?.lenght === 0 ? (
@@ -270,11 +275,12 @@ const TransactionHistory = () => {
                             <div className="headTopic"><p>{e.transactionType}</p></div>
                             <div className="headTopic"><p>{e.bank}</p></div>
                             <div className="headTopic"><p>{e.date}</p></div>
-                            {/* <div className="headTopic deleteHistory">
+                            <div className="headTopic deleteHistory">
                                 {
-                                    loading3 ? <BeatLoader color="white"/> : <AiFillDelete/>
+                                    loadingState[index] ? <BeatLoader color="white"/> : 
+                                    <AiFillDelete onClick={()=> handleDeleteHistory(e._id, index)}/>
                                 }
-                            </div> */}
+                            </div>
                         </div>
                         ))
                     )

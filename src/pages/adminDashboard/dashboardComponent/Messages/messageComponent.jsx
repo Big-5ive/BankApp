@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import { BeatLoader } from "react-spinners";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
+import { FaDeleteLeft } from "react-icons/fa6";
+import { MdDelete } from "react-icons/md";
 // import { ImCancelCircle } from "react-icons/im";
 
 const MessageComponent = () => {
@@ -20,6 +22,7 @@ const MessageComponent = () => {
     const [allUsers, setAllUsers] = useState()
     const [allMessages, SetAllMessages] = useState()
     const [messageDetail, SetMessageDetail] = useState()
+    const [deleteload, SetDeleteLoad] = useState(false)
     const [error, setError] = useState({
         type: "",
         message: ""
@@ -117,6 +120,7 @@ const MessageComponent = () => {
                 // console.log(response)
                 setLoading(false)
                 toast.success("message sent successfully")
+                setCompose(false)
             })
             .catch((error)=> {
                 // console.log(error)
@@ -125,6 +129,24 @@ const MessageComponent = () => {
             })
            
         }
+    }
+
+    const handleDeleteHistory = () => {
+        SetDeleteLoad(true)
+        const url = `https://avantgardefinance-api.onrender.com/delete-message/${messageDetail._id}`
+        axios.delete(url, { headers })
+        .then((response)=> {
+            console.log(response)
+            SetDeleteLoad(false)
+            setOpen(false)
+            toast.success("message successfully deleted")
+            // useEffect()
+        })
+        .catch((error)=> {
+            console.log(error)
+            SetDeleteLoad(false)
+            toast.error("action failed")
+        })
     }
     return(
         <div className="messagecomponentParent">
@@ -162,6 +184,11 @@ const MessageComponent = () => {
                                             {messageDetail.content}
                                         </i>
                                     </div>
+                                    <div style={{width: "100%", fontSize: "30px", height: "50px", display: "flex", alignItems: "center",justifyContent: "center"}}>
+                                        {
+                                            deleteload ? <BeatLoader color="white" /> : <div onClick={handleDeleteHistory} ><MdDelete cursor={"pointer"}/></div>
+                                        }
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -169,7 +196,7 @@ const MessageComponent = () => {
                 : 
                     
                         loading2 ? <BeatLoader color="white"/> :
-                        allMessages?.length === 0 ? (<div><p>No Message Found</p></div>):
+                        allMessages?.length === 0 ? (<div style={{color: "white", fontSize: "20px"}}><p>No Message Found</p></div>):
                         allMessages?.map((e, index)=> (
                         <div key={index} className="messageBody" onClick={()=> handleOpen(e)}>
                         <div className="messagePic">
@@ -189,9 +216,7 @@ const MessageComponent = () => {
                             <p>{e.time}</p>
                         </div>
                     </div>
-                        ))
-                    
-                
+                        )) 
                 }
 
                 { compose?
