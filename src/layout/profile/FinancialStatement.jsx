@@ -307,7 +307,7 @@ const FinancialStatement = () => {
                     <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">{data.accountTransferredTo.fullName}</td>
                     <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">{data.amountTransferred}</td>
                     <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">
-                      <span className={`p-1.5 text-xs font-medium uppercase tracking-wider text-${data.transactionType === 'CREDIT' ? 'green' : data.transactionType === 'DEBIT' ? 'yellow-500' : 'green'}-800 bg-${data.transactionType === 'credit' ? 'green' : data.transactionType === 'DEBIT' ? 'yellow' : 'gray'}-200 rounded-lg bg-opacity-50`}>
+                      <span className={`p-1.5 text-xs font-medium uppercase tracking-wider text-${data.transactionType === 'CREDIT' ? 'green' : data.transactionType === 'debit' ? 'yellow-500' : 'green'}-800 bg-${data.transactionType === 'credit' ? 'green' : data.transactionType === 'debit' ? 'yellow' : 'gray'}-200 rounded-lg bg-opacity-50`}>
                         {data.transactionType}
                       </span>
                     </td>
@@ -328,7 +328,7 @@ const FinancialStatement = () => {
                   </div>
                   <div className="text-gray-500">{formatTimestamp(data.date).split(' ')[0]}</div>
                   <div>
-                    <span className={`p-1.5 text-xs font-medium uppercase tracking-wider text-${data.transactionType === 'DEBIT' ? 'green' : data.transactionType === 'CREDIT' ? 'yellow' : 'gray'}-800 bg-${data.transactionType === 'REVERSE' ? 'green' : data.status === 'Pending' ? 'yellow' : 'gray'}-200 rounded-lg bg-opacity-50`}>
+                    <span className={`p-1.5 text-xs font-medium uppercase tracking-wider text-${data.transactionType === 'credit' ? 'green' : data.transactionType === 'CREDIT' ? 'yellow' : 'gray'}-800 bg-${data.transactionType === 'debit' ? 'green' : data.status === 'Pending' ? 'yellow' : 'gray'}-200 rounded-lg bg-opacity-50`}>
                       {data.transactionType}
                     </span>
                   </div>
