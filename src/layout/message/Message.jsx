@@ -94,13 +94,13 @@ const MessageComponent = () => {
     );
   }
 
-  if (!userData) {
+  if (!userData || userData.length === 0) {
     return (
       <>
         <div className="main-content">
           <ContentTop />
           <div className="text-center flex items-center justify-center -text--clr-silver-v1">
-            <div>No user data available</div>
+            <div className="-text--clr-white">No Messages Yet</div>
           </div>
         </div>
       </>
@@ -114,6 +114,8 @@ const MessageComponent = () => {
   const handleClose = () => {
     setSelectedMessage(null);
   };
+
+  console.log(userData);
 
   return (
     <div className="main-content">

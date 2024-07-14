@@ -31,9 +31,9 @@ const FinancialStatement = () => {
       setFinancialStatement(response.data.statement);
     } catch (error) {
       if (error.response && error.response.status === 404) {
-        toast.error("User not found");
+        // toast.error("User not found");
       } else {
-        toast.error("Internal Server Error: " + error.message);
+        // toast.error("Internal Server Error: " + error.message);
       }
     } finally {
       setLoading(false);

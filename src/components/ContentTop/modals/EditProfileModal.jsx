@@ -7,7 +7,7 @@ const EditProfileModal = ({ onClose }) => {
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     username: '',
-    email: '',
+    // email: '',
     phoneNumber: '',
     maritalStatus: 'single',
     address: ''
@@ -26,8 +26,8 @@ const EditProfileModal = ({ onClose }) => {
             Authorization: `Bearer ${token}`
           }
         });
-        const { username, email, phoneNumber, maritalStatus, address } = response.data.user;
-        setFormData({ username, email, phoneNumber, maritalStatus, address });
+        const { username, phoneNumber, maritalStatus, address } = response.data.user;
+        setFormData({ username, phoneNumber, maritalStatus, address });
       } catch (error) {
         toast.error('Failed to load user data');
       }
@@ -42,15 +42,15 @@ const EditProfileModal = ({ onClose }) => {
 
   const validateForm = () => {
     const { username, email, phoneNumber, address } = formData;
-    if (!username || !email || !phoneNumber || !address) {
+    if (!username || !phoneNumber || !address) {
       toast.error('All fields are required');
       return false;
     }
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      toast.error('Invalid email format');
-      return false;
-    }
+    // const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    // if (!emailRegex.test(email)) {
+    //   toast.error('Invalid email format');
+    //   return false;
+    // }
     return true;
   };
 
@@ -64,7 +64,7 @@ const EditProfileModal = ({ onClose }) => {
         'https://avantgardefinance-api.onrender.com/update-personal-profile',
         {
           username: formData.username,
-          email: formData.email,
+          // email: formData.email,
           phoneNumber: formData.phoneNumber,
           maritalStatus: formData.maritalStatus,
           address: formData.address
@@ -106,7 +106,7 @@ const EditProfileModal = ({ onClose }) => {
             value={formData.username}
             onChange={handleInputChange}
           />
-          <label htmlFor="email" className="block text-sm font-medium -text--clr-silver-v1">Email:</label>
+          {/* <label htmlFor="email" className="block text-sm font-medium -text--clr-silver-v1">Email:</label>
           <input
             type="email"
             id="email"
@@ -115,7 +115,7 @@ const EditProfileModal = ({ onClose }) => {
             className="mt-1 block w-full border border-gray-300 rounded-md p-2 bg-transparent outline-none"
             value={formData.email}
             onChange={handleInputChange}
-          />
+          /> */}
           <label htmlFor="phoneNumber" className="block text-sm font-medium -text--clr-silver-v1">Phone Number:</label>
           <input
             type="text"

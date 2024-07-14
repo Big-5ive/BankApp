@@ -63,7 +63,6 @@ const ContentTop = () => {
   }
 
   function handleNotification() {
-
    nav('/dashboard/message')
   }
 
