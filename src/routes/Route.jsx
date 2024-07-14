@@ -26,11 +26,16 @@ import UserSignup from "../pages/auth/signUp/signUp";
 import OTPverify from "../pages/auth/otp/otp";
 import OTPClient from "../pages/auth/otp-client/OTPClient";
 import OTPVerification from "../pages/auth/otp-client/OTPClient";
+import AdminLogin from "../pages/auth/loginAdmin/loginAdmin";
 
 const route = createHashRouter([
   {
     path: "/",
     element: <Login />,
+  },
+  {
+    path: "/login",
+    element: <AdminLogin />,
   },
   {
     path: "/signup",

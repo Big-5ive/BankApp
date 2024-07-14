@@ -1,24 +1,180 @@
+import { useEffect, useState } from 'react';
 import './allInfo.css'
 import { FcSimCardChip } from "react-icons/fc";
 import { RiMastercardFill } from "react-icons/ri";
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import jsPDF from 'jspdf';
 
 const AllInfoComponent = () => {
     const nav = useNavigate()
+    const [showDocuments, setShowDocuments] = useState(false)
+    const [viewDocuments, setViewDocuments] = useState([])
+    const [cardDetails, setCardDetails] = useState()
+    const [allUsers, setAllUsers] = useState()
+    const [history, setHistory] = useState()
+    const [loading, setLoading] = useState(false)
+
+
+    const admin = JSON.parse(localStorage.getItem("adminData"))
+    const token = admin.token
+    const headers = {
+        'Authorization' : `Bearer ${token}`
+    }
+    const url = "https://avantgardefinance-api.onrender.com/view-all-users"
+    useEffect(() => {
+    const fetchData = async () => {
+        // setLoading(true)
+      try {
+        const response = await axios.get(url, { headers });
+        setAllUsers(response?.data.data)
+        // console.log(response.data.data)
+        setLoading(false);
+      } catch (err) {
+        console.log(err)
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  
+  useEffect(() => {
+    const url = "https://avantgardefinance-api.onrender.com/view-all-documents"
+    const fetchData = async () => {
+        setLoading(true)
+        try {
+        const response = await axios.get(url, { headers } );
+        setViewDocuments(response.data.data)
+        console.log(response)
+        setLoading(false);
+        } catch (err) {
+        // setError(err);
+        console.log(err)
+        setLoading(false);
+        //   console.log(err.message)
+        }
+    };
+  fetchData();
+    }, []);
+
+    const fetchMimeType = async (fileUrl) => {
+        try {
+          const response = await axios.head(fileUrl);
+          return response.headers['content-type'];
+        } catch (error) {
+          console.error('Error fetching MIME type', error);
+          return null;
+        }
+      };
+
+      const convertToPdf = async (fileUrl) => {
+        if (!fileUrl) {
+          console.error('Invalid file URL');
+          return;
+        }
+    
+        const mimeType = await fetchMimeType(fileUrl);
+    
+        if (!mimeType) {
+          console.error('Unable to determine MIME type');
+          return;
+        }
+    
+        const pdf = new jsPDF();
+        const img = new Image();
+        img.src = fileUrl;
+    
+        img.onload = () => {
+          const imgProps = pdf.getImageProperties(img.src);
+          const pdfWidth = pdf.internal.pageSize.getWidth();
+          const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+          pdf.addImage(img.src, mimeType.toUpperCase().split('/')[1], 0, 0, pdfWidth, pdfHeight);
+          pdf.save('download.pdf');
+        };
+      };
+
+    // console.log("atm",cardDetails)
+
+  useEffect(() => {
+    const url = "https://avantgardefinance-api.onrender.com/view-all-history"
+  const fetchData = async () => {
+      setLoading(true)
+    try {
+      const response = await axios.get(url, { headers });
+      setHistory(response.data.history)
+      // console.log(response)
+      setLoading(false);
+    } catch (err) {
+      // setError(err);
+      console.log(err)
+      setLoading(false);
+      console.log(err.message)
+    }
+  };
+  fetchData();
+}, []);
+
+  useEffect(() => {
+    const url = "https://avantgardefinance-api.onrender.com/all-card-details"
+  const fetchData = async () => {
+      setLoading(true)
+    try {
+      const response = await axios.get(url, { headers });
+    //   console.log(response)
+      setCardDetails(response.data.transactions)
+    } catch (err) {
+      // setError(err);
+      console.log(err)
+    //   setLoading(false);
+    //   console.log(err.message)
+    }
+  };
+  fetchData();
+}, []);
+
     return(
         <div className="allInfoParentxx">
             <div className="header">
                 <p>DashBoard</p>
             </div>
-            <div className="dashboardItemHold">
+            {
+                showDocuments ?
+                <div className="documentHold">
+                    <div className="headerdoc">
+                        <button onClick={()=> setShowDocuments(false)}>CLOSE DOCUMENTS</button>
+                    </div>
+                    <div className="documentBodyHold">
+                        {viewDocuments?.length === 0 ? (<div><p>No Document Found</p></div>):
+                            viewDocuments?.map((e, index)=> (
+                                <div key={index} className="documentBody">
+                            <div className="owner">
+                                <p>Owner: <span>{e.name}</span></p>
+                                <p>Title: <span>{e.title}</span></p>
+                            </div>
+                            <div className="picture">
+                                <img src={e.url} alt="" />
+                                {/* {renderFile(e.url, e.mimeType)} */}
+                            </div>
+                            {/* <div className="pdf">
+                                <button onClick={()=>convertToPdf(e.url)}>Download as PDF</button>
+                            </div> */}
+                        </div>
+                            ))
+                        }
+                    </div>
+                </div>
+                : <div style={{width: "100%", height: "max-content", display: "flex", flexDirection: "column", gap: "30px"}}>
+                    <div className="dashboardItemHold">
                 <div className="dashboardItems">
                     <div className="tti"><p>Accounts</p></div>
                     <div className="tt2">
-                        <p>Total accounts : <span>50</span></p>
-                        <p>Active accounts : <span>30</span></p>
-                        <p>Dormant accounts : <span>10</span></p>
-                        <p>Closed accounts : <span>5</span></p>
-                        <p>Disabled accounts : <span>5</span></p>
+                        <p>Total accounts : <span>{allUsers?.length}</span></p>
+                        {/* <p>Active accounts : <span>{activeAccount}</span></p>
+                        <p>Dormant accounts : <span>{dormantAccount}</span></p>
+                        <p>Closed accounts : <span>{closedAccount}</span></p>
+                        <p>Disabled accounts : <span>{disabledAccount}</span></p> */}
                     </div>
                     <div className="bigBut">
                         <button onClick={()=> nav("/accountmanage")}>Manage Accounts</button>
@@ -27,96 +183,53 @@ const AllInfoComponent = () => {
                 <div className="dashboardItems">
                     <div className="tti"><p>Transaction History</p></div>
                     <div className="tt2">
-                        <p>Total Transactions : <span>50</span></p>
-                        <p>Debits : <span>30</span></p>
-                        <p>Credits : <span>20</span></p>
+                        <p>Total Transactions : <span>{history?.length}</span></p>
                     </div>
                     <div className="bigBut">
                         <button onClick={()=> nav("/history")}>Manage History</button>
                     </div>
                 </div>
                 <div className="dashboardItems">
-                <div className="tti"><p>Messages</p></div>
+                <div className="tti"><p>Documents</p></div>
                     <div className="tt2">
-                        <p>All notification : <span>50</span></p>
+                        <p>All documents : <span>50</span></p>
                     </div>
                     <div className="bigBut">
-                        <button onClick={()=> nav("/messages")}>Manage Messages</button>
+                        <button onClick={()=>setShowDocuments(true)}>view document</button>
                     </div>
                 </div>
             </div>
             <div className="transactionDetailxx">
                 <div className="tablehead"><h1>All Card Details</h1></div>
                 <div className="cardHold">
-                    <div className="card">
+                    {   cardDetails?.length === 0 ? (<div><p>No cards found, if there is any it will display here</p></div>):
+                        cardDetails?.map((e, index)=> (
+                            <div key={index} className="card">
                         <div className="cardname">
-                            <p>Bank App</p>
+                            <p>Avant Garde</p>
                         </div>
                         <div className="cardChip">
                             <FcSimCardChip />
                         </div>
                         <div className="cardNum">
-                            <p>500</p>
-                            <p>1234</p>
-                            <p>5678</p>
-                            <p>9010</p>
+                            <p>{e.cardNumber}</p>
                         </div>
                         <div className="cardDate">
-                            <p>cvv - 234</p>
-                            <p>valid - 10/25</p>
+                            <p>cvv - {e.cvv}</p>
+                            <p>valid - {e.expiryDate}</p>
                             <RiMastercardFill fontSize={"30px"} color='orange'/>
                         </div>
                         <div className="holderName">
-                            <p>John c Maxwell</p>
+                            <p>{e.cardHolderName}</p>
                         </div>
                     </div>
-                    <div className="card">
-                        <div className="cardname">
-                            <p>Bank App</p>
-                        </div>
-                        <div className="cardChip">
-                            <FcSimCardChip />
-                        </div>
-                        <div className="cardNum">
-                            <p>500</p>
-                            <p>1234</p>
-                            <p>5678</p>
-                            <p>9010</p>
-                        </div>
-                        <div className="cardDate">
-                            <p>cvv - 234</p>
-                            <p>valid - 10/25</p>
-                            <RiMastercardFill fontSize={"30px"} color='orange'/>
-                        </div>
-                        <div className="holderName">
-                            <p>John c Maxwell</p>
-                        </div>
-                    </div>
-                    <div className="card">
-                        <div className="cardname">
-                            <p>Bank App</p>
-                        </div>
-                        <div className="cardChip">
-                            <FcSimCardChip />
-                            <p>pin - 1234</p>
-                        </div>
-                        <div className="cardNum">
-                            <p>500</p>
-                            <p>1234</p>
-                            <p>5678</p>
-                            <p>9010</p>
-                        </div>
-                        <div className="cardDate">
-                            <p>cvv - 234</p>
-                            <p>valid - 10/25</p>
-                            <RiMastercardFill fontSize={"30px"} color='orange'/>
-                        </div>
-                        <div className="holderName">
-                            <p>John c Maxwell</p>
-                        </div>
-                    </div>
+                        ))
+                    }
                 </div>
             </div>
+                </div>
+            }
+            
 
         </div>
     )

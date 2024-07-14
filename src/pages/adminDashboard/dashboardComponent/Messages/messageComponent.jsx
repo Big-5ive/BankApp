@@ -1,22 +1,83 @@
 import "./messagecomponent.css"
 import { IoMdAdd } from "react-icons/io";
 import { CgProfile } from "react-icons/cg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BeatLoader } from "react-spinners";
 import { ToastContainer, toast } from "react-toastify";
+import axios from "axios";
 // import { ImCancelCircle } from "react-icons/im";
 
 const MessageComponent = () => {
     const [open, setOpen] = useState(false)
     const [compose, setCompose] = useState(false)
     const [sender, setSender] = useState("")
-    const [receiver, setReceiver] = useState("")
+    const [subject, setSubject] = useState("")
+    const [receiverEmail, setReceiverEmail] = useState("")
+    const [receiverId, setReceiverId] = useState("")
     const [message, setMessage] = useState("")
     const [loading, setLoading] = useState(false)
+    const [loading2, setLoading2] = useState(false)
+    const [allUsers, setAllUsers] = useState()
+    const [allMessages, SetAllMessages] = useState()
+    const [messageDetail, SetMessageDetail] = useState()
     const [error, setError] = useState({
         type: "",
         message: ""
     })
+
+    const handleSelectChange = (e) => {
+        const selectedUser = allUsers.find(user => user.email === e.target.value);
+        if (selectedUser) {
+          setReceiverId(selectedUser._id);
+          setReceiverEmail(selectedUser.email);
+        }
+      };
+      const handleOpen = (e) => {
+        setOpen(true)
+        SetMessageDetail(e)
+    }
+
+    const admin = JSON.parse(localStorage.getItem("adminData"))
+    const token = admin.token
+    const headers = {
+        'Authorization' : `Bearer ${token}`
+    }
+    
+    useEffect(() => {
+    const fetchData = async () => {
+        const url = "https://avantgardefinance-api.onrender.com/view-all-users"
+        setLoading2(true)
+      try {
+        const response = await axios.get(url, { headers });
+        setAllUsers(response.data.data)
+        // console.log(response.data.data)
+        setLoading2(false);
+      } catch (err) {
+        // console.log(err)
+        setLoading2(false);
+        toast.error(err.message)
+      }
+    };
+    fetchData();
+  }, []);
+
+    useEffect(() => {
+    const fetchData = async () => {
+        const url = "https://avantgardefinance-api.onrender.com/get-messages"
+        setLoading2(true)
+      try {
+        const response = await axios.get(url, { headers });
+        SetAllMessages(response.data.data)
+        // console.log(response.data.data)
+        setLoading2(false);
+      } catch (err) {
+        // console.log(err)
+        setLoading2(false);
+        toast.error(err.message)
+      }
+    };
+    fetchData();
+  }, []);
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -28,7 +89,7 @@ const MessageComponent = () => {
                 message: "choose the sender"
             })
             toast.error(error.type === "sender" ? error.message : "")
-        } else if(!receiver){
+        } else if(!receiverEmail){
             setLoading(false)
             setError({
                 type: "receiver",
@@ -43,8 +104,26 @@ const MessageComponent = () => {
             })
             toast.error(error.type === "sender" ? error.message : "")
         } else{
-            setLoading(false)
-            toast.success("message sent successfully")
+            
+            const url = `https://avantgardefinance-api.onrender.com/message-user/${receiverId}`
+            const data = {
+                sender: sender,
+                receiver: receiverEmail,
+                subject: subject,
+                content: message
+            }
+            axios.post(url, data, { headers })
+            .then((response)=> {
+                // console.log(response)
+                setLoading(false)
+                toast.success("message sent successfully")
+            })
+            .catch((error)=> {
+                console.log(error)
+                setLoading(false)
+                toast.error("could'nt send message")
+            })
+           
         }
     }
     return(
@@ -56,23 +135,7 @@ const MessageComponent = () => {
                 <button onClick={()=>setCompose(true)}> <IoMdAdd /> Compose</button>
             </div>
             <div className="messageBodyHold">
-                <div className="messageBody" onClick={()=> setOpen(true)}>
-                    <div className="messagePic">
-                        <CgProfile />
-                    </div>
-                    <div className="messageItem">
-                        <div className="messageName">
-                            <p>Jeremiah</p>
-                        </div>
-                        <div className="messageMessage">
-                            <p>hjwdhohg etjih bjobho qlerk ;kj;fhio apfuipgu pfiuh[uifh piuh[pgui jilf]]  ;kjpgui hghasdgv gvicsd igvoyvadf qerjkhgyo qerpjkgief wtljh trljh ljhpg wpiugd</p>
-                        </div>
-                    </div>
-                    <div className="messageDate">
-                        <p>12/12/2024</p>
-                        <p>12:37pm</p>
-                    </div>
-                </div>
+               
                 {
                     open ? 
                     <div className="messageContent">
@@ -84,19 +147,44 @@ const MessageComponent = () => {
                         <div className="messageContBody">
                             <div className="mesageContMessage">
                                 <div className="messageFrom">
-                                    <p>From: Ekele Jeremiah</p>
+                                    <p style={{color: "green"}}>From: {messageDetail.sender}</p>
+                                    <p style={{color: "blue"}}>To: {messageDetail.email}</p>
                                 </div>
                                 <div className="messageItself">
-                                    <p>
-                                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate 
-                                    velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-                                    </p>
+                                    <p>Message Body</p>
+                                    <i>
+                                        {messageDetail.subject}
+                                    </i>
                                 </div>
                             </div>
                         </div>
                     </div>
-                : null
+                : 
+                    
+                        loading2 ? <BeatLoader color="white"/> :
+                        allMessages?.length === 0 ? (<div><p>No Message Found</p></div>):
+                        allMessages?.map((e, index)=> (
+                        <div key={index} className="messageBody" onClick={()=> handleOpen(e)}>
+                        <div className="messagePic">
+                            <CgProfile />
+                        </div>
+                        <div className="messageItem">
+                            <div className="messageName">
+                                <p>sender: {e.sender}</p>
+                                <p>receiver: {e.email}</p>
+                            </div>
+                            <div className="messageMessage">
+                                <p>{e.subject}</p>
+                            </div>
+                        </div>
+                        <div className="messageDate">
+                            <p>{e.date}</p>
+                            <p>{e.time}</p>
+                        </div>
+                    </div>
+                        ))
+                    
+                
                 }
 
                 { compose?
@@ -107,7 +195,7 @@ const MessageComponent = () => {
                          </div>
                      </div>
                      <div className="messageContBody">
-                         <div className="mesageContMessage xxxm">
+                         <div className="mesageContMessage">
                              <div className="messageFrom">
                                  <p>Compose A new message</p>
                              </div>
@@ -117,16 +205,27 @@ const MessageComponent = () => {
                                     <p>Sender</p>
                                     <select required name="sender" id="sender" value={sender} onChange={(e)=>setSender(e.target.value)}>
                                         <option value="">Sender</option>
-                                        <option value="customer Care">Customer Care</option>
-                                        <option value="account officer">Account officer</option>
+                                        <option value="customerCare">Customer Care</option>
+                                        <option value="support">Surpport</option>
                                     </select>
                                  </div>
                                  <div className="composeInputhold">
+                                    <p>Subject</p>
+                                    <input 
+                                    value={subject}
+                                    required
+                                    onChange={(e)=> setSubject(e.target.value)}
+                                    type="text" />
+                                 </div>
+                                 <div className="composeInputhold">
                                     <p>To</p>
-                                    <select name="sender" required id="sender" value={receiver} onChange={(e)=>setReceiver(e.target.value)}>
+                                    <select name="sender" required id="sender" value={receiverEmail} onChange={handleSelectChange}>
                                         <option value="">receiver</option>
-                                        <option value="customer Care">Ekele Jeremiah</option>
-                                        <option value="account officer">Adekunle Micheal</option>
+                                        {
+                                            allUsers?.map((e,index)=> (
+                                                <option key={index} value={e.email}>{e.fullName}</option>
+                                            ))
+                                        }
                                     </select>
                                  </div>
                                  <div className="messageWrite">
