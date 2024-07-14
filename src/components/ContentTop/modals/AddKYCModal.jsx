@@ -41,7 +41,15 @@ const AddKYCModal = ({ onClose }) => {
           },
         }
       );
-      toast.success("Document successfully uploaded!");
+      toast.success("Document successfully uploaded!", {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       const { documents } = response.data;
       localStorage.setItem("documents", JSON.stringify(documents));
       setTitle("");
