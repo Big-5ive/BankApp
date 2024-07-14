@@ -1,24 +1,16 @@
 .allInfoParentxx{
     width: 100%;
     min-height: 600px;
-    /* position: absolute; */
     display: flex;
     flex-direction: column;
-    /* padding-top: 100px; */
     gap: 20px;
-    /* background-color: red; */
-    /* overflow: scroll !important; */
 }
 .header{
     width: 100%;
     height: 40px;
     font-size: 20px;
     font-weight: 700;
-    /* color: navy; */
     display: flex;
-    /* position: fixed; */
-    /* margin-top: 10px; */
-    /* align-items: center; */
     justify-content: center;
     background-color: white;
 }
@@ -27,10 +19,6 @@
     min-height: 1000px;
     display: flex;
     flex-direction: column;
-    /* flex-wrap: wrap; */
-    /* position: fixed; */
-    top: 70px;
-    /* overflow: scroll; */
     background-color: white;
     /* padding-bottom: 300px; */
 }
@@ -196,8 +184,11 @@
     width: 100%;
     min-height: 300px;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
+    gap: 10px;
     justify-content: space-around;
+    padding-top: 20px;
     /* background-color: yellow; */
 }
 .card{
