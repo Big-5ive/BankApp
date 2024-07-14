@@ -72,7 +72,7 @@ const AccountComponent = () => {
                     </div>
                     <div className="accountPicture">
                         <div className="accountPictureHold">
-                            <img src={data.profilePhoto.public_id} alt="no picture" />
+                            <img src={data.profilePhoto.url} alt="no picture" />
                         </div>
                     </div>
                     <div className="accountdetHold">
