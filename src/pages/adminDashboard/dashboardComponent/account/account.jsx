@@ -132,8 +132,8 @@ const AccountComponent = () => {
                         </div>
                         <div className="acountLog">
                             <div className="log1">
-                                <h1>Verified ?:</h1>
-                                <p>{data.isVerified}</p>
+                                <h1>Verification Status</h1>
+                                <p>{data.isVerified === false ? "Not Verified": "Verified"}</p>
                             </div>
                             <div className="log1">
                                 <h1>Marital Status:</h1>

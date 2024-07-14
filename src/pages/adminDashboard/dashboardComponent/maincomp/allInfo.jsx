@@ -5,6 +5,8 @@ import { RiMastercardFill } from "react-icons/ri";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 // import jsPDF from 'jspdf';
+import { BeatLoader } from 'react-spinners';
+// import jsPDF from 'jspdf';
 
 const AllInfoComponent = () => {
     const nav = useNavigate()
@@ -31,7 +33,7 @@ const AllInfoComponent = () => {
         // console.log(response.data.data)
         setLoading(false);
       } catch (err) {
-        console.log(err)
+        // console.log(err)
         setLoading(false);
       }
     };
@@ -47,11 +49,11 @@ const AllInfoComponent = () => {
         try {
         const response = await axios.get(url, { headers } );
         setViewDocuments(response.data.data)
-        console.log(response)
+        // console.log(response)
         setLoading(false);
         } catch (err) {
         // setError(err);
-        console.log(err)
+        // console.log(err)
         setLoading(false);
         //   console.log(err.message)
         }
@@ -59,41 +61,41 @@ const AllInfoComponent = () => {
   fetchData();
     }, []);
 
-    const fetchMimeType = async (fileUrl) => {
-        try {
-          const response = await axios.head(fileUrl);
-          return response.headers['content-type'];
-        } catch (error) {
-          console.error('Error fetching MIME type', error);
-          return null;
-        }
-      };
+    // const fetchMimeType = async (fileUrl) => {
+    //     try {
+    //       const response = await axios.head(fileUrl);
+    //       return response.headers['content-type'];
+    //     } catch (error) {
+    //       console.error('Error fetching MIME type', error);
+    //       return null;
+    //     }
+    //   };
 
-      const convertToPdf = async (fileUrl) => {
-        if (!fileUrl) {
-          console.error('Invalid file URL');
-          return;
-        }
+    //   const convertToPdf = async (fileUrl) => {
+    //     if (!fileUrl) {
+    //       console.error('Invalid file URL');
+    //       return;
+    //     }
     
-        const mimeType = await fetchMimeType(fileUrl);
+    //     const mimeType = await fetchMimeType(fileUrl);
     
-        if (!mimeType) {
-          console.error('Unable to determine MIME type');
-          return;
-        }
+    //     if (!mimeType) {
+    //       console.error('Unable to determine MIME type');
+    //       return;
+    //     }
     
-        const pdf = new jsPDF();
-        const img = new Image();
-        img.src = fileUrl;
+    //     const pdf = new jsPDF();
+    //     const img = new Image();
+    //     img.src = fileUrl;
     
-        img.onload = () => {
-          const imgProps = pdf.getImageProperties(img.src);
-          const pdfWidth = pdf.internal.pageSize.getWidth();
-          const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-          pdf.addImage(img.src, mimeType.toUpperCase().split('/')[1], 0, 0, pdfWidth, pdfHeight);
-          pdf.save('download.pdf');
-        };
-      };
+    //     img.onload = () => {
+    //       const imgProps = pdf.getImageProperties(img.src);
+    //       const pdfWidth = pdf.internal.pageSize.getWidth();
+    //       const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+    //       pdf.addImage(img.src, mimeType.toUpperCase().split('/')[1], 0, 0, pdfWidth, pdfHeight);
+    //       pdf.save('download.pdf');
+    //     };
+    //   };
 
     // console.log("atm",cardDetails)
 
@@ -108,9 +110,9 @@ const AllInfoComponent = () => {
       setLoading(false);
     } catch (err) {
       // setError(err);
-      console.log(err)
+    //   console.log(err)
       setLoading(false);
-      console.log(err.message)
+    //   console.log(err.message)
     }
   };
   fetchData();
@@ -123,11 +125,12 @@ const AllInfoComponent = () => {
     try {
       const response = await axios.get(url, { headers });
     //   console.log(response)
+    setLoading(false)
       setCardDetails(response.data.transactions)
     } catch (err) {
       // setError(err);
-      console.log(err)
-    //   setLoading(false);
+    //   console.log(err)
+      setLoading(false);
     //   console.log(err.message)
     }
   };
@@ -167,19 +170,18 @@ const AllInfoComponent = () => {
                 </div>
                 : <div style={{width: "100%", height: "max-content", display: "flex", flexDirection: "column", gap: "30px"}}>
                     <div className="dashboardItemHold">
-                <div className="dashboardItems">
+                {
+                    loading ? <BeatLoader color='blue'/> :
+                    <div className="dashboardItems">
                     <div className="tti"><p>Accounts</p></div>
                     <div className="tt2">
                         <p>Total accounts : <span>{allUsers?.length}</span></p>
-                        {/* <p>Active accounts : <span>{activeAccount}</span></p>
-                        <p>Dormant accounts : <span>{dormantAccount}</span></p>
-                        <p>Closed accounts : <span>{closedAccount}</span></p>
-                        <p>Disabled accounts : <span>{disabledAccount}</span></p> */}
                     </div>
                     <div className="bigBut">
                         <button onClick={()=> nav("/accountmanage")}>Manage Accounts</button>
                     </div>
                 </div>
+                }
                 <div className="dashboardItems">
                     <div className="tti"><p>Transaction History</p></div>
                     <div className="tt2">
@@ -192,7 +194,7 @@ const AllInfoComponent = () => {
                 <div className="dashboardItems">
                 <div className="tti"><p>Documents</p></div>
                     <div className="tt2">
-                        <p>All documents : <span>50</span></p>
+                        <p>All documents : <span>{viewDocuments?.length}</span></p>
                     </div>
                     <div className="bigBut">
                         <button onClick={()=>setShowDocuments(true)}>view document</button>
@@ -202,7 +204,8 @@ const AllInfoComponent = () => {
             <div className="transactionDetailxx">
                 <div className="tablehead"><h1>All Card Details</h1></div>
                 <div className="cardHold">
-                    {   cardDetails?.length === 0 ? (<div><p>No cards found, if there is any it will display here</p></div>):
+                    { loading? <BeatLoader color='blue'/> :
+                      cardDetails?.length === 0 ? (<div><p>No cards found, if there is any it will display here</p></div>):
                         cardDetails?.map((e, index)=> (
                             <div key={index} className="card">
                         <div className="cardname">

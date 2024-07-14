@@ -4,6 +4,7 @@
     /* position: absolute; */
     display: flex;
     flex-direction: column;
+    /* padding-top: 100px; */
     gap: 20px;
     /* background-color: red; */
     /* overflow: scroll !important; */
@@ -15,9 +16,11 @@
     font-weight: 700;
     /* color: navy; */
     display: flex;
+    /* position: fixed; */
+    /* margin-top: 10px; */
     /* align-items: center; */
     justify-content: center;
-    /* background-color: aqua; */
+    background-color: white;
 }
 .documentHold{
     width: 100%;
@@ -35,9 +38,11 @@
     width: 100%;
     height: 70px;
     display: flex;
+    position: static;
+    /* z-index: 10; */
     align-items: center;
     justify-content: center;
-    /* background-color: yellowgreen; */
+    background-color: white;
 }
 .headerdoc button{
     width: 35%;

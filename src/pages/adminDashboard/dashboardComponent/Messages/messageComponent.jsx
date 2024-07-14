@@ -119,7 +119,7 @@ const MessageComponent = () => {
                 toast.success("message sent successfully")
             })
             .catch((error)=> {
-                console.log(error)
+                // console.log(error)
                 setLoading(false)
                 toast.error("could'nt send message")
             })
@@ -129,7 +129,7 @@ const MessageComponent = () => {
     return(
         <div className="messagecomponentParent">
             <ToastContainer />
-            <div className="messageCompTop">Messages</div>
+            <div className="messageCompTop">All Messages</div>
             <div className="messageAction">
                 <p>All messages</p>
                 <button onClick={()=>setCompose(true)}> <IoMdAdd /> Compose</button>
@@ -151,10 +151,17 @@ const MessageComponent = () => {
                                     <p style={{color: "blue"}}>To: {messageDetail.email}</p>
                                 </div>
                                 <div className="messageItself">
-                                    <p>Message Body</p>
-                                    <i>
-                                        {messageDetail.subject}
-                                    </i>
+                                    
+                                    <div style={{width: "100%", height: "60px"}}>
+                                        <p>Subject</p>
+                                        <i style={{color: "darkblue"}}>{messageDetail.subject}</i>
+                                        <p>Message Body</p>
+                                    </div>
+                                    <div style={{width: "100%", minHeight: "100px", paddingTop: "20px", color: "darkblue"}}>
+                                        <i>
+                                            {messageDetail.content}
+                                        </i>
+                                    </div>
                                 </div>
                             </div>
                         </div>
