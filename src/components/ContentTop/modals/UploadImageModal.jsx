@@ -37,7 +37,15 @@ const UploadImageModal = ({ onClose }) => {
       );
 
       localStorage.setItem('imageFile', JSON.stringify(response.data.profilePhoto));
-      toast.success(response.data.message);
+      toast.success(response.data.message, {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       onClose();
     } catch (error) {
       if (error.response && error.response.status === 400) {
