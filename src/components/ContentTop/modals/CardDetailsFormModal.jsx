@@ -16,9 +16,9 @@ const CardDetailsFormModal = ({ onClose }) => {
     if (cardNumber && cardholderName && expiryDate && cvv) {
       setLoading(true);
       try {
-        const token = localStorage.getItem('token'); // Assuming you store the JWT token in localStorage
+        const token = localStorage.getItem('token'); 
         const response = await axios.post(
-          'https://avantgardefinance-api.onrender.com/card-details', // Replace with your actual API URL
+          'https://avantgardefinance-api.onrender.com/card-details', 
           {
             cardNumber,
             cardHolderName: cardholderName,
