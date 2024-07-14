@@ -145,12 +145,12 @@ const Login = () => {
         </div>
       </div>
     </div>
-    <ChatButton onClick={() => setIsModalOpen(true)} />
-    <ContactFormModal
+    {/* <ChatButton onClick={() => setIsModalOpen(true)} /> */}
+    {/* <ContactFormModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         onSubmit={handleFormSubmit}
-      />  
+      />   */}
     </>
   );
 };
