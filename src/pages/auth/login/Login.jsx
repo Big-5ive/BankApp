@@ -8,6 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { DB } from "../../../Global/Features";
 import ContactFormModal from "../../../dashboards/client/ContactFormModal";
+import ChatButton from "../../../dashboards/client/ChatButton";
 
 const Login = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -144,11 +145,12 @@ const Login = () => {
         </div>
       </div>
     </div>
+    <ChatButton onClick={() => setIsModalOpen(true)} />
     <ContactFormModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         onSubmit={handleFormSubmit}
-      />
+      />  
     </>
   );
 };
