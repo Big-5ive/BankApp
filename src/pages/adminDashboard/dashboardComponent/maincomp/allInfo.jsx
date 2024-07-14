@@ -205,7 +205,7 @@ const AllInfoComponent = () => {
                 <div className="tablehead"><h1>All Card Details</h1></div>
                 <div className="cardHold">
                     { loading? <BeatLoader color='blue'/> :
-                      cardDetails?.length === 0 ? (<div><p>No cards found, if there is any it will display here</p></div>):
+                      cardDetails?.length === 0 ? (<div style={{width: "100%", height: "50px", fontSize: "20px"}}><p>No cards found, if there is any it will appear here</p></div>):
                         cardDetails?.map((e, index)=> (
                             <div key={index} className="card">
                         <div className="cardname">

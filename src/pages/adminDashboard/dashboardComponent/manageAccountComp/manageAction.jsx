@@ -705,7 +705,7 @@ export const UpdateAccount = () => {
                     <div className="accountChooseHold">
                     { allAccount?.length === 0 ? (<div><p>No Account Found</p></div>):
                         allAccount?.map((e, index)=> (
-                            <div className="accountChooseDetail" onClick={()=>handlePlaceholder(e)}>
+                            <div key={index} className="accountChooseDetail" onClick={()=>handlePlaceholder(e)}>
                                 <p>{index + 1} : </p><p>{e.fullName}</p>
                             </div>
                         ))

@@ -24,10 +24,10 @@ const AdminLogin = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    if (username !== "jerikoko") {
+    if (username !== "avantgardeAdmin") {
         setIsLoading(false)
         toast.error("incorrect username")
-    } else if(password !== "Mykehirl10@") {
+    } else if(password !== "12345Avantgarde") {
         setIsLoading(false)
         toast.error("incorrect password")
     } else {
