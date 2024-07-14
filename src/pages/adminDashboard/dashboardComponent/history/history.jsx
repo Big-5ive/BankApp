@@ -21,6 +21,11 @@ const AllHistory = () => {
     const navigate = useNavigate()
     const [dropDown, setDropDown] = useState(false)
     const admin = JSON.parse(localStorage.getItem("adminData"))
+
+    const handleLogout = () =>{
+        localStorage.removeItem("adminData")
+        navigate("/login") 
+    }
     return(
         <div className="adminDashboardParent">
         <div className="adminHold">
@@ -69,7 +74,7 @@ const AllHistory = () => {
                         </div>
                     </div>
                     
-                    <div className="navHolddiv">
+                    <div className="navHolddiv" onClick={handleLogout}>
                         <div className="navlogo">
                             <RiLogoutBoxLine />
                         </div>
@@ -134,7 +139,7 @@ const AllHistory = () => {
                                 <BsMotherboard />
                                 <p>Others</p>
                             </div> */}
-                            <div className="dropdownHold">
+                            <div className="dropdownHold" onClick={handleLogout}>
                                 <RiLogoutBoxLine />
                                 <p>Logout</p>
                             </div>

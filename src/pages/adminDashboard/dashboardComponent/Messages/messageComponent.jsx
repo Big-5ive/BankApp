@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { BeatLoader } from "react-spinners";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
-import { FaDeleteLeft } from "react-icons/fa6";
+// import { FaDeleteLeft } from "react-icons/fa6";
 import { MdDelete } from "react-icons/md";
 // import { ImCancelCircle } from "react-icons/im";
 
@@ -20,13 +20,15 @@ const MessageComponent = () => {
     const [loading, setLoading] = useState(false)
     const [loading2, setLoading2] = useState(false)
     const [allUsers, setAllUsers] = useState()
-    const [allMessages, SetAllMessages] = useState()
+    const [allMessages, SetAllMessages] = useState([])
     const [messageDetail, SetMessageDetail] = useState()
     const [deleteload, SetDeleteLoad] = useState(false)
     const [error, setError] = useState({
         type: "",
         message: ""
     })
+
+    const mapMessage = allMessages.reverse()
 
     const handleSelectChange = (e) => {
         const selectedUser = allUsers.find(user => user.email === e.target.value);
@@ -64,21 +66,23 @@ const MessageComponent = () => {
     fetchData();
   }, []);
 
-    useEffect(() => {
     const fetchData = async () => {
         const url = "https://avantgardefinance-api.onrender.com/get-messages"
         setLoading2(true)
-      try {
+    try {
         const response = await axios.get(url, { headers });
         SetAllMessages(response.data.data)
         // console.log(response.data.data)
         setLoading2(false);
-      } catch (err) {
+    } catch (err) {
         // console.log(err)
         setLoading2(false);
         toast.error(err.message)
-      }
+    }
     };
+
+    useEffect(() => {
+    
     fetchData();
   }, []);
 
@@ -136,10 +140,11 @@ const MessageComponent = () => {
         const url = `https://avantgardefinance-api.onrender.com/delete-message/${messageDetail._id}`
         axios.delete(url, { headers })
         .then((response)=> {
-            console.log(response)
+            // console.log(response)
             SetDeleteLoad(false)
             setOpen(false)
             toast.success("message successfully deleted")
+            fetchData()
             // useEffect()
         })
         .catch((error)=> {
@@ -197,7 +202,7 @@ const MessageComponent = () => {
                     
                         loading2 ? <BeatLoader color="white"/> :
                         allMessages?.length === 0 ? (<div style={{color: "white", fontSize: "20px"}}><p>No Message Found</p></div>):
-                        allMessages?.map((e, index)=> (
+                        mapMessage?.map((e, index)=> (
                         <div key={index} className="messageBody" onClick={()=> handleOpen(e)}>
                         <div className="messagePic">
                             <CgProfile />

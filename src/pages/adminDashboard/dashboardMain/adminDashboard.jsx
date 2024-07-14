@@ -19,6 +19,10 @@ const AdminDashboardParent = () => {
     const navigate = useNavigate()
     const [dropDown, setDropDown] = useState(false)
     const admin = JSON.parse(localStorage.getItem("adminData"))
+    const handleLogout = () =>{
+        localStorage.removeItem("adminData")
+        navigate("/login")
+    }
     return(
         <div className="adminDashboardParent">
         <div className="adminHold">
@@ -67,7 +71,7 @@ const AdminDashboardParent = () => {
                         </div>
                     </div>
                     
-                    <div className="navHolddiv">
+                    <div className="navHolddiv" onClick={handleLogout}>
                         <div className="navlogo">
                             <RiLogoutBoxLine />
                         </div>
@@ -124,7 +128,7 @@ const AdminDashboardParent = () => {
                                 <MdOutlineManageHistory />
                                 <p>Transaction History</p>
                             </div>
-                            <div className="dropdownHold">
+                            <div className="dropdownHold" onClick={handleLogout}>
                                 <RiLogoutBoxLine />
                                 <p>LogOut</p>
                             </div>

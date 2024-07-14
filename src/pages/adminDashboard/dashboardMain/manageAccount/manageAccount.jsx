@@ -20,6 +20,11 @@ const DashboardManageAccount = () => {
     const [dropDown, setDropDown] = useState(false)
     const navigate = useNavigate()
     const admin = JSON.parse(localStorage.getItem("adminData"))
+
+    const handleLogout = () =>{
+        localStorage.removeItem("adminData")
+        navigate("/login")
+    }
     return(
         <div className="adminDashboardParent">
         <div className="adminHold">
@@ -68,7 +73,7 @@ const DashboardManageAccount = () => {
                         </div>
                     </div>
                     
-                    <div className="navHolddiv">
+                    <div className="navHolddiv" onClick={handleLogout}>
                         <div className="navlogo">
                             <RiLogoutBoxLine />
                         </div>
@@ -133,7 +138,7 @@ const DashboardManageAccount = () => {
                                 <BsMotherboard />
                                 <p>Others</p>
                             </div> */}
-                            <div className="dropdownHold">
+                            <div className="dropdownHold" onClick={handleLogout}>
                                 <RiLogoutBoxLine />
                                 <p>Log out</p>
                             </div>
