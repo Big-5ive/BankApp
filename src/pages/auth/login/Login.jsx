@@ -9,6 +9,7 @@ import axios from "axios";
 import { DB } from "../../../Global/Features";
 
 const Login = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [accountNumber, setAccountNumber] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -44,9 +45,13 @@ const Login = () => {
       setIsLoading(false);
     }
   };
+  const handleFormSubmit = () => {
+    toast.success('Form submitted successfully!');
+  };
 
   return (
-    <div className="flex justify-center items-center min-h-screen -bg--clr-secondary px-4">
+    <>
+        <div className="flex justify-center items-center min-h-screen -bg--clr-secondary px-4">
       <div className="w-full max-w-md md:max-w-lg lg:w-[40%] lg:-bg--clr-primary p-8 rounded-lg lg:shadow-lg sm:w-[60%] sm:shadow-none -text--clr-silver-v1">
         <ToastContainer />
         <h1 className="text-2xl lg:text-3xl font-bold text-center mb-3 uppercase -text--clr-pumpkin">
@@ -138,6 +143,12 @@ const Login = () => {
         </div>
       </div>
     </div>
+    <ContactFormModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onSubmit={handleFormSubmit}
+      />
+    </>
   );
 };
 
