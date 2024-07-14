@@ -12,7 +12,7 @@ const ContactFormModal = ({ isOpen, onClose }) => {
   });
   const [loading, setLoading] = useState(false);
   const data = JSON.parse(localStorage.getItem("user"));
-  const userId = data._id;
+  const userId = data?._id;
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
