@@ -3,7 +3,13 @@
     background-color: var(--clr-primary);
     width: 260px;
     padding: 36px 20px;
-    transition: var(--transition-default);
+    /* transition: var(--transition-default); */
+    position: fixed; 
+    top: 0px;
+    left: 0px;
+    height: 100vh;
+    /* overflow-y: auto;  */
+    z-index: 100; 
   }
   .user-info {
     display: flex;

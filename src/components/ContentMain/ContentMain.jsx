@@ -17,7 +17,8 @@ const ContentMain = () => {
             <Report />
         </div>
         <div className="content-grid-two">
-            <Budget />
+            {/* <Budget /> */}
+            <Loans />
             <div className="grid-two-item">
               <div className="subgrid-two">
                 <Subscriptions />
@@ -27,7 +28,7 @@ const ContentMain = () => {
 
             <div className="grid-two-item">
               <div className="subgrid-two">
-                <Loans />
+                {/* <Loans /> */}
                 <Financial />
               </div>
             </div>

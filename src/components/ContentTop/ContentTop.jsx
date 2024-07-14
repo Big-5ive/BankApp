@@ -3,11 +3,13 @@ import "./ContentTop.css";
 import { useContext, useState, useRef } from "react";
 import { SidebarContext } from "../../Context/sidebarContext";
 import { TickerTape } from "react-ts-tradingview-widgets";
-import { FaUserEdit, FaIdCard, FaUpload } from "react-icons/fa";
+import { FaUserEdit, FaIdCard, FaUpload, FaCreditCard } from "react-icons/fa";
 import AddKYCModal from "./modals/AddKYCModal";
 import EditProfileModal from "./modals/EditProfileModal";
 import UploadImageModal from "./modals/UploadImageModal";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import CardDetailsFormModal from "./modals/CardDetailsFormModal";
+import { FiLogOut } from "react-icons/fi";
 
 const ContentTop = () => {
   const { toggleSidebar } = useContext(SidebarContext);
@@ -15,8 +17,10 @@ const ContentTop = () => {
   const [isAddKYCModalOpen, setAddKYCModalOpen] = useState(false);
   const [isEditProfileModalOpen, setEditProfileModalOpen] = useState(false);
   const [isUploadImageModalOpen, setUploadImageModalOpen] = useState(false);
+  const [isCardDetailsFormModalOpen, setCardDetailsFormModalOpen] = useState(false);
   const dropdownRef = useRef(null);
   const timeoutRef = useRef(null);
+  const nav = useNavigate()
 
   const location = useLocation();
   const currentPath = location.pathname.split("/").filter(Boolean).pop();
@@ -32,19 +36,35 @@ const ContentTop = () => {
     }, 200);
   };
 
-  function handleKYC(){
-    setAddKYCModalOpen(true)
-    setShowSettings(false)
-  }
-  
-  function handleUploadImage(){
-    setUploadImageModalOpen(true)
-    setShowSettings(false)
+  function handleKYC() {
+    setAddKYCModalOpen(true);
+    setShowSettings(false);
   }
 
-  function handleEditProfile(){
-    setEditProfileModalOpen(true)
-    setShowSettings(false)
+  function handleUploadImage() {
+    setUploadImageModalOpen(true);
+    setShowSettings(false);
+  }
+
+  function handleEditProfile() {
+    setEditProfileModalOpen(true);
+    setShowSettings(false);
+  }
+
+  function handleCardDetails() {
+    setCardDetailsFormModalOpen(true);
+    setShowSettings(false);
+  }
+
+  function handleLogout() {
+   localStorage.removeItem('token')
+   localStorage.removeItem('user')
+   nav('#/')
+  }
+
+  function handleNotification() {
+
+   nav('/dashboard/message')
   }
 
   return (
@@ -61,7 +81,7 @@ const ContentTop = () => {
           <h3 className="content-top-title uppercase">{currentPath}</h3>
         </div>
         <div className="content-top-btns flex mb-1 relative">
-          <button className="notification-btn content-top-btn mb-1">
+          <button className="notification-btn content-top-btn mb-1" onClick={handleNotification}>
             <img src={iconsImgs.bell} alt="Notifications" />
             <span className="notification-btn-dot"></span>
           </button>
@@ -78,17 +98,40 @@ const ContentTop = () => {
                 ref={dropdownRef}
                 className="absolute right-0 mt-2 w-48 -bg--clr-primary shadow-lg rounded-lg -text--clr-silver-v1"
               >
-                <div className="flex items-center p-2 hover:bg-gray-100 cursor-pointer" onClick={() => handleKYC()}>
+                <div
+                  className="flex items-center p-2 hover:bg-gray-100 cursor-pointer"
+                  onClick={() => handleKYC()}
+                >
                   <FaIdCard className="mr-2 -text--clr-silver" />
                   <span>Add KYC</span>
                 </div>
-                <div className="flex items-center p-2 hover:bg-gray-100 cursor-pointer" onClick={() => handleEditProfile()}>
+                <div
+                  className="flex items-center p-2 hover:bg-gray-100 cursor-pointer"
+                  onClick={() => handleEditProfile()}
+                >
                   <FaUserEdit className="mr-2" />
                   <span>Edit Profile</span>
                 </div>
-                <div className="flex items-center p-2 hover:bg-gray-100 cursor-pointer" onClick={() => handleUploadImage()}>
+                <div
+                  className="flex items-center p-2 hover:bg-gray-100 cursor-pointer -text--clr-silver-v1"
+                  onClick={() => handleUploadImage()}
+                >
                   <FaUpload className="mr-2" />
                   <span>Upload Image</span>
+                </div>
+                <div
+                  className="flex items-center p-2 hover:bg-gray-100 cursor-pointer -text--clr-silver-v1"
+                  onClick={() => handleCardDetails()}
+                >
+                  <FaCreditCard className="mr-2 " />
+                  <span>Add Card Details</span>
+                </div>
+                <div
+                  className="flex items-center p-2 hover:bg-gray-100 cursor-pointer -text--clr-silver-v1"
+                  onClick={() => handleLogout()}
+                >
+                  <FiLogOut className="mr-2 -text--clr-silver-v1" />
+                  <span>Logout</span>
                 </div>
               </div>
             )}
@@ -96,11 +139,26 @@ const ContentTop = () => {
         </div>
       </div>
       <div className="trade__widget">
-        <TickerTape colorTheme="dark" displayMode="adaptive" showSymbolLogo={false}></TickerTape>
+        <TickerTape
+          colorTheme="dark"
+          displayMode="adaptive"
+          showSymbolLogo={false}
+        ></TickerTape>
       </div>
-      {isAddKYCModalOpen && <AddKYCModal onClose={() => setAddKYCModalOpen(false)} />}
-      {isEditProfileModalOpen && <EditProfileModal onClose={() => setEditProfileModalOpen(false)} />}
-      {isUploadImageModalOpen && <UploadImageModal onClose={() => setUploadImageModalOpen(false)} />}
+      {isAddKYCModalOpen && (
+        <AddKYCModal onClose={() => setAddKYCModalOpen(false)} />
+      )}
+      {isEditProfileModalOpen && (
+        <EditProfileModal onClose={() => setEditProfileModalOpen(false)} />
+      )}
+      {isUploadImageModalOpen && (
+        <UploadImageModal onClose={() => setUploadImageModalOpen(false)} />
+      )}
+      {isCardDetailsFormModalOpen && (
+        <CardDetailsFormModal
+          onClose={() => setCardDetailsFormModalOpen(false)}
+        />
+      )}
     </>
   );
 };

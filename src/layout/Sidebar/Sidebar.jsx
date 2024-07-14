@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import { personsImgs } from "../../utils/images";
 import { navigationLinks } from "../../data/data";
 import "./Sidebar.css";
+import axios from "axios";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useContext } from "react";
 import { SidebarContext } from "../../Context/sidebarContext";
 
@@ -9,6 +12,35 @@ const Sidebar = () => {
   const [activeLinkIdx, setActiveLinkIdx] = useState(1);
   const [sidebarClass, setSidebarClass] = useState("");
   const { isSidebarOpen } = useContext(SidebarContext);
+  const [userData, setUserData] = useState(null);
+  const data = JSON.parse(localStorage.getItem("user"));
+  const token = localStorage.getItem("token");
+  const userId = data._id;
+
+  useEffect(() => {
+    fetchUserData();
+  }, [userId]);
+
+  const fetchUserData = async () => {
+    try {
+      const response = await axios.get(
+        `https://avantgardefinance-api.onrender.com/view-me/${userId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setUserData(response.data.user);
+      // toast.success("User data fetched successfully!");
+    } catch (error) {
+      if (error.response && error.response.status === 404) {
+        toast.error("User not found");
+      } else {
+        toast.error("Internal Server Error: " + error.message);
+      }
+  };
+}
 
   useEffect(() => {
     if (isSidebarOpen) {
@@ -21,12 +53,13 @@ const Sidebar = () => {
   return (
     <div className={`sidebar ${sidebarClass}`}>
       <div className="user-info">
-        <a href="/#/dashboard/profile">
+        <a href="/#/dashboard">
           <div className="info-img img-fit-cover">
-            <img src={personsImgs.person_two} alt="profile image" />
+            <img src={userData?.profilePhoto?.url} alt="profile image" />
+            {/* <img src={personsImgs.person_two} alt="profile image" /> */}
           </div>
         </a>
-        <span className="info-name">alice-doe</span>
+        <span className="info-name">{userData?.fullName}</span>
       </div>
 
       <nav className="navigation">
