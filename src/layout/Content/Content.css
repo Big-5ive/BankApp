@@ -24,7 +24,7 @@
   }
   
   .sidebar-change ~ .main-content {
-    margin-left: 0px; /* Adjust for when the sidebar is toggled */
+    margin-left: 70px; /* Adjust for when the sidebar is toggled */
     /* flex: 1; */
   }
 }
@@ -33,7 +33,12 @@
     background-color: var(--clr-secondary);
     flex: 1;
     padding: 32px;
-    margin-left: 70px;
+    /* margin-left: 70px; */
+  }
+
+  .sidebar-change ~ .main-content {
+    margin-left: 70px; /* Adjust for when the sidebar is toggled */
+    /* flex: 1; */
   }
 
 }
