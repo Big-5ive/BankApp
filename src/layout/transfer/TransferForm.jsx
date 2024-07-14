@@ -59,7 +59,7 @@ const TransferForm = () => {
     // Simulate API call
     setTimeout(() => {
       setLoading(false);
-      toast.success('Transfer submitted successfully!');
+      toast.success('Request submitted successfully!');
     }, 2000);
   };
 

@@ -50,8 +50,8 @@ const Sidebar = () => {
     }
   }, [isSidebarOpen]);
 
-  console.log(userData);
-  console.log(userData?.profilePhoto?.url);
+  // console.log(userData);
+  // console.log(userData?.profilePhoto?.url);
 
   return (
     <div className={`sidebar ${sidebarClass}`}>
@@ -92,15 +92,4 @@ const Sidebar = () => {
 };
 
 export default Sidebar;
-
-
-
-
-
-
-
-
-
-
-
 

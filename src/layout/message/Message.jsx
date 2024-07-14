@@ -51,7 +51,8 @@ const MessageComponent = () => {
           },
         }
       );
-      setUserData(response.data.data);
+      setUserData(response.data?.data);
+      // console.log(userData);
       // toast.success("User data fetched successfully!");
     } catch (error) {
       if (error.response && error.response.status === 404) {
@@ -94,7 +95,7 @@ const MessageComponent = () => {
     );
   }
 
-  if (!userData || userData.length === 0) {
+  if (!userData || userData?.length === 0) {
     return (
       <>
         <div className="main-content">
@@ -122,7 +123,7 @@ const MessageComponent = () => {
       <ContentTop />
       <div className="p-4 space-y-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {userData.map((message, index) => (
+          {userData?.map((message, index) => (
             <div
               key={index}
               className="-bg--clr-primary p-4 rounded shadow-md flex flex-col cursor-pointer hover:scale-105 "
@@ -138,8 +139,8 @@ const MessageComponent = () => {
               </div>
               <div className="flex justify-between items-center -text--clr-silver-v1">
                 <div className="flex-1">
-                  {message.subject.length > 50
-                    ? `${message.subject.substring(0, 50)}...`
+                  {message.subject?.length > 50
+                    ? `${message?.subject.substring(0, 50)}...`
                     : message.subject}
                 </div>
                 <div className="text-[10px] ml-2">
