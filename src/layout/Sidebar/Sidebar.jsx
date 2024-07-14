@@ -50,6 +50,9 @@ const Sidebar = () => {
     }
   }, [isSidebarOpen]);
 
+  // console.log(userData);
+  // console.log(userData?.profilePhoto?.url);
+
   return (
     <div className={`sidebar ${sidebarClass}`}>
       <div className="user-info">
@@ -59,7 +62,7 @@ const Sidebar = () => {
             {/* <img src={personsImgs.person_two} alt="profile image" /> */}
           </div>
         </a>
-        <span className="info-name">{userData?.fullName}</span>
+        <span className="info-name">{userData?.username}</span>
       </div>
 
       <nav className="navigation">
@@ -89,3 +92,4 @@ const Sidebar = () => {
 };
 
 export default Sidebar;
+
