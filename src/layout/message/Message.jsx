@@ -157,7 +157,7 @@ const MessageComponent = () => {
               <h2 className="text-2xl font-bold mb-4">
                 {selectedMessage.sender}
               </h2>
-              <p>{selectedMessage.subject}</p>
+              <p>{selectedMessage.message}</p>
               <button
                 className="mt-4 bg-blue-500 text-white py-2 px-4 rounded"
                 onClick={handleClose}
