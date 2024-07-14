@@ -4,7 +4,7 @@ import "./Subscriptions.css";
 
 const Subscriptions = () => {
   return (
-    <div className="subgrid-two-item grid-common grid-c5">
+    <div className="subgrid-two-item grid-common grid-c5 -text--clr-silver">
         <div className="grid-c-title">
             <h3 className="grid-c-title-text">Subscriptions</h3>
             <button className="grid-c-title-icon">
@@ -13,7 +13,8 @@ const Subscriptions = () => {
         </div>
         <div className="grid-c5-content">
             <div className="grid-items">
-                {
+                <p>No Subscriptions yet</p>
+                {/* {
                     subscriptions.map((subscription) => (
                         <div className="grid-item" key = {subscription.id}>
                             <div className="grid-item-l">
@@ -27,7 +28,7 @@ const Subscriptions = () => {
                             </div>
                         </div>
                     ))
-                }
+                } */}
             </div>
         </div>
     </div>

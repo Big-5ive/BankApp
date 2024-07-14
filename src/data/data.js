@@ -5,15 +5,14 @@ export const navigationLinks = [
     { id: 1, title: 'Home', image: iconsImgs.home, route: "/#/dashboard" },
     { id: 2, title: 'Profile', image: iconsImgs.profile, route: "/#/dashboard/detail" },
     { id: 3, title: 'Statement', image: iconsImgs.budget, route: "/#/dashboard/account-statement" },
-    { id: 4, title: 'Transactions', image: iconsImgs.transfer, route: "/#/dashboard/transaction" },
+    // { id: 4, title: 'Transactions', image: iconsImgs.transfer, route: "/#/dashboard/transaction" },
     { id: 5, title: 'Wire Transfer', image: iconsImgs.plane, route: "/#/dashboard/transfer" },
     { id: 6, title: 'Message', image: iconsImgs.mail, route: "/#/dashboard/message" },
     { id: 7, title: 'Loans', image: iconsImgs.bills, route: "/#/dashboard/loan" },
-    { id: 8, title: 'Reports', image: iconsImgs.report, route: "/#/dashboard" },
-    { id: 9, title: 'Savings', image: iconsImgs.wallet, route: "/#/dashboard" },
-    { id: 10, title: 'Financial Advice', image: iconsImgs.wealth, route: "/#/dashboard" },
-    { id: 11, title: 'Account', image: iconsImgs.user, route: "/#/dashboard" },
-    { id: 12, title: 'Logout', image: iconsImgs.logout, route: "/#/dashboard" }
+    // { id: 8, title: 'Reports', image: iconsImgs.report, route: "/#/dashboard" },
+    // { id: 9, title: 'Savings', image: iconsImgs.wallet, route: "/#/dashboard" },
+    // { id: 10, title: 'Financial Advice', image: iconsImgs.wealth, route: "/#/dashboard" },
+    // { id: 11, title: 'Account', image: iconsImgs.user, route: "/#/dashboard" },
 ];
 
 export const transactions = [

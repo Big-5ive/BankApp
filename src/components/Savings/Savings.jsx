@@ -13,7 +13,8 @@ const Savings = () => {
         </div>
         <div className="grid-c6-content">
             <div className="grid-items">
-                {
+                <p className="-text--clr-silver">You Can Always add saving</p>
+                {/* {
                     savings.map((saving) => (
                         <div className="grid-item" key = { saving.id }>
                             <div className="grid-item-top">
@@ -38,7 +39,7 @@ const Savings = () => {
                             </div>
                         </div>
                     ))
-                }
+                } */}
             </div>
         </div>
     </div>

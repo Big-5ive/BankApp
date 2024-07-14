@@ -4,8 +4,9 @@ import { FcSimCardChip } from "react-icons/fc";
 import { RiMastercardFill } from "react-icons/ri";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import jsPDF from 'jspdf';
+// import jsPDF from 'jspdf';
 import { BeatLoader } from 'react-spinners';
+// import jsPDF from 'jspdf';
 
 const AllInfoComponent = () => {
     const nav = useNavigate()

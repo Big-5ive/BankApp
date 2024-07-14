@@ -19,7 +19,7 @@ const ContactFormModal = ({ isOpen, onClose, onSubmit }) => {
   if (!isOpen) return null;
 
   return (
-    <div className='fixed inset-0 flex items-center justify-center'>
+    <div className='fixed inset-0 flex items-center justify-center z-40'>
       <div className='p-6 -bg--clr-primary rounded-lg shadow-lg w-full max-w-md -border--clr-silver-v1 border-2 max-[700px]:m-4'>
         <h2 className='text-lg font-semibold mb-4 -text--clr-silver-v1'>
           Kindly fill the form below and one of our agents will attend to you shortly

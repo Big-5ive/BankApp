@@ -11,11 +11,9 @@ const ProductState = createSlice({
     reducers:{
         DB:(state, {payload})=>{
             state.data = payload
-            console.log(payload);
         },
         userProfile : (state, {payload}) => {
             state.userProfile = payload
-            console.log(payload)
         }
     }
 })

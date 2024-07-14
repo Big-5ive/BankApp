@@ -4,8 +4,10 @@ import bar from "../../assets/icons/barChart.svg";
 import ContentTop from "../../components/ContentTop/ContentTop";
 import CreditDebit from "./CreditDebit";
 import FinancialStatement from "./FinancialStatement";
+import AtmCardDetail from "../statement/AtmCardDetail";
 
 const Profile = () => {
+  const userData = JSON.parse(localStorage.getItem("user"));
   return (
     <>
       <div className="main-content">
@@ -13,7 +15,7 @@ const Profile = () => {
         <div className="p-6 space-y-6 -bg--clr-secondary">
           {/* Header */}
           <div className="text-2xl font-bold -text--clr-white">
-            Hi, Audrey Jerome Welcome back!
+            {`Hi, ${userData?.fullName} Welcome back!`}
           </div>
           <div className="-text--clr-silver-v1">Banking Like Never Before.</div>
 
@@ -26,10 +28,12 @@ const Profile = () => {
                 <div>
                   <div className="-text--clr-silver">Available Balance</div>
                   <div className="text-3xl font-bold -text--clr-silver-v1">
-                    $900,000.00
+                    {`$${userData?.availableBalance}`}
                   </div>
                 </div>
-                <div className="-text--clr-white font-bold ml-1 bg-blue-800 py-1 px-2 rounded ">VISA</div>
+                <div className="-text--clr-white font-bold ml-1 bg-blue-800 py-1 px-2 rounded ">
+                  VISA
+                </div>
               </div>
 
               {/* Bar Chart */}
@@ -40,22 +44,24 @@ const Profile = () => {
               {/* Account Details */}
               <div className="space-y-2 -text--clr-silver-v1">
                 <div className="">Your Account Number</div>
-                <div className="text-2xl font-bold">3112384778</div>
+                <div className="text-2xl font-bold">{userData?.accountNumber}</div>
               </div>
               <div className="grid grid-cols-3 gap-2">
                 <div>
                   <div className="-text--clr-silver">Account Holder</div>
                   <div className="font-bold -text--clr-silver-v1">
-                    Audrey Micha Jerome
+                    {userData?.fullName}
                   </div>
                 </div>
                 <div>
                   <div className="-text--clr-silver">Account Type</div>
-                  <div className="font-bold -text--clr-silver-v1">Savings</div>
+                  <div className="font-bold -text--clr-silver-v1">
+                    {userData?.accountType}
+                  </div>
                 </div>
                 <div>
                   <div className="-text--clr-silver">Account Status</div>
-                  <div className="font-bold -text--clr-silver-v1">Active</div>
+                  <div className="font-bold -text--clr-silver-v1">{userData?.status}</div>
                 </div>
               </div>
             </div>
@@ -66,7 +72,7 @@ const Profile = () => {
               <div className="-bg--clr-primary p-6 rounded shadow-md space-y-2">
                 <div className="-text--clr-silver">Total Book Balance</div>
                 <div className="text-3xl font-bold -text--clr-silver-v1">
-                  $1,200,000.00
+                  {`$${userData?.totalBalance}`}
                 </div>
                 <div className="-text--clr-silver-v1">as at July 4, 2024</div>
 
@@ -79,14 +85,14 @@ const Profile = () => {
               {/* Registered Email */}
               <div className="-bg--clr-primary p-6 rounded shadow-md">
                 <div className="-text--clr-silver">Registered Email</div>
-                <div className="text-xl font-bold -text--clr-silver-v1">
-                  archillesmr@gmail.com
+                <div className="text-lg font-bold -text--clr-silver-v1 line-clamp-5 ">
+                  {userData.email}
                 </div>
               </div>
             </div>
 
             {/* Right Side */}
-            <div className="-bg--clr-primary p-6 rounded shadow-md">
+            {/* <div className="-bg--clr-primary p-6 rounded shadow-md">
               <div className="-text--clr-silver-v1 font-bold">
                 ATM Card Details
               </div>
@@ -117,11 +123,11 @@ const Profile = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
+            <AtmCardDetail />
           </div>
 
           <FinancialStatement />
-
           <CreditDebit />
         </div>
       </div>

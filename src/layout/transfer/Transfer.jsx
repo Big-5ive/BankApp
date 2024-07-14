@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import ContentTop from "../../components/ContentTop/ContentTop";
 import TransferForm from "./TransferForm";
+import AtmCardDetail from "../statement/AtmCardDetail";
 
 const Transfer = () => {
   const [currentTime, setCurrentTime] = useState("");
   const [currentDate, setCurrentDate] = useState("");
+  const userData = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
     const updateTime = () => {
@@ -38,13 +40,15 @@ const Transfer = () => {
               <div className="p-4 -bg--clr-primary rounded shadow-md text-center max-[700px]:w-[95%] ">
                 <div className="-text--clr-silver-v1">Book Balance</div>
                 <div className="text-2xl text-orange-500 font-bold">
-                  $1,200,000.00
+                  {/* $1,200,000.00 */}
+                  {`$${userData.totalBalance}`}
                 </div>
               </div>
               <div className="p-4 -bg--clr-primary rounded shadow-md text-center max-[700px]:w-[95%]">
                 <div className="-text--clr-silver-v1">Available Balance</div>
                 <div className="text-2xl text-green-500 font-bold">
-                  $900,000.00
+                  {/* $900,000.00 */}
+                  {`$${userData?.availableBalance}`}
                 </div>
               </div>
             </div>
@@ -61,7 +65,8 @@ const Transfer = () => {
                 {currentTime}
               </div>
             </div>
-            <div className="-bg--clr-primary p-4 rounded shadow-md">
+            <AtmCardDetail />
+            {/* <div className="-bg--clr-primary p-4 rounded shadow-md">
               <div className="-text--clr-silver-v1">ATM Card Details</div>
               <div className="mt-4 space-y-2">
                 <div className="p-2 border rounded -text--clr-silver-v1">
@@ -82,7 +87,7 @@ const Transfer = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
             <div className="-bg--clr-primary p-4 rounded shadow-md">
               <div className="text-blue-800 font-bold">TIPS</div>
               <div className="mt-4 -text--clr-silver-v1">
