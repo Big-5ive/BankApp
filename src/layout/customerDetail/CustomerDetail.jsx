@@ -90,6 +90,10 @@ const CustomerDetail = () => {
     );
   }
 
+  const formatNumber = (number) => {
+    return new Intl.NumberFormat("en-US").format(number);
+  };
+
   const {
     fullName,
     _id,
@@ -130,7 +134,9 @@ const CustomerDetail = () => {
                 <FaDollarSign className="h-5 w-5 -text--clr-silver-v1 mr-2" />{" "}
                 Total Balance:
               </div>
-              <div className="text-sm -text--clr-silver">{totalBalance}</div>
+              <div className="text-sm -text--clr-silver">
+                {`$ ${isNaN(totalBalance) ? 0 : formatNumber(totalBalance)}`}
+              </div>
               <div className="w-full bg-blue-500 h-1 mt-2 rounded"></div>
             </div>
             <div className="mt-4">
@@ -139,7 +145,9 @@ const CustomerDetail = () => {
                 Available Balance:
               </div>
               <div className="text-sm -text--clr-silver">
-                {availableBalance}
+                {`$ ${
+                  isNaN(availableBalance) ? 0 : formatNumber(availableBalance)
+                }`}
               </div>
               <div className="w-full bg-blue-500 h-1 mt-2 rounded"></div>
             </div>
