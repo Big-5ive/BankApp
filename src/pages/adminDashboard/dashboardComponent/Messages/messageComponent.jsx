@@ -111,7 +111,6 @@ const MessageComponent = () => {
             })
             toast.error(error.type === "sender" ? error.message : "")
         } else{
-            
             const url = `https://avantgardefinance-api.onrender.com/message-user/${receiverId}`
             const data = {
                 sender: sender,
