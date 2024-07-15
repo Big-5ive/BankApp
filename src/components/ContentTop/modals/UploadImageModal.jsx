@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const UploadImageModal = ({ onClose }) => {
@@ -47,6 +47,7 @@ const UploadImageModal = ({ onClose }) => {
         progress: undefined,
       });
       onClose();
+      window.location.reload();
     } catch (error) {
       if (error.response && error.response.status === 400) {
         toast.error('No file was uploaded');
@@ -73,7 +74,6 @@ const UploadImageModal = ({ onClose }) => {
           </button>
         </form>
       </div>
-      <ToastContainer />
     </div>
   );
 };
