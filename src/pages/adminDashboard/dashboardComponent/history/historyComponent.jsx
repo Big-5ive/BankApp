@@ -120,17 +120,27 @@ const TransactionHistory = ({initial}) => {
         })
     }
 
+    const formatTimestamp = (timestamp) => {
+        const date = new Date(timestamp);
+        const day = date.getDate().toString().padStart(2, "0");
+        const month = (date.getMonth() + 1).toString().padStart(2, "0");
+        const year = date.getFullYear();
+    
+        let hours = date.getHours();
+        const minutes = date.getMinutes().toString().padStart(2, "0");
+        const ampm = hours >= 12 ? "pm" : "am";
+        hours = hours % 12;
+        hours = hours ? hours : 12;
+    
+        return `${day}/${month}/${year}`;
+      };
+
     return(
         <div className="transactionHistoryParent">
             <ToastContainer />
             <div className="historyTopic">
                 <button onClick={()=>setAddHistory(true)}> <IoMdAdd/> Add History</button>
                 <p>All Transaction History</p>
-                {/* <button onClick={fetchData1}> 
-                    {
-                        loading2? <BeatLoader color="white"/> : "View all history"
-                    }
-                </button> */}
             </div>
             {
                 addHistory ? 
@@ -274,7 +284,7 @@ const TransactionHistory = ({initial}) => {
                             <div className="headTopic"><p>{e.remark}</p></div>
                             <div className="headTopic"><p>{e.transactionType}</p></div>
                             <div className="headTopic"><p>{e.bank}</p></div>
-                            <div className="headTopic"><p>{e.date}</p></div>
+                            <div className="headTopic"><p>{formatTimestamp(e.date)}</p></div>
                             <div className="headTopic deleteHistory">
                                 {
                                     loadingState[index] ? <BeatLoader color="white"/> : 

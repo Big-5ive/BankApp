@@ -794,16 +794,13 @@ export const UpdateAccount = () => {
                 <div className="addformrow">
                     <div className="inputHold">
                         <p>Marital Status</p>
-                        <input 
-                        value={maritalStatus}
-                        placeholder={placeholder.maritalStatus}
-                        onChange={(e)=>setMaritalStatus(e.target.value)}
-                        type="text" />
+                        <select name="" onChange={(e)=> setMaritalStatus(e.target.value)} value={maritalStatus} id="accounts">
+                            <option value="Married">Married</option>
+                            <option value="Single">Single</option>
+                            <option value="Divorced">Divorced</option>
+                        </select>
                     </div>
-                    <div className="inputHold">
-                        <p>Gender</p>
-                        <input type="text" />
-                    </div>
+                
                     <div className="inputHold">
                         <p>Address</p>
                         <input 
