@@ -51,11 +51,11 @@ const MobileMenu = ({ hiddenClass, handleRemove }) => {
                                     <a className="block p-4 text-sm text-blueGray-500 hover:bg-blue-50 hover:text-blue-500 rounded-xl">About Us</a>
                                 </Link>
                             </li>
-                            <li className="mb-1">
+                            {/* <li className="mb-1">
                                 <Link to="/services" legacyBehavior>
                                     <a className="block p-4 text-sm text-blueGray-500 hover:bg-blue-50 hover:text-blue-500">Services</a>
                                 </Link>
-                            </li>
+                            </li> */}
                             
                             <li className="mb-1">
                                 <Link to="/contact" legacyBehavior>
