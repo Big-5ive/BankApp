@@ -35,7 +35,7 @@ const ResetPassword = () => {
       toast.success("Password reset successful!");
       localStorage.setItem('passwordResetStatus', 'successful');
       // Redirect or show success message as needed
-      nav('/')
+      nav('/login1')
     } catch (error) {
       if (error.response) {
         const { message } = error.response.data;
