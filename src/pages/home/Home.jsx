@@ -4,6 +4,13 @@ import Layout from "../../components/layout/Layout";
 // import Slider1 from "../../components/slider/Slider1"
 
 function Home() {
+
+    const handleScrollToFeatures = () => {
+        const element = document.getElementById("key-features");
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+    }
   return (
     <>
       <Layout>
@@ -32,16 +39,17 @@ function Home() {
               </div>
 
               <div>
-                <a
+                <div
                   className="btn-primary py-4 px-8 mr-2 wow animate__animated animate__fadeIn hover-up-2"
-                  href="#key-features"
+                  href=""
+                  onClick={handleScrollToFeatures}
                 >
                   Key Features
-                </a>
+                </div>
                 <a
                   className="btn-white wow animate__animated animate__fadeIn hover-up-2"
                   data-wow-delay=".3s"
-                  href="#how-we-work"
+                  href="/#/about"
                 >
                   How We Work?
                 </a>
