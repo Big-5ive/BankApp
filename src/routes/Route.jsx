@@ -27,11 +27,32 @@ import OTPverify from "../pages/auth/otp/otp";
 import OTPClient from "../pages/auth/otp-client/OTPClient";
 import OTPVerification from "../pages/auth/otp-client/OTPClient";
 import AdminLogin from "../pages/auth/loginAdmin/loginAdmin";
+import Home from "../pages/home/Home";
+import Contact from "../pages/contact/Contact";
+import About from "../pages/about/About";
+import Services from "../pages/services/Services";
 
 const route = createHashRouter([
   {
     path: "/",
+    element: <Home />,
+  },
+  {
+    path: "/login1",
     element: <Login />,
+  },
+
+  {
+    path: "/contact",
+    element: <Contact />,
+  },
+  {
+    path: "/about",
+    element: <About />,
+  },
+  {
+    path: "/services",
+    element: <Services />,
   },
   {
     path: "/login",
@@ -39,15 +60,15 @@ const route = createHashRouter([
   },
   {
     path: "/signup",
-    element: <UserSignup />
+    element: <UserSignup />,
   },
   {
     path: "/otp-verification/:userId",
-    element: <OTPVerification />
+    element: <OTPVerification />,
   },
   {
     path: "/otp",
-    element: <OTPverify />
+    element: <OTPverify />,
   },
   {
     path: "/forgot-password",
@@ -75,11 +96,11 @@ const route = createHashRouter([
   // },
   {
     path: "/messages",
-    element: <AllMessage />
+    element: <AllMessage />,
   },
   {
     path: "/history",
-    element: <AllHistory />
+    element: <AllHistory />,
   },
   {
     path: "/dashboard",
