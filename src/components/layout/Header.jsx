@@ -62,7 +62,7 @@ const Header = ({handleHidden}) => {
                             </li>
                         </ul>
                         <div className="hidden lg:block">
-                            <Link to="/login" legacyBehavior>
+                            <Link to="/sign-in" legacyBehavior>
                                 <a className="btn-accent hover-up-2">Log In</a>
                             </Link>
                             <Link to="/signup" legacyBehavior>

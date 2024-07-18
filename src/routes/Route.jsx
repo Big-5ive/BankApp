@@ -38,7 +38,7 @@ const route = createHashRouter([
     element: <Home />,
   },
   {
-    path: "/login1",
+    path: "/sign-in",
     element: <Login />,
   },
 
