@@ -27,7 +27,7 @@ const Header = ({handleHidden}) => {
                                 />
                             </a>
                             <span className="hidden lg:flex">Avant-garde-finance</span>
-                            <span className="flex lg:hidden">Avant</span>
+                            <span className="flex lg:hidden">Avant-garde-finance</span>
                         </Link>
                         <ul className="hidden lg:flex lg:items-center lg:w-auto lg:space-x-12">
                             <li className="group relative pt-4 pb-4 has-child">
@@ -45,13 +45,13 @@ const Header = ({handleHidden}) => {
                                     </a>
                                 </Link>
                             </li>
-                            <li className="pt-4 pb-4">
+                            {/* <li className="pt-4 pb-4">
                                 <Link to="/services" legacyBehavior>
                                     <a className="text-sm font-semibold text-blueGray-600 hover:text-blueGray-500">
                                         Services
                                     </a>
                                 </Link>
-                            </li>
+                            </li> */}
                            
                             <li className="pt-4 pb-4">
                                 <Link to="/contact" legacyBehavior>

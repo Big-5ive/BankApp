@@ -28,8 +28,9 @@ const Footer = () => {
                         </div>
                         <div className="w-full lg:w-1/5 px-3">
                             <p className="mb-2 lg:mb-4 lg:text-lg font-bold font-heading text-blueGray-800">Contacts</p>
-                            <p className="lg:text-lg text-blueGray-400">(+01) 234 568</p>
-                            <p className="lg:text-lg text-blueGray-400">contact@Avant-garde-finance.com</p>
+                            <p className="lg:text-lg text-blueGray-400">(+136) 046 13403</p>
+                            <p className="lg:text-lg text-blueGray-400">(+121) 8360 4816</p>
+                            <p className="lg:text-lg text-blueGray-400">customercare@avant-garde-finance.com</p>
                         </div>
                     </div>
                     <div className="flex flex-col lg:flex-row items-center lg:justify-between">
