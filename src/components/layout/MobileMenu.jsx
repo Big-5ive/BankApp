@@ -28,7 +28,7 @@ const MobileMenu = ({ hiddenClass, handleRemove }) => {
                     <div className="flex items-center mb-8 justify-between">
                         <Link to="/" legacyBehavior>
                             <a className="mr-auto text-3xl font-semibold leading-none">
-                                <img className="h-10" src="/imgs/logos/monst-logo.svg" alt="Monst" />
+                                <img className="h-10" src="/imgs/logos/favicon.svg" alt="" />
                             </a>
                         </Link>
                         <button className="navbar-close" onClick={handleRemove}>
@@ -51,15 +51,20 @@ const MobileMenu = ({ hiddenClass, handleRemove }) => {
                                     <a className="block p-4 text-sm text-blueGray-500 hover:bg-blue-50 hover:text-blue-500 rounded-xl">About Us</a>
                                 </Link>
                             </li>
-                            {/* <li className="mb-1">
+                            <li className="mb-1">
                                 <Link to="/services" legacyBehavior>
-                                    <a className="block p-4 text-sm text-blueGray-500 hover:bg-blue-50 hover:text-blue-500">Services</a>
+                                    <a className="block p-4 text-sm text-blueGray-500 hover:bg-blue-50 hover:text-blue-500">Safe Deposite Box</a>
                                 </Link>
-                            </li> */}
+                            </li>
                             
                             <li className="mb-1">
                                 <Link to="/contact" legacyBehavior>
-                                    <a className="block p-4 text-sm text-blueGray-500 hover:bg-blue-50 hover:text-blue-500">Contact Us</a>
+                                    <a className="block p-4 text-sm text-blueGray-500 hover:bg-blue-50 hover:text-blue-500">Cash Management Services</a>
+                                </Link>
+                            </li>
+                            <li className="mb-1">
+                                <Link to="/others" legacyBehavior>
+                                    <a className="block p-4 text-sm text-blueGray-500 hover:bg-blue-50 hover:text-blue-500">Other Services</a>
                                 </Link>
                             </li>
                         </ul>
@@ -67,7 +72,7 @@ const MobileMenu = ({ hiddenClass, handleRemove }) => {
                             <Link to="/signup" legacyBehavior>
                                 <a className="block px-4 py-3 mb-3 text-xs text-center font-semibold leading-none bg-blue-400 hover:bg-blue-500 text-white rounded">Sign Up</a>
                             </Link>
-                            <Link to="/login" legacyBehavior>
+                            <Link to="/sign-in" legacyBehavior>
                                 <a className="block px-4 py-3 mb-2 text-xs text-center text-blue-500 hover:text-blue-700 font-semibold leading-none border border-blue-200 hover:border-blue-300 rounded">Log In</a>
                             </Link>
                         </div>
@@ -75,9 +80,9 @@ const MobileMenu = ({ hiddenClass, handleRemove }) => {
                     <div className="mt-auto">
                         <p className="my-4 text-xs text-blueGray-400">
                             <span>Get in Touch</span>
-                            <span className="text-blue-500 hover:text-blue-500 underline">contact@Avant-garge-finance.com</span>
+                            <span className="text-blue-500 hover:text-blue-500 underline">customercare@Avant-garde-finance.com</span>
                         </p>
-                        <a className="inline-block px-1" to="https://facebook.com">
+                        {/* <a className="inline-block px-1" to="https://facebook.com">
                             <img src="/imgs/icons/facebook-blue.svg" alt="Monst" />
                         </a>
                         <a className="inline-block px-1" to="https://twitter.com">
@@ -85,7 +90,7 @@ const MobileMenu = ({ hiddenClass, handleRemove }) => {
                         </a>
                         <a className="inline-block px-1" to="https://www.instagram.com">
                             <img src="/imgs/icons/instagram-blue.svg" alt="Monst" />
-                        </a>
+                        </a> */}
                     </div>
                 </nav>
             </div>

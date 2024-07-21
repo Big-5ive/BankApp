@@ -1,9 +1,11 @@
 import TextEffect from "../../components/elements/TextEffect";
 import CounterUp from "../../components/elements/Counterup";
 import Layout from "../../components/layout/Layout";
+import { useNavigate } from "react-router-dom";
 // import Slider1 from "../../components/slider/Slider1"
 
 function Home() {
+  const navigate = useNavigate()
 
     const handleScrollToFeatures = () => {
         const element = document.getElementById("key-features");
@@ -13,6 +15,7 @@ function Home() {
     }
   return (
     <>
+    
       <Layout>
         <section
           className="xl:bg-contain bg-top bg-no-repeat -mt-24 pt-24"
@@ -92,7 +95,7 @@ function Home() {
                     ></path>
                   </svg>
                 </div>
-                <div className="sm:py-2 ml-2 sm:ml-6">
+                {/* <div className="sm:py-2 ml-2 sm:ml-6">
                   <span className="sm:text-2xl font-bold font-heading">+ </span>
                   <span className="sm:text-2xl font-bold font-heading count">
                     <CounterUp count={950} time={3} />
@@ -100,13 +103,13 @@ function Home() {
                   <p className="text-xs sm:text-base text-blueGray-400">
                     Trusted Partners
                   </p>
-                </div>
+                </div> */}
               </div>
               <div
                 className="hover-up-5 flex w-1/2 lg:w-auto py-4 wow animate__animated animate__fadeIn"
                 data-wow-delay=".4s"
               >
-                <div className="flex justify-center items-center bg-blueGray-50 text-blue-500 rounded-xl h-12 w-12 sm:h-20 sm:w-20">
+                {/* <div className="flex justify-center items-center bg-blueGray-50 text-blue-500 rounded-xl h-12 w-12 sm:h-20 sm:w-20">
                   <svg
                     className="w-8 h-8"
                     fill="none"
@@ -121,8 +124,8 @@ function Home() {
                       d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"
                     ></path>
                   </svg>
-                </div>
-                <div className="sm:py-2 ml-2 sm:ml-6">
+                </div> */}
+                {/* <div className="sm:py-2 ml-2 sm:ml-6">
                   <span className="sm:text-2xl font-bold font-heading">+ </span>
                   <span className="sm:text-2xl font-bold font-heading count">
                     <CounterUp count={58} time={3} />
@@ -134,13 +137,13 @@ function Home() {
                   <p className="text-xs sm:text-base text-blueGray-400">
                     Successful Transactions
                   </p>
-                </div>
+                </div> */}
               </div>
               <div
                 className="hover-up-5 flex w-1/2 lg:w-auto py-4 wow animate__animated animate__fadeIn"
                 data-wow-delay=".6s"
               >
-                <div className="flex justify-center items-center bg-blueGray-50 text-blue-500 rounded-xl h-12 w-12 sm:h-20 sm:w-20">
+                {/* <div className="flex justify-center items-center bg-blueGray-50 text-blue-500 rounded-xl h-12 w-12 sm:h-20 sm:w-20">
                   <svg
                     className="w-8 h-8"
                     fill="none"
@@ -155,8 +158,8 @@ function Home() {
                       d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
                     ></path>
                   </svg>
-                </div>
-                <div className="sm:py-2 ml-2 sm:ml-6">
+                </div> */}
+                {/* <div className="sm:py-2 ml-2 sm:ml-6">
                   <span className="sm:text-2xl font-bold font-heading">+ </span>
                   <span className="sm:text-2xl font-bold font-heading count">
                     <CounterUp count={500} time={3} />
@@ -164,13 +167,13 @@ function Home() {
                   <p className="text-xs sm:text-base text-blueGray-400">
                     Satisfied Clients
                   </p>
-                </div>
+                </div> */}
               </div>
               <div
                 className="hover-up-5 flex w-1/2 lg:w-auto py-4 wow animate__animated animate__fadeIn"
                 data-wow-delay=".8s"
               >
-                <div className="flex justify-center items-center bg-blueGray-50 text-blue-500 rounded-xl h-12 w-12 sm:h-20 sm:w-20">
+                {/* <div className="flex justify-center items-center bg-blueGray-50 text-blue-500 rounded-xl h-12 w-12 sm:h-20 sm:w-20">
                   <svg
                     className="w-8 h-8"
                     fill="none"
@@ -185,8 +188,8 @@ function Home() {
                       d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
                     ></path>
                   </svg>
-                </div>
-                <div className="sm:py-2 ml-2 sm:ml-6">
+                </div> */}
+                {/* <div className="sm:py-2 ml-2 sm:ml-6">
                   <span className="sm:text-2xl font-bold font-heading">+ </span>
                   <span className="sm:text-2xl font-bold font-heading count">
                     <CounterUp count={300} time={3} />
@@ -194,7 +197,7 @@ function Home() {
                   <p className="text-xs sm:text-base text-blueGray-400">
                     Innovative Solutions
                   </p>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
@@ -372,7 +375,7 @@ function Home() {
               </div>
               <div className="w-full lg:w-1/2">
                 <p className="text-blueGray-400 leading-loose wow animate__animated animate__fadeIn">
-                  At Trust Finance, we are committed to providing top-notch
+                  At Avant-garde-finance, we are committed to providing top-notch
                   banking services that cater to your every need. Our team is
                   dedicated to ensuring your financial goals are met with
                   efficiency and excellence.
@@ -384,7 +387,7 @@ function Home() {
                 className="hover-up-5 w-full md:w-1/2 lg:w-1/3 px-3 mb-6 wow animate__animated animate__fadeIn"
                 data-wow-delay=".3s"
               >
-                <div className="p-12 bg-white shadow rounded">
+                <div className="p-12 bg-white shadow rounded" onClick={()=>navigate("/signup")}>
                   <div className="flex w-12 h-12 mx-auto items-center justify-center text-blue-800 font-bold font-heading bg-blue-200 rounded-full">
                     1
                   </div>
@@ -462,7 +465,7 @@ function Home() {
               <div className="max-w-lg mx-auto text-center">
                 <h2 className="mb-4 text-3xl lg:text-4xl font-bold font-heading wow animate__animated animate__fadeIn">
                   <span>Subscribe now to</span>
-                  <span className="text-blue-500"> Trust Finance Updates </span>
+                  <span className="text-blue-500"> Avant-Garde-Finance Updates </span>
                   <span>and stay informed.</span>
                 </h2>
                 <p
@@ -494,6 +497,7 @@ function Home() {
                   <button
                     className="w-full md:w-auto py-4 px-8 text-xs text-white font-semibold leading-none bg-blue-400 hover:bg-blue-500 rounded"
                     type="submit"
+                    onClick={()=>navigate("/signup")}
                   >
                     Sign Up
                   </button>

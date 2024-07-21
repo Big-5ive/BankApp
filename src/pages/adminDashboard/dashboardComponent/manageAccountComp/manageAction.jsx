@@ -299,6 +299,7 @@ export const CreditAccount = () => {
     const [description, setDescription] = useState("")
     const [date, setDate] = useState("")
     const [time, setTime] = useState("")
+    const [bank, setBank] = useState("")
     const [loading, setLoading] = useState(false)
     const [loading2, setLoading2] = useState(false)
     const [allAccount, setAllAccount] = useState()
@@ -313,7 +314,8 @@ export const CreditAccount = () => {
         amount: amount1,
         description : description,
         date : date,
-        time : time
+        time : time,
+        bank: bank
     }
     const admin = JSON.parse(localStorage.getItem("adminData"))
     const token = admin.token
@@ -442,6 +444,24 @@ export const CreditAccount = () => {
                             type="Time" />
                         </div>
                     </div>
+                    <div className="creditAccountrow">
+                        <div className="creditInputHold">
+                            <p>Bank</p>
+                            <input 
+                            // required
+                            value={bank}
+                            onChange={(e)=>setBank(e.target.value)}
+                            type="text" />
+                        </div>
+                        {/* <div className="creditInputHold">
+                            <p>Time</p>
+                            <input 
+                            // required
+                            value={time}
+                            onChange={(e)=>setTime(e.target.value)}
+                            type="Time" />
+                        </div> */}
+                    </div>
                     <div className="creditAcctButt">
                         <button>
                             {
@@ -462,6 +482,7 @@ export const DebitAccount = () => {
     const [description, setDescription] = useState("")
     const [date, setDate] = useState("")
     const [time, setTime] = useState("")
+    const [bank, setBank] = useState("")
     const [loading, setLoading] = useState(false)
     const [allAccount, setAllAccount] = useState()
 
@@ -474,7 +495,8 @@ export const DebitAccount = () => {
             amount: amount,
             description : description,
             date : date,
-            time : time
+            time : time,
+            bank: bank
         }
         const admin = JSON.parse(localStorage.getItem("adminData"))
         const token = admin.token
@@ -584,6 +606,23 @@ export const DebitAccount = () => {
                             onChange={(e)=> setTime(e.target.value)}
                             type="Time" />
                         </div>
+                    </div>
+                    <div className="creditAccountrow">
+                        <div className="creditInputHold">
+                            <p>Bank</p>
+                            <input 
+                            // required
+                            value={bank}
+                            onChange={(e)=> setBank(e.target.value)}
+                            type="text" />
+                        </div>
+                        {/* <div className="creditInputHold">
+                            <p>Time</p>
+                            <input 
+                            value={time}
+                            onChange={(e)=> setTime(e.target.value)}
+                            type="Time" />
+                        </div> */}
                     </div>
                     <div className="creditAcctButt">
                         <button>
