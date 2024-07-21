@@ -55,7 +55,7 @@ const Dashboard = () => {
     <div className='app'>
       <Sidebar />
       <Outlet />
-      <ChatButton onClick={() => setIsModalOpen(true)} />
+      {/* <ChatButton onClick={() => setIsModalOpen(true)} /> */}
       <ContactFormModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
