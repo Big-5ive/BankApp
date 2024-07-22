@@ -9,7 +9,8 @@ const OtherServices = () => {
     return(
         <Layout>
             <section className='otherSavicesParent'>
-                <div className="othersHeroPage">
+                <div className="othersHeroPage" style={{backgroundImage: 'url("./imgs/others.jpg")'}}>
+                    {/* <img src="./imgs/others.jpg" alt="" /> */}
                     <div className="othersHeroWrite">
                         <div className="otherswriteHead">
                             <h1>

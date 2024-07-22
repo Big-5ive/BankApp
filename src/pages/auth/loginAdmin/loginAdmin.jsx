@@ -50,7 +50,8 @@ const AdminLogin = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen -bg--clr-secondary px-4">
+    <div className="flex justify-center items-center min-h-screen -bg--clr-secondary px-4" 
+    style={{backgroundImage: 'url("./imgs/logos/favicon.svg")'}}>
       <div className="w-full max-w-md md:max-w-lg lg:w-[40%] lg:-bg--clr-primary p-8 rounded-lg lg:shadow-lg sm:w-[60%] sm:shadow-none -text--clr-silver-v1">
         <ToastContainer />
         <h1 className="text-2xl lg:text-3xl font-bold text-center mb-3 uppercase -text--clr-pumpkin">

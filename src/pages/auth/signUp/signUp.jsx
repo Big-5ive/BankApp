@@ -182,7 +182,7 @@ const UserSignup = () => {
         }
     }
     return(
-        <div className="signupParent">
+        <div className="signupParent" style={{backgroundImage: 'url("./imgs/bussiness.jpg")', backgroundSize: "cover"}}>
             <div className="signUpbody">
                 <div className="signUptop">
                     <p>Welcome to AVANT GARDE FINANCE <span>Get Started!</span></p>
@@ -309,7 +309,7 @@ const UserSignup = () => {
                                 loading ? <BeatLoader color="white" />: "Sign-Up"
                             }
                         </button>
-                        <button className="signButton2" onClick={()=>navigate("/")}>allready have an account? <span style={{color: "blue"}}>LOGIN</span></button>
+                        <button className="signButton2" onClick={()=>navigate("/sign-in")}>allready have an account? <span style={{color: "blue"}}>LOGIN</span></button>
                     </div>
                 </div>
                 </form>

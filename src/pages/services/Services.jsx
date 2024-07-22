@@ -17,7 +17,7 @@ const Services = () => {
       <Layout>
       <section
           className="xl:bg-contain bg-top bg-no-repeat -mt-24 pt-24"
-          style={{ backgroundImage: "url('../imgs/pixel.jpg')" }}
+          style={{ backgroundImage: "url('../imgs/safe.jpg')" }}
         >
           <div className="container px-4 mx-auto">
             <div className="pt-12 text-center">
@@ -69,7 +69,7 @@ const Services = () => {
             >
               <img
                 // className="jump rounded wow animate__animated animate__fadeIn"
-                src="../imgs/watch.jpg"
+                src="../imgs/banksafe.jpg"
                 alt="Monst"
                 style={{width: "100%", height: "100%", objectFit: "cover"}}
               />
@@ -103,7 +103,7 @@ const Services = () => {
             </div>
           </div> */}
                 <div className="whyChoose">
-              <div className="whyChooseHead" style={{color: "black", fontSize: "30px"}}>
+              <div className="whyChooseHead" style={{color: "white", fontSize: "30px"}}>
                 Our Key features
               </div>
               <div className="whyChooseBodyHold">

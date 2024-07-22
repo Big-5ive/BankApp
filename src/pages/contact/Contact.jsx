@@ -22,7 +22,7 @@ const Contact = () => {
     <>
       <Layout>
         <div className="cashmanageparent">
-          <div className="cashHeroPage">
+          <div className="cashHeroPage" style={{backgroundImage: 'url("./imgs/bussiness.jpg")'}}>
             <div>
               <p>Solutions for <span style={{fontSize: "40px", color: "navy"}}>Financial growth</span></p>
             <p style={{color: "white"}}>
