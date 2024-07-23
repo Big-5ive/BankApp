@@ -23,16 +23,16 @@ const Services = () => {
       <Layout>
         <section
           className="pb-8 bg-top bg-cover bg-no-repeat relative -mt-24 pt-24"
-          style={{ backgroundImage: "url('/imgs/placeholders/img-15.jpg')" }}
+          style={{ backgroundImage: "url('https://media.istockphoto.com/id/596384360/photo/data-safe-box.jpg?b=1&s=612x612&w=0&k=20&c=dINLm7oxgHkyqEe2Olbywg_APCT4SsA0Ncx71AIOxyM=')" }}
         >
           <div className="container">
             <div className="py-12 text-center">
               <div className="max-w-2xl mx-auto mb-8">
                 <h2 className="text-white text-3xl lg:text-5xl mb-4 font-bold font-heading wow animate__animated animate__fadeIn">
                   Secure Your Valuables <br />
-                  with <span className="text-blue-500">Safe Deposit Boxes</span>
+                  with <span className="text-navy-500">Safe Deposit Boxes</span>
                 </h2>
-                <div className="text-blueGray-400 leading-relaxed wow animate__animated animate__fadeIn">
+                <div className="text-white leading-relaxed wow animate__animated animate__fadeIn">
                   Protect your most valuable possessions with our secure and
                   reliable safe deposit boxes at Avant-Garde-Finance. Whether
                   it's important documents, jewelry, or sentimental items, our

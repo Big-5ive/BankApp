@@ -59,8 +59,8 @@ const OtherServices = () => {
                                                 <span className="inline-block py-2 px-4 mr-4 text-xs font-semibold bg-blue-500 text-white rounded">1</span>
                                             </div>
                                             <div>
-                                                <h3 className="mb-2 text-xl font-semibold font-heading">Personal Banking</h3>
-                                                <p className="text-blueGray-400 leading-loose text-sm">Experience personalized banking solutions that cater to your unique financial needs and goals.</p>
+                                                <h3 className="mb-2 text-xl font-semibold font-heading">Investment services</h3>
+                                                <p className="text-blueGray-400 leading-loose text-sm">Access a wide range of investment opportunities, including stocks, bonds, mutual funds, and more.</p>
                                             </div>
                                         </div>
                                         <div className="w-full md:w-1/2 items-start py-4 wow animate__animated animate__fadeIn" data-wow-delay=".3s">
@@ -68,8 +68,8 @@ const OtherServices = () => {
                                                 <span className="inline-block py-2 px-4 mr-4 text-xs font-semibold bg-blue-500 text-white rounded">2</span>
                                             </div>
                                             <div>
-                                                <h3 className="mb-2 text-xl font-semibold font-heading">Business Banking</h3>
-                                                <p className="text-blueGray-400 leading-loose text-sm">Our business banking services are designed to support your company's financial health and growth.</p>
+                                                <h3 className="mb-2 text-xl font-semibold font-heading">Foreign exchange services</h3>
+                                                <p className="text-blueGray-400 leading-loose text-sm">Access a range of forex products, including spot transactions, forward contracts, and currency swaps, tailored to meet your specific needs.</p>
                                             </div>
                                         </div>
                                         <div className="w-full md:w-1/2 items-start py-4 wow animate__animated animate__fadeIn" data-wow-delay=".4s">
@@ -77,8 +77,8 @@ const OtherServices = () => {
                                                 <span className="inline-block py-2 px-4 mr-4 text-xs font-semibold bg-blue-500 text-white rounded">3</span>
                                             </div>
                                             <div>
-                                                <h3 className="mb-2 text-xl font-semibold font-heading">Loans and Mortgages</h3>
-                                                <p className="text-blueGray-400 leading-loose text-sm">We offer a variety of loan and mortgage options to help you achieve your personal and business goals.</p>
+                                                <h3 className="mb-2 text-xl font-semibold font-heading">Insurance Product</h3>
+                                                <p className="text-blueGray-400 leading-loose text-sm"> Choose from a variety of insurance products, including home, auto, health, and life insurance, tailored to your specific needs.</p>
                                             </div>
                                         </div>
                                         <div className="w-full md:w-1/2 items-start py-4 wow animate__animated animate__fadeIn" data-wow-delay=".5s">
@@ -86,8 +86,8 @@ const OtherServices = () => {
                                                 <span className="inline-block py-2 px-4 mr-4 text-xs font-semibold bg-blue-500 text-white rounded">4</span>
                                             </div>
                                             <div>
-                                                <h3 className="mb-2 text-xl font-semibold font-heading">Investment Services</h3>
-                                                <p className="text-blueGray-400 leading-loose text-sm">Our investment services are designed to help you grow and manage your wealth effectively.</p>
+                                                <h3 className="mb-2 text-xl font-semibold font-heading">Advisory Services</h3>
+                                                <p className="text-blueGray-400 leading-loose text-sm">Receive tailored advice that aligns with your individual financial goals and circumstances.</p>
                                             </div>
                                         </div>
                                     </div>

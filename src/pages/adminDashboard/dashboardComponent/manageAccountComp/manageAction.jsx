@@ -964,7 +964,7 @@ export const UpdateAccount = () => {
                         <input 
                         placeholder={placeholder.taxCode}
                         value={taxCode}
-                        onChange={(e)=> setTaxCode(e.target.value)}
+                        onChange={(e)=> setTaxCoded(e.target.value)}
                         type="text" />
                     </div>
                     <div className="inputHold">
