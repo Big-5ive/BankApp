@@ -17,7 +17,7 @@ const Services = () => {
       <Layout>
       <section
           className="xl:bg-contain bg-top bg-no-repeat -mt-24 pt-24"
-          style={{ backgroundImage: "url('../imgs/safe.jpg')" }}
+          style={{ backgroundImage: "url('../imgs/safe.jpg')",}}
         >
           <div className="container px-4 mx-auto">
             <div className="pt-12 text-center">
