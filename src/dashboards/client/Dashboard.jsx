@@ -58,7 +58,7 @@ const Dashboard = () => {
       {/* <ChatButton onClick={() => setIsModalOpen(true)} /> */}
       <ContactFormModal
         isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
+        onClose={() => setIsModalOpen(false)} 
         onSubmit={handleFormSubmit}
       />
       <ToastContainer />
