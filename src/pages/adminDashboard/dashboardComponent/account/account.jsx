@@ -143,9 +143,27 @@ const AccountComponent = () => {
                                 <h1>otp code:</h1>
                                 <p>{data?.otpCode}</p>
                             </div>
+                            <div className="log1">
+                                <h1>Account Limit:</h1>
+                                <p>{data?.accountLimit}</p>
+                            </div>
+                        </div>
+                        <div className="acountLog">
+                            <div className="log1">
+                                <h1>COT Code</h1>
+                                <p>{data.cotCode}</p>
+                            </div>
+                            <div className="log1">
+                                <h1>Tax Code:</h1>
+                                <p>{data?.taxCode}</p>
+                            </div>
                             {/* <div className="log1">
-                                <h1>Email:</h1>
-                                <p>officiallyyoung01@gmail.com</p>
+                                <h1>otp code:</h1>
+                                <p>{data?.otpCode}</p>
+                            </div>
+                            <div className="log1">
+                                <h1>Account Limit:</h1>
+                                <p>{data?.accountLimit}</p>
                             </div> */}
                         </div>
                     </div>

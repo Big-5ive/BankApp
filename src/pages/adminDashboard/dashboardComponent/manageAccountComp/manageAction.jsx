@@ -22,6 +22,9 @@ export const AddAccount = () => {
     const [registerationDate, setRegisterationDate] = useState("")
     const [password, setPassword] = useState("")
     const [retypePassword, setRetypePassword] = useState("")
+    const [accountLimit, setAccountLimit] = useState()
+    const [cotCode, setCotCode] = useState("")
+    const [taxCode, setTaxCode] = useState("")
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState({
         // isError: false,
@@ -31,6 +34,7 @@ export const AddAccount = () => {
 
     const balance = parseInt(totalBalance)
     const available = parseInt(availableBalance)
+    const limit = parseInt(accountLimit)
 
     const userData = {
         fullName: fullName,
@@ -47,7 +51,10 @@ export const AddAccount = () => {
         totalBalance: balance,
         registerationDate: registerationDate,
         password: password,
-        retype_password: retypePassword
+        retype_password: retypePassword,
+        accountLimit: limit,
+        cotCode: cotCode,
+        taxCode: taxCode
     }
 
     const passwordValidator = () => {
@@ -100,7 +107,7 @@ export const AddAccount = () => {
             }
             axios.post(url, userData, { headers })
             .then((response) => {
-                console.log(response.data.data)
+                // console.log(response.data.data)
                 toast.success("user added successfully")
                 setLoading(false)
                 const oldData = JSON.parse(localStorage.getItem("allUsers")) || []
@@ -108,10 +115,10 @@ export const AddAccount = () => {
                 localStorage.setItem("allUsers", JSON.stringify(newData))
             })
             .catch((error)=> {
-                console.log(error)
+                // console.log(error)
                 toast.error(error.response.data.message)
                 setLoading(false)
-                console.log(admin)
+                // console.log(admin)
             })
             
             
@@ -246,7 +253,7 @@ export const AddAccount = () => {
                             <option value="">Select</option>
                             <option value="savings">Savings</option>
                             <option value="current">Current</option>
-                            <option value="checking">Checking</option>
+                            {/* <option value="checking">Checking</option> */}
                         </select>
                     </div>
                 </div>
@@ -278,6 +285,44 @@ export const AddAccount = () => {
                          type="number"
                          />
                     </div>
+                    <div className="inputHold">
+                        <p>Account Limit</p>
+                        <input
+                         required
+                         value={accountLimit}
+                         onChange={(e)=> setAccountLimit(e.target.value)}
+                         type="number"
+                         />
+                    </div>
+                </div>
+                <div className="addformrow">
+                    <div className="inputHold">
+                        <p>COT Code</p>
+                        <input
+                         required
+                         value={cotCode}
+                         onChange={(e)=> setCotCode(e.target.value)}
+                         type="text" 
+                         />
+                    </div>
+                    <div className="inputHold">
+                        <p>TAX Code</p>
+                        <input
+                         required
+                         value={taxCode}
+                         onChange={(e)=> setTaxCode(e.target.value)}
+                         type="text" 
+                         />
+                    </div>
+                    {/* <div className="inputHold">
+                        <p>Available balance</p>
+                        <input
+                         required
+                         value={availableBalance}
+                         onChange={(e)=> setAvailableBalance(e.target.value)}
+                         type="number"
+                         />
+                    </div> */}
                 </div>
                 <div className="addformrowbutt">
                    <button>
@@ -658,6 +703,9 @@ export const UpdateAccount = () => {
     const [totalBalance, setTotalBalance] = useState("")
     const [registerationDate, setRegisterationDate] = useState("")
     const [currency, setCurrency] = useState("")
+    const [cotCode, setCotCode] = useState("")
+    const [taxCode, setTaxCoded] = useState("")
+    const [accountLimit, setAccountLimit] = useState()
     const [loading2, setLoading2] = useState(false)
     const [placeholder, setPlaceholder] = useState(false)
     const [error, setError] = useState({
@@ -673,6 +721,7 @@ export const UpdateAccount = () => {
 
     const balance = parseInt(totalBalance)
     const available = parseInt(availableBalance)
+    const limit = parseInt(accountLimit)
 
     const userData = {
         fullName: fullName,
@@ -689,7 +738,9 @@ export const UpdateAccount = () => {
         availableBalance: available,
         totalBalance: balance,
         registerationDate: registerationDate,
-        currency
+        cotCode: cotCode,
+        taxCode: taxCode,
+        accountLimit: limit
     }
     const admin = JSON.parse(localStorage.getItem("adminData"))
     const token = admin.token
@@ -827,7 +878,7 @@ export const UpdateAccount = () => {
                         value={dateOfBirth}
                         placeholder={placeholder.dateOfBirth}
                         onChange={(e)=>setDateOfBirth(e.target.value)}
-                        type="text" />
+                        type="date" />
                     </div>
                 </div>
                 <div className="addformrow">
@@ -864,7 +915,7 @@ export const UpdateAccount = () => {
                         value={registerationDate}
                         placeholder={placeholder.registrationDate}
                         onChange={(e)=>setRegisterationDate(e.target.value)}
-                        type="text" />
+                        type="date" />
                     </div>
                     <div className="inputHold">
                         <p>Total balance</p>
@@ -900,18 +951,30 @@ export const UpdateAccount = () => {
                         onChange={(e)=>setCurrency(e.target.value)}
                         type="text" />
                     </div>
-                    {/* <div className="inputHold">
+                    <div className="inputHold">
                         <p>COT code</p>
-                        <input type="text" />
+                        <input 
+                        placeholder={placeholder.cotCode}
+                        value={cotCode}
+                        onChange={(e)=> setCotCode(e.target.value)}
+                        type="text" />
                     </div>
                     <div className="inputHold">
-                        <p>IMF code</p>
-                        <input type="text" />
+                        <p>TAX code</p>
+                        <input 
+                        placeholder={placeholder.taxCode}
+                        value={taxCode}
+                        onChange={(e)=> setTaxCode(e.target.value)}
+                        type="text" />
                     </div>
                     <div className="inputHold">
-                        <p>Complaint code</p>
-                        <input type="text" />
-                    </div> */}
+                        <p>Account Limit</p>
+                        <input 
+                        placeholder={placeholder.accountLimit}
+                        value={accountLimit}
+                        onChange={(e)=> setAccountLimit(e.target.value)}
+                        type="number" />
+                    </div>
                 </div>
                 
                 <div className="addformrowbutt">
