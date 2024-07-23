@@ -17,18 +17,18 @@ const Services = () => {
       <Layout>
       <section
           className="xl:bg-contain bg-top bg-no-repeat -mt-24 pt-24"
-          style={{ backgroundImage: "url('../imgs/safe.jpg')",}}
+          style={{ backgroundImage: "url('./imgs/banksafe.jpg')"}}
         >
           <div className="container px-4 mx-auto">
             <div className="pt-12 text-center">
               <div className="max-w-2xl mx-auto mb-8">
-                <h2 className="text-3xl lg:text-5xl lg:leading-normal mb-4 font-bold font-heading wow animate__animated animate__fadeIn" style={{color: "white"}}>
+                <h2 className="text-3xl lg:text-5xl lg:leading-normal mb-4 font-bold font-heading wow animate__animated animate__fadeIn" style={{color: "navy"}}>
                   Secure Your Valuables <br />
-                   <span className="text-500" style={{color: "white"}}>with Safe Deposit Boxes</span>
+                   <span className="text-500" style={{color: "navy"}}>with Safe Deposit Boxes</span>
                 </h2>
                 <div className="text-blueGray-400 leading-relaxed wow animate__animated animate__fadeIn d-inline">
                   {/* Welcome to{" "} */}
-                  <strong className="text-400" style={{color: "white", fontSize: "20px"}}>
+                  <strong className="text-400" style={{color: "black", fontSize: "20px"}}>
                     Protect your most valuable possessions with our secure and reliable safe deposit boxes at 
                     Avant-Garde-Finance. Whether it's important documents, jewelry, or sentimental items, our safe 
                     deposit boxes offer peace of mind with advanced security features.
@@ -63,7 +63,7 @@ const Services = () => {
           </div>
           <div className="relative max-w-6xl mt-16 md:mt-8 mb-8 mx-auto">
             <img src="/imgs/elements/pattern.png" alt="Monst" />
-            <div
+            {/* <div
               className="absolute"
               style={{ top: "9%", left: "14%", width: "72%", height: "66%" }}
             >
@@ -73,7 +73,7 @@ const Services = () => {
                 alt="Monst"
                 style={{width: "100%", height: "100%", objectFit: "cover"}}
               />
-            </div>
+            </div> */}
           </div>
 
           {/* <div className="container px-4 mx-auto">

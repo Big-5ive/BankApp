@@ -753,7 +753,7 @@ export const UpdateAccount = () => {
         const url = `https://avantgardefinance-api.onrender.com/admin-update/${placeholder._id}`
         axios.put(url,userData, { headers })
         .then((response)=> {
-            // console.log(response)
+            console.log(response)
             setLoading2(false)
             toast.success("user update successful")
             setTimeout(()=>{
