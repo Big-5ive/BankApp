@@ -1,3 +1,181 @@
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { toast } from "react-toastify";
+import "tailwindcss/tailwind.css";
+import { financialData } from './data';
+
+const FinancialStatement = () => {
+  const [record, setRecord] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const userData = JSON.parse(localStorage.getItem("user"));
+  const token = localStorage.getItem("token");
+  console.log(userData._id);
+
+  useEffect(() => {
+    if (userData && userData._id) {
+      fetchUserData(userData._id);
+    } else {
+      toast.error("No user data found.");
+    }
+  }, []);
+
+  const fetchUserData = async (userId) => {
+    setLoading(true);
+    try {
+      const response = await axios.get(
+        `https://avantgardefinance-api.onrender.com/transaction-history/${userId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const newData = response.data.transactions
+      setRecord(newData);
+      console.log(response.data.transactions);
+    } catch (error) {
+      if (error.response && error.response.status === 404) {
+        toast.error("User not found");
+      } else {
+        // toast.error("Internal Server Error: " + error.message);
+        console.log("Internal Server Error: " + error.message);
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  console.log(record);
+
+  if (loading) {
+    return (
+      <div className="text-center flex items-center justify-center">
+        <svg
+          className="animate-spin h-5 w-5 mr-3 text-white"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <circle
+            className="opacity-25"
+            cx="12"
+            cy="12"
+            r="10"
+            stroke="currentColor"
+            strokeWidth="4"
+          ></circle>
+          <path
+            className="opacity-75"
+            fill="currentColor"
+            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+          ></path>
+        </svg>
+      </div>
+    );
+  }
+
+  if (!userData) {
+    return (
+      <div className="text-center flex items-center justify-center -text--clr-silver-v1">
+        <div>No user data available</div>
+      </div>
+    );
+  }
+
+  const formatTimestamp = (timestamp) => {
+    const date = new Date(timestamp);
+    const day = date.getDate().toString().padStart(2, "0");
+    const month = (date.getMonth() + 1).toString().padStart(2, "0");
+    const year = date.getFullYear();
+
+    let hours = date.getHours();
+    const minutes = date.getMinutes().toString().padStart(2, "0");
+    const ampm = hours >= 12 ? "pm" : "am";
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+
+    return `${day}/${month}/${year} ${hours}:${minutes}${ampm}`;
+  };
+
+  return (
+    <>
+      {/* Financial Statement Review */}
+      <div className="-bg--clr-primary p-6 rounded shadow-md">
+        <div className="text-blue-800 font-bold mb-3">
+          YOUR FINANCIAL STATEMENT REVIEW
+        </div>
+
+        <div className="p-5 h-max">
+          <h1 className="text-lg mb-2 -text--clr-silver-v1">
+            (WIRE AND DOMESTIC TRANSFERS)
+          </h1>
+
+          <div className="overflow-auto rounded-lg shadow-custom hidden md:block">
+            <table className="w-full">
+              <thead className="border-b-2 -border--clr-silver-v1">
+                <tr className="-text--clr-silver-v1">
+                  <th className="w-32 p-3 text-sm font-semibold tracking-wide text-left">SENDER</th>
+                  <th className="p-3 text-sm font-semibold tracking-wide text-left">BANK</th>
+                  <th className="w-32 p-3 text-sm font-semibold tracking-wide text-left">RECEIVER</th>
+                  <th className="w-32 p-3 text-sm font-semibold tracking-wide text-left">AMOUNT</th>
+                  <th className="w-24 p-3 text-sm font-semibold tracking-wide text-left uppercase">TYPE</th>
+                  <th className="w-32 p-3 text-sm font-semibold tracking-wide text-left">REMARK</th>
+                  <th className="w-24 p-3 text-sm font-semibold tracking-wide text-left uppercase">Date/time</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y -divide--clr-silver-v1">
+                {record.map((data,index) => (
+                  <tr key={index} className="-text--clr-silver-v1">
+                    <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">
+                      <a href="#" className="font-bold text-blue-500 hover:underline">{data.senderName}</a>
+                    </td>
+                    <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">{data.bank}</td>
+                    <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">{data.accountTransferredTo.fullName}</td>
+                    <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">{data.amountTransferred}</td>
+                    <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">
+                      <span className={`p-1.5 text-xs font-medium uppercase tracking-wider text-${data.transactionType === 'CREDIT' ? 'green' : data.transactionType === 'debit' ? 'yellow-500' : 'green'}-800 bg-${data.transactionType === 'credit' ? 'green' : data.transactionType === 'debit' ? 'yellow' : 'gray'}-200 rounded-lg bg-opacity-50`}>
+                        {data.transactionType}
+                      </span>
+                    </td>
+                    <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">{data.remark}</td>
+                    <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">{formatTimestamp(data.date)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden">
+            {record?.map((data,index) => (
+              <div key={index} className="-bg--clr-secondary space-y-3 p-4 rounded-lg shadow">
+                <div className="flex items-center space-x-2 text-sm">
+                  <div>
+                    <a href="#" className="text-blue-500 font-bold hover:underline">#{data.senderName}</a>
+                  </div>
+                  <div className="text-gray-500">{formatTimestamp(data.date).split(' ')[0]}</div>
+                  <div>
+                    <span className={`p-1.5 text-xs font-medium uppercase tracking-wider text-${data.transactionType === 'credit' ? 'green' : data.transactionType === 'CREDIT' ? 'yellow' : 'gray'}-800 bg-${data.transactionType === 'debit' ? 'green' : data.status === 'Pending' ? 'yellow' : 'gray'}-200 rounded-lg bg-opacity-50`}>
+                      {data.transactionType}
+                    </span>
+                  </div>
+                </div>
+                <div className="text-sm -text--clr-silver-v1">
+                  {data.bank} <br /> {data.accountTransferredTo.fullName}
+                </div>
+                <div className="text-sm font-medium -text--clr-silver-v1">{data.amountTransferred}</div>
+                <div className="text-sm font-medium -text--clr-silver-v1">{data.remark}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default FinancialStatement;
+
+
 // import React, { useState, useEffect } from "react";
 // import axios from "axios";
 // import { toast } from "react-toastify";
@@ -166,186 +344,3 @@
 
 // export default FinancialStatement;
 
-
-
-
-
-
-
-
-
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { toast } from "react-toastify";
-import "tailwindcss/tailwind.css";
-import { financialData } from './data';
-
-const FinancialStatement = () => {
-  const [record, setRecord] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const userData = JSON.parse(localStorage.getItem("user"));
-  const token = localStorage.getItem("token");
-
-  useEffect(() => {
-    if (userData && userData._id) {
-      fetchUserData(userData._id);
-    } else {
-      toast.error("No user data found.");
-    }
-  }, []);
-
-  const fetchUserData = async (userId) => {
-    setLoading(true);
-    try {
-      const response = await axios.get(
-        `https://avantgardefinance-api.onrender.com/transaction-history/${userId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      const newData = response.data.transactions
-      setRecord(newData);
-      console.log(response.data.transactions);
-    } catch (error) {
-      if (error.response && error.response.status === 404) {
-        toast.error("User not found");
-      } else {
-        // toast.error("Internal Server Error: " + error.message);
-        console.log("Internal Server Error: " + error.message);
-      }
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  console.log(record);
-
-  if (loading) {
-    return (
-      <div className="text-center flex items-center justify-center">
-        <svg
-          className="animate-spin h-5 w-5 mr-3 text-white"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-        >
-          <circle
-            className="opacity-25"
-            cx="12"
-            cy="12"
-            r="10"
-            stroke="currentColor"
-            strokeWidth="4"
-          ></circle>
-          <path
-            className="opacity-75"
-            fill="currentColor"
-            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-          ></path>
-        </svg>
-      </div>
-    );
-  }
-
-  if (!userData) {
-    return (
-      <div className="text-center flex items-center justify-center -text--clr-silver-v1">
-        <div>No user data available</div>
-      </div>
-    );
-  }
-
-  const formatTimestamp = (timestamp) => {
-    const date = new Date(timestamp);
-    const day = date.getDate().toString().padStart(2, "0");
-    const month = (date.getMonth() + 1).toString().padStart(2, "0");
-    const year = date.getFullYear();
-
-    let hours = date.getHours();
-    const minutes = date.getMinutes().toString().padStart(2, "0");
-    const ampm = hours >= 12 ? "pm" : "am";
-    hours = hours % 12;
-    hours = hours ? hours : 12;
-
-    return `${day}/${month}/${year} ${hours}:${minutes}${ampm}`;
-  };
-
-  return (
-    <>
-      {/* Financial Statement Review */}
-      <div className="-bg--clr-primary p-6 rounded shadow-md">
-        <div className="text-blue-800 font-bold mb-3">
-          YOUR FINANCIAL STATEMENT REVIEW
-        </div>
-
-        <div className="p-5 h-max">
-          <h1 className="text-lg mb-2 -text--clr-silver-v1">
-            (WIRE AND DOMESTIC TRANSFERS)
-          </h1>
-
-          <div className="overflow-auto rounded-lg shadow-custom hidden md:block">
-            <table className="w-full">
-              <thead className="border-b-2 -border--clr-silver-v1">
-                <tr className="-text--clr-silver-v1">
-                  <th className="w-32 p-3 text-sm font-semibold tracking-wide text-left">SENDER</th>
-                  <th className="p-3 text-sm font-semibold tracking-wide text-left">BANK</th>
-                  <th className="w-32 p-3 text-sm font-semibold tracking-wide text-left">RECEIVER</th>
-                  <th className="w-32 p-3 text-sm font-semibold tracking-wide text-left">AMOUNT</th>
-                  <th className="w-24 p-3 text-sm font-semibold tracking-wide text-left uppercase">TYPE</th>
-                  <th className="w-32 p-3 text-sm font-semibold tracking-wide text-left">REMARK</th>
-                  <th className="w-24 p-3 text-sm font-semibold tracking-wide text-left uppercase">Date/time</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y -divide--clr-silver-v1">
-                {record.map((data,index) => (
-                  <tr key={index} className="-text--clr-silver-v1">
-                    <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">
-                      <a href="#" className="font-bold text-blue-500 hover:underline">{data.senderName}</a>
-                    </td>
-                    <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">{data.bank}</td>
-                    <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">{data.accountTransferredTo.fullName}</td>
-                    <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">{data.amountTransferred}</td>
-                    <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">
-                      <span className={`p-1.5 text-xs font-medium uppercase tracking-wider text-${data.transactionType === 'CREDIT' ? 'green' : data.transactionType === 'debit' ? 'yellow-500' : 'green'}-800 bg-${data.transactionType === 'credit' ? 'green' : data.transactionType === 'debit' ? 'yellow' : 'gray'}-200 rounded-lg bg-opacity-50`}>
-                        {data.transactionType}
-                      </span>
-                    </td>
-                    <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">{data.remark}</td>
-                    <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">{formatTimestamp(data.date)}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden">
-            {record?.map((data,index) => (
-              <div key={index} className="-bg--clr-secondary space-y-3 p-4 rounded-lg shadow">
-                <div className="flex items-center space-x-2 text-sm">
-                  <div>
-                    <a href="#" className="text-blue-500 font-bold hover:underline">#{data.senderName}</a>
-                  </div>
-                  <div className="text-gray-500">{formatTimestamp(data.date).split(' ')[0]}</div>
-                  <div>
-                    <span className={`p-1.5 text-xs font-medium uppercase tracking-wider text-${data.transactionType === 'credit' ? 'green' : data.transactionType === 'CREDIT' ? 'yellow' : 'gray'}-800 bg-${data.transactionType === 'debit' ? 'green' : data.status === 'Pending' ? 'yellow' : 'gray'}-200 rounded-lg bg-opacity-50`}>
-                      {data.transactionType}
-                    </span>
-                  </div>
-                </div>
-                <div className="text-sm -text--clr-silver-v1">
-                  {data.bank} <br /> {data.accountTransferredTo.fullName}
-                </div>
-                <div className="text-sm font-medium -text--clr-silver-v1">{data.amountTransferred}</div>
-                <div className="text-sm font-medium -text--clr-silver-v1">{data.remark}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </>
-  );
-};
-
-export default FinancialStatement;
