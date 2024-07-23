@@ -137,13 +137,13 @@ const ContentTop = () => {
           </div>
         </div>
       </div>
-      <div className="trade__widget">
+      {/* <div className="trade__widget">
         <TickerTape
           colorTheme="dark"
           displayMode="adaptive"
           showSymbolLogo={false}
         ></TickerTape>
-      </div>
+      </div> */}
       {isAddKYCModalOpen && (
         <AddKYCModal onClose={() => setAddKYCModalOpen(false)} />
       )}

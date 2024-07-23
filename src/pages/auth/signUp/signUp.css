@@ -10,7 +10,7 @@
 }
 .signUpbody{
     width: 40%;
-    height: 90vh;
+    min-height: 90vh;
     border-radius: 10px;
     padding-left: 10px;
     padding-right: 10px;

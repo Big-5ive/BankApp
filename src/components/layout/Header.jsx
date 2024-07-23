@@ -16,7 +16,7 @@ const Header = ({handleHidden}) => {
     return (
         <>
             <header className={scroll ? "bg-transparent sticky-bar mt-4 stick": "bg-transparent sticky-bar mt-4"}>
-                <div className="container bg-transparent">
+                <div className="container bg-white">
                     <nav className="bg-transparent flex justify-between items-center py-3">
                         <Link to="/" className="flex items-center font-bold text-2xl gap-3" legacyBehavior>
                             <a className="text-3xl font-semibold leading-none">
@@ -27,7 +27,7 @@ const Header = ({handleHidden}) => {
                                 />
                             </a>
                             <span className="hidden lg:flex">Avant-garde-finance</span>
-                            <span className="flex lg:hidden">Avant</span>
+                            <span className="flex lg:hidden">Avant-garde-finance</span>
                         </Link>
                         <ul className="hidden lg:flex lg:items-center lg:w-auto lg:space-x-12">
                             <li className="group relative pt-4 pb-4 has-child">
@@ -45,18 +45,25 @@ const Header = ({handleHidden}) => {
                                     </a>
                                 </Link>
                             </li>
-                            {/* <li className="pt-4 pb-4">
+                            <li className="pt-4 pb-4">
                                 <Link to="/services" legacyBehavior>
                                     <a className="text-sm font-semibold text-blueGray-600 hover:text-blueGray-500">
-                                        Services
+                                        Safe Deposite Box
                                     </a>
                                 </Link>
-                            </li> */}
+                            </li>
                            
                             <li className="pt-4 pb-4">
                                 <Link to="/contact" legacyBehavior>
                                     <a className="text-sm font-semibold text-blueGray-600 hover:text-blueGray-500">
-                                        Contact
+                                        Cash Management services
+                                    </a>
+                                </Link>
+                            </li>
+                            <li className="pt-4 pb-4">
+                                <Link to="/others" legacyBehavior>
+                                    <a className="text-sm font-semibold text-blueGray-600 hover:text-blueGray-500">
+                                        Other services
                                     </a>
                                 </Link>
                             </li>
