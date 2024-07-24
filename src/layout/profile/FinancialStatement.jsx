@@ -32,20 +32,22 @@ const FinancialStatement = () => {
       );
       const newData = response.data.transactions
       setRecord(newData);
-      console.log(response.data.transactions);
+      // console.log(response.data.transactions);
     } catch (error) {
       if (error.response && error.response.status === 404) {
         toast.error("User not found");
+        // console.log(error)
       } else {
         // toast.error("Internal Server Error: " + error.message);
         console.log("Internal Server Error: " + error.message);
+        // console.log(error)
       }
     } finally {
       setLoading(false);
     }
   };
 
-  console.log(record);
+  // console.log(record);
 
   if (loading) {
     return (
@@ -118,7 +120,7 @@ const FinancialStatement = () => {
                   <th className="p-3 text-sm font-semibold tracking-wide text-left">BANK</th>
                   <th className="w-32 p-3 text-sm font-semibold tracking-wide text-left">RECEIVER</th>
                   <th className="w-32 p-3 text-sm font-semibold tracking-wide text-left">AMOUNT</th>
-                  <th className="w-24 p-3 text-sm font-semibold tracking-wide text-left uppercase">TYPE</th>
+                  <th className="w-24 p-3 text-sm font-semibold tracking-wide text-left uppercase"></th>
                   <th className="w-32 p-3 text-sm font-semibold tracking-wide text-left">REMARK</th>
                   <th className="w-24 p-3 text-sm font-semibold tracking-wide text-left uppercase">Date/time</th>
                 </tr>
@@ -130,7 +132,7 @@ const FinancialStatement = () => {
                       <a href="#" className="font-bold text-blue-500 hover:underline">{data.senderName}</a>
                     </td>
                     <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">{data.bank}</td>
-                    <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">{data.accountTransferredTo.fullName}</td>
+                    <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">{data.accountName}</td>
                     <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">{data.amountTransferred}</td>
                     <td className="p-3 text-sm -text--clr-silver-v1 whitespace-nowrap">
                       <span className={`p-1.5 text-xs font-medium uppercase tracking-wider text-${data.transactionType === 'CREDIT' ? 'green' : data.transactionType === 'debit' ? 'yellow-500' : 'green'}-800 bg-${data.transactionType === 'credit' ? 'green' : data.transactionType === 'debit' ? 'yellow' : 'gray'}-200 rounded-lg bg-opacity-50`}>
@@ -160,7 +162,7 @@ const FinancialStatement = () => {
                   </div>
                 </div>
                 <div className="text-sm -text--clr-silver-v1">
-                  {data.bank} <br /> {data.accountTransferredTo.fullName}
+                  {data.bank} <br /> {data.accountName}
                 </div>
                 <div className="text-sm font-medium -text--clr-silver-v1">{data.amountTransferred}</div>
                 <div className="text-sm font-medium -text--clr-silver-v1">{data.remark}</div>
