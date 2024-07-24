@@ -701,7 +701,7 @@ export const UpdateAccount = () => {
     const [accountNumber, setAccountNumber] = useState("")
     const [availableBalance, setAvailableBalance] = useState("")
     const [totalBalance, setTotalBalance] = useState("")
-    const [registerationDate, setRegisterationDate] = useState("")
+    const [registerationDate, setRegisterationDate] = useState()
     const [currency, setCurrency] = useState("")
     const [cotCode, setCotCode] = useState("")
     const [taxCode, setTaxCoded] = useState("")
@@ -737,7 +737,7 @@ export const UpdateAccount = () => {
         accountNumber: accountNumber,
         availableBalance: available,
         totalBalance: balance,
-        registerationDate: registerationDate,
+        registrationDate: registerationDate,
         cotCode: cotCode,
         taxCode: taxCode,
         accountLimit: limit
@@ -754,6 +754,7 @@ export const UpdateAccount = () => {
         axios.put(url,userData, { headers })
         .then((response)=> {
             console.log(response)
+            console.log(registerationDate)
             setLoading2(false)
             toast.success("user update successful")
             setTimeout(()=>{

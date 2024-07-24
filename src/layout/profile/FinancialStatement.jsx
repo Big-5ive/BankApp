@@ -32,20 +32,22 @@ const FinancialStatement = () => {
       );
       const newData = response.data.transactions
       setRecord(newData);
-      console.log(response.data.transactions);
+      // console.log(response.data.transactions);
     } catch (error) {
       if (error.response && error.response.status === 404) {
         toast.error("User not found");
+        // console.log(error)
       } else {
         toast.error("Internal Server Error: " + error.message);
         console.log("Internal Server Error: " + error.message);
+        // console.log(error)
       }
     } finally {
       setLoading(false);
     }
   };
 
-  console.log(record);
+  // console.log(record);
 
   if (loading) {
     return (
@@ -118,7 +120,7 @@ const FinancialStatement = () => {
                   <th className="p-3 text-sm font-semibold tracking-wide text-left">BANK</th>
                   <th className="w-32 p-3 text-sm font-semibold tracking-wide text-left">RECEIVER</th>
                   <th className="w-32 p-3 text-sm font-semibold tracking-wide text-left">AMOUNT</th>
-                  <th className="w-24 p-3 text-sm font-semibold tracking-wide text-left uppercase">TYPE</th>
+                  <th className="w-24 p-3 text-sm font-semibold tracking-wide text-left uppercase"></th>
                   <th className="w-32 p-3 text-sm font-semibold tracking-wide text-left">REMARK</th>
                   <th className="w-24 p-3 text-sm font-semibold tracking-wide text-left uppercase">Date/time</th>
                 </tr>
