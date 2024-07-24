@@ -79,7 +79,7 @@ const Profile = () => {
                 <div className="text-3xl font-bold -text--clr-silver-v1">
                   {`$ ${isNaN(userData1?.totalBalance) ? 0 : formatNumber(userData1?.totalBalance)}`}
                 </div>
-                <div className="-text--clr-silver-v1">as at July 4, 2024</div>
+                {/* <div className="-text--clr-silver-v1">as at July 4, 2024</div> */}
 
                 {/* Bar Chart */}
                 <div className="mt-4">
